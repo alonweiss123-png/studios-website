@@ -5331,9 +5331,10 @@
         }
       }
 
-      // === STUDIOS CRM ANALYTICS BEACONS (page_view + form_start) ===
-      // Side-channel telemetry only — does NOT touch the lead-form submission
-      // to the CRM / Make / Formspree above. Same PUBLIC secret as the leads
+      // === STUDIOS CRM ANALYTICS BEACONS ===
+      // Full side-channel telemetry: page_view, scroll_depth, form_start,
+      // form_abandon, heartbeat. Does NOT touch the lead-form submission to
+      // the CRM / Make / Formspree above. Same PUBLIC secret as the leads
       // webhook (ships in client JS regardless; string-split deters scraping).
       const WEBHOOK_SECRET =
         "84373481945a8a0b8c3" + "18e4c3241f49d709b6bb6fec7ad9680a71f18fb75e8cf";
@@ -5363,11 +5364,13 @@
         return "desktop";
       }
 
-      function shTrack(eventType) {
+      function shTrack(eventType, label) {
         try {
           const utm = typeof getUtm === "function" ? getUtm() : {};
           const body = JSON.stringify({
             event_type: eventType,
+            label:
+              label !== undefined && label !== null ? String(label) : undefined,
             session_id: shSessionId(),
             page_path: location.pathname,
             referrer: document.referrer || undefined,
@@ -5387,18 +5390,75 @@
         } catch (e) {}
       }
 
+      // 1) Page entry
       shTrack("page_view");
 
-      // Fire form_start once, the first time a user interacts with the form.
+      // 2) Scroll depth — 25/50/75/100%
+      (function () {
+        var thresholds = [25, 50, 75, 100],
+          fired = {};
+        function onScroll() {
+          var el = document.documentElement;
+          var max = el.scrollHeight - el.clientHeight || 1;
+          var pct = Math.min(
+            100,
+            Math.round(((el.scrollTop || document.body.scrollTop) / max) * 100),
+          );
+          thresholds.forEach(function (t) {
+            if (pct >= t && !fired[t]) {
+              fired[t] = true;
+              shTrack("scroll_depth", t);
+            }
+          });
+        }
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+      })();
+
+      // 3) Form — start + abandon
       (function () {
         var mainForm = document.querySelector("#contactForm");
         if (!mainForm) return;
-        var started = false;
-        mainForm.addEventListener("focusin", function () {
-          if (started) return;
-          started = true;
-          shTrack("form_start");
+        var started = false,
+          done = false,
+          lastField = null;
+        mainForm.addEventListener("focusin", function (e) {
+          var el = e.target;
+          if (el) lastField = el.name || el.id || el.type || "field";
+          if (!started) {
+            started = true;
+            shTrack("form_start");
+          }
         });
+        mainForm.addEventListener("submit", function () {
+          done = true;
+        });
+        function abandon() {
+          if (started && !done && lastField) {
+            done = true;
+            shTrack("form_abandon", lastField);
+          }
+        }
+        document.addEventListener("visibilitychange", function () {
+          if (document.visibilityState === "hidden") abandon();
+        });
+        window.addEventListener("pagehide", abandon);
+      })();
+
+      // 4) Real-time heartbeat — by quarter (1=top .. 4=bottom)
+      (function () {
+        function quarter() {
+          var el = document.documentElement;
+          var max = el.scrollHeight - el.clientHeight || 1;
+          var pct = (el.scrollTop || document.body.scrollTop) / max;
+          return String(Math.min(4, Math.floor(pct * 4) + 1));
+        }
+        function beat() {
+          if (document.visibilityState !== "hidden")
+            shTrack("heartbeat", quarter());
+        }
+        beat();
+        setInterval(beat, 15000);
       })();
 
       document.addEventListener("DOMContentLoaded", () => {
