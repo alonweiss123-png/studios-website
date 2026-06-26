@@ -488,6 +488,22 @@
       .sb-item.active .sb-label {
         color: var(--accent);
       }
+      .sidebar.on-light .sidebar-line {
+        background: rgba(26, 26, 46, 0.18);
+      }
+      .sidebar.on-light .sb-dot {
+        background: rgba(26, 26, 46, 0.3);
+      }
+      .sidebar.on-light .sb-label {
+        color: rgba(26, 26, 46, 0.6);
+      }
+      .sidebar.on-light .sb-item.active .sb-dot {
+        background: var(--text-dark);
+        box-shadow: none;
+      }
+      .sidebar.on-light .sb-item.active .sb-label {
+        color: var(--text-dark);
+      }
       @media (max-width: 1024px) {
         .sidebar {
           display: none;
@@ -2946,6 +2962,17 @@
         transform: scale(1.03);
         box-shadow: 0 8px 28px rgba(200, 255, 0, 0.3);
       }
+      .form-err {
+        margin-top: 14px;
+        color: #ff6b6b;
+        font-size: 0.85rem;
+        line-height: 1.6;
+      }
+      .form-err a {
+        color: var(--accent);
+        font-weight: 700;
+        text-decoration: underline;
+      }
       .wa-btn {
         display: flex;
         align-items: center;
@@ -5081,7 +5108,7 @@
                 <div class="form-g">
                   <label class="form-l">אימייל</label
                   ><input
-                    type="text"
+                    type="email"
                     name="email"
                     class="form-i"
                     placeholder="you@email.com"
@@ -5138,8 +5165,8 @@
                 class="cont-info"
                 style="margin-top: 20px; align-items: center"
               >
-                <a href="mailto:alonweiss123@icloud.com" class="cont-link"
-                  ><span class="cont-icon">✉️</span>alonweiss123@icloud.com</a
+                <a href="mailto:hello@studios.ninja" class="cont-link"
+                  ><span class="cont-icon">✉️</span>hello@studios.ninja</a
                 >
                 <a href="tel:0587879796" class="cont-link"
                   ><span class="cont-icon">📞</span>058-787-9796</a
@@ -5267,7 +5294,7 @@
         <span class="sep">·</span>
         <a href="/accessibility.html">הצהרת נגישות</a>
         <span class="sep">·</span>
-        <a href="mailto:alonweiss123@icloud.com">אימייל</a>
+        <a href="mailto:hello@studios.ninja">אימייל</a>
       </nav>
 
       <div class="ft-copy">© 2026 Studios · כל הזכויות שמורות</div>
@@ -5303,6 +5330,76 @@
           return {};
         }
       }
+
+      // === STUDIOS CRM ANALYTICS BEACONS (page_view + form_start) ===
+      // Side-channel telemetry only — does NOT touch the lead-form submission
+      // to the CRM / Make / Formspree above. Same PUBLIC secret as the leads
+      // webhook (ships in client JS regardless; string-split deters scraping).
+      const WEBHOOK_SECRET =
+        "84373481945a8a0b8c3" + "18e4c3241f49d709b6bb6fec7ad9680a71f18fb75e8cf";
+      const TRACK_URL =
+        "https://studios-hub.vercel.app/api/track?secret=" + WEBHOOK_SECRET;
+
+      function shSessionId() {
+        try {
+          let sid = sessionStorage.getItem("sh_session_id");
+          if (!sid) {
+            sid =
+              window.crypto && crypto.randomUUID
+                ? crypto.randomUUID()
+                : Date.now().toString(36) + Math.random().toString(36).slice(2);
+            sessionStorage.setItem("sh_session_id", sid);
+          }
+          return sid;
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function shDevice() {
+        const ua = navigator.userAgent;
+        if (/iPad|Tablet/i.test(ua)) return "tablet";
+        if (/Mobi|Android|iPhone|iPod/i.test(ua)) return "mobile";
+        return "desktop";
+      }
+
+      function shTrack(eventType) {
+        try {
+          const utm = typeof getUtm === "function" ? getUtm() : {};
+          const body = JSON.stringify({
+            event_type: eventType,
+            session_id: shSessionId(),
+            page_path: location.pathname,
+            referrer: document.referrer || undefined,
+            device: shDevice(),
+            utm_source: utm.utm_source || undefined,
+            utm_medium: utm.utm_medium || undefined,
+            utm_campaign: utm.utm_campaign || undefined,
+            utm_content: utm.utm_content || undefined,
+            utm_term: utm.utm_term || undefined,
+          });
+          fetch(TRACK_URL, {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: body,
+            keepalive: true,
+          }).catch(function () {});
+        } catch (e) {}
+      }
+
+      shTrack("page_view");
+
+      // Fire form_start once, the first time a user interacts with the form.
+      (function () {
+        var mainForm = document.querySelector("#contactForm");
+        if (!mainForm) return;
+        var started = false;
+        mainForm.addEventListener("focusin", function () {
+          if (started) return;
+          started = true;
+          shTrack("form_start");
+        });
+      })();
 
       document.addEventListener("DOMContentLoaded", () => {
         gsap.registerPlugin(ScrollTrigger);
@@ -5343,6 +5440,9 @@
             .classList.toggle("scrolled", scrollY > 50);
           updateSidebar();
         });
+        // Run once on load so the sidebar's light/dark state is correct at the
+        // top (hero is a light section) before the first scroll event fires.
+        updateSidebar();
         document
           .getElementById("burg")
           .addEventListener("click", () =>
@@ -5371,6 +5471,23 @@
           document
             .querySelectorAll(".sb-item")
             .forEach((i) => i.classList.toggle("active", i.dataset.s === a));
+
+          // Flip the sidebar to dark ink while it overlaps a light section
+          // (hero + faq use the sky gradient) so the dots/labels stay legible.
+          const mid = scrollY + innerHeight / 2;
+          let onLight = false;
+          ["hero", "faq"].forEach((id) => {
+            const el = document.getElementById(id);
+            if (
+              el &&
+              mid >= el.offsetTop &&
+              mid < el.offsetTop + el.offsetHeight
+            )
+              onLight = true;
+          });
+          document
+            .getElementById("sideNav")
+            .classList.toggle("on-light", onLight);
         }
 
         // === HERO ENTRANCE — handled by CSS animation (faster, no GSAP dependency) ===
@@ -5441,7 +5558,7 @@
               suf = el.dataset.suffix || "",
               pre = el.dataset.prefix || "",
               dec = parseInt(el.dataset.decimal) || 0;
-            const dur = 2000,
+            const dur = 1100,
               st = performance.now();
             function up(now) {
               const p = Math.min((now - st) / dur, 1),
@@ -5459,7 +5576,7 @@
         // === COMPARISON BARS + COUNTERS ===
         ScrollTrigger.create({
           trigger: "#cmpBottom",
-          start: "top 85%",
+          start: "top 75%",
           onEnter: () => {
             animCount(
               document.querySelectorAll(".cmp-bottom-num[data-target]"),
@@ -5696,8 +5813,10 @@
             const message = fd.get("message") || null;
             const utm = getUtm();
             // Studios CRM webhook (replaces direct Supabase RPC).
-            // Secret split across concatenated literals to avoid client-side
-            // secret-detection scanners; functionally identical at runtime.
+            // NOTE: this secret is PUBLIC — it ships in client JS and is visible
+            // via view-source, so the string-splitting below hides nothing. It
+            // only deters trivial scraping; the webhook RPC dedupes by phone.
+            // Rotate LEADS_WEBHOOK_SECRET server-side if abuse appears.
             const supaReq = fetch(
               "https://studios-hub.vercel.app/api/leads/webhook?secret=" +
                 "84373481945a8a0b8c3" +
@@ -5750,15 +5869,38 @@
                 currency: "ILS",
               });
             }
+            // fetch() only rejects on a network failure — NOT on HTTP errors
+            // (401 from an expired secret, 500, …). A failed target therefore
+            // resolves either to null (its own .catch) or to a Response whose
+            // res.ok is false. Only treat the submit as delivered when at least
+            // ONE target accepted it; otherwise the lead is lost and we must not
+            // pretend it worked. The CRM webhook returns permissive CORS, so its
+            // res.ok is readable cross-origin.
+            function showFormError() {
+              btn.innerHTML = origBtn;
+              btn.disabled = false;
+              let err = form.querySelector(".form-err");
+              if (!err) {
+                err = document.createElement("p");
+                err.className = "form-err";
+                err.setAttribute("role", "alert");
+                err.innerHTML =
+                  "השליחה נכשלה. דברו איתנו ישירות ב" +
+                  '<a href="https://wa.me/972587879796" target="_blank" rel="noopener">וואטסאפ</a>' +
+                  " או נסו שוב.";
+                btn.parentNode.insertBefore(err, btn.nextSibling);
+              }
+            }
             Promise.all([supaReq, webhookReq])
-              .then(() => {
-                window.location.href = "thank-you.html";
+              .then((results) => {
+                const delivered = results.some((r) => r && r.ok);
+                if (delivered) {
+                  window.location.href = "thank-you.html";
+                } else {
+                  showFormError();
+                }
               })
-              .catch(() => {
-                btn.innerHTML = origBtn;
-                btn.disabled = false;
-                alert("שגיאה בשליחה, נסו שוב או שלחו הודעה בוואטסאפ");
-              });
+              .catch(showFormError);
           });
 
         // === FACEBOOK PIXEL — WHATSAPP + PHONE + SCROLL + TIME ===
