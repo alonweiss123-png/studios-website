@@ -1,93 +1,415 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="he" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>תודה! — Studios</title>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Heebo',sans-serif;background:#0A0A0F;color:#F0F0F5;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;direction:rtl;position:relative}
-:root{--accent:#C8FF00}
-body::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:rgba(200,255,0,.06);filter:blur(120px);top:-100px;right:-100px;pointer-events:none}
-body::after{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:rgba(200,255,0,.04);filter:blur(100px);bottom:-80px;left:-80px;pointer-events:none}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>תודה! — Studios</title>
+    <!-- Facebook Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js",
+      );
+      fbq("init", "3078561329005345");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=3078561329005345&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+    <meta property="fb:app_id" content="1632523821147758" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Heebo", sans-serif;
+        background: #0a0a0f;
+        color: #f0f0f5;
+        min-height: 100vh;
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        direction: rtl;
+        position: relative;
+      }
+      :root {
+        --accent: #c8ff00;
+      }
+      body::before {
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: rgba(200, 255, 0, 0.06);
+        filter: blur(120px);
+        top: -100px;
+        right: -100px;
+        pointer-events: none;
+      }
+      body::after {
+        content: "";
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        background: rgba(200, 255, 0, 0.04);
+        filter: blur(100px);
+        bottom: -80px;
+        left: -80px;
+        pointer-events: none;
+      }
 
-.card{max-width:480px;width:100%;text-align:center;position:relative;z-index:1;display:flex;flex-direction:column;align-items:center}
+      .card {
+        max-width: 480px;
+        width: 100%;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-.check{width:72px;height:72px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:28px;animation:popIn .6s cubic-bezier(.22,1,.36,1)}
-.check svg{width:36px;height:36px;stroke:#0A0A0F;stroke-width:3;fill:none}
-@keyframes popIn{0%{transform:scale(0);opacity:0}100%{transform:scale(1);opacity:1}}
+      .check {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background: var(--accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 28px;
+        animation: popIn 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .check svg {
+        width: 36px;
+        height: 36px;
+        stroke: #0a0a0f;
+        stroke-width: 3;
+        fill: none;
+      }
+      @keyframes popIn {
+        0% {
+          transform: scale(0);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
 
-/* Progress */
-.steps{display:flex;align-items:center;gap:0;margin-bottom:36px;width:100%;max-width:360px;justify-content:center}
-.step-badge{display:flex;flex-direction:column;align-items:center;gap:6px;flex:0 0 auto}
-.step-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem}
-.step-num.done{background:var(--accent);color:#0A0A0F}
-.step-num.current{background:rgba(200,255,0,.15);color:var(--accent);border:2px solid var(--accent)}
-.step-num.later{background:rgba(255,255,255,.06);color:#555}
-.step-text{font-size:.68rem;color:#8888AA;font-weight:600;white-space:nowrap}
-.step-badge.active .step-text{color:var(--accent)}
-.step-line{flex:1;height:2px;background:rgba(255,255,255,.08);min-width:28px;margin:0 6px;margin-bottom:18px}
-.step-line.done-line{background:var(--accent)}
+      /* Progress */
+      .steps {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        margin-bottom: 36px;
+        width: 100%;
+        max-width: 360px;
+        justify-content: center;
+      }
+      .step-badge {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        flex: 0 0 auto;
+      }
+      .step-num {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 0.85rem;
+      }
+      .step-num.done {
+        background: var(--accent);
+        color: #0a0a0f;
+      }
+      .step-num.current {
+        background: rgba(200, 255, 0, 0.15);
+        color: var(--accent);
+        border: 2px solid var(--accent);
+      }
+      .step-num.later {
+        background: rgba(255, 255, 255, 0.06);
+        color: #555;
+      }
+      .step-text {
+        font-size: 0.68rem;
+        color: #8888aa;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .step-badge.active .step-text {
+        color: var(--accent);
+      }
+      .step-line {
+        flex: 1;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.08);
+        min-width: 28px;
+        margin: 0 6px;
+        margin-bottom: 18px;
+      }
+      .step-line.done-line {
+        background: var(--accent);
+      }
 
-h1{font-size:clamp(1.5rem,5vw,2.2rem);font-weight:900;letter-spacing:-.03em;margin-bottom:14px;line-height:1.2}
-h1 span{color:var(--accent)}
-.sub{color:#8888AA;font-size:.92rem;line-height:1.7;margin-bottom:32px;max-width:400px}
+      h1 {
+        font-size: clamp(1.5rem, 5vw, 2.2rem);
+        font-weight: 900;
+        letter-spacing: -0.03em;
+        margin-bottom: 14px;
+        line-height: 1.2;
+      }
+      h1 span {
+        color: var(--accent);
+      }
+      .sub {
+        color: #8888aa;
+        font-size: 0.92rem;
+        line-height: 1.7;
+        margin-bottom: 32px;
+        max-width: 400px;
+      }
 
-.cta-main{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--accent);color:#0A0A0F;padding:16px 36px;border-radius:10px;font-family:'Heebo';font-weight:800;font-size:1.05rem;text-decoration:none;transition:transform .25s,box-shadow .25s;width:100%;max-width:360px;animation:pulse 2.5s ease-in-out infinite}
-.cta-main:hover{transform:scale(1.04);box-shadow:0 8px 32px rgba(200,255,0,.4)}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(200,255,0,.3)}50%{box-shadow:0 0 0 12px rgba(200,255,0,0)}}
+      .cta-main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: var(--accent);
+        color: #0a0a0f;
+        padding: 16px 36px;
+        border-radius: 10px;
+        font-family: "Heebo";
+        font-weight: 800;
+        font-size: 1.05rem;
+        text-decoration: none;
+        transition:
+          transform 0.25s,
+          box-shadow 0.25s;
+        width: 100%;
+        max-width: 360px;
+        animation: pulse 2.5s ease-in-out infinite;
+      }
+      .cta-main:hover {
+        transform: scale(1.04);
+        box-shadow: 0 8px 32px rgba(200, 255, 0, 0.4);
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(200, 255, 0, 0.3);
+        }
+        50% {
+          box-shadow: 0 0 0 12px rgba(200, 255, 0, 0);
+        }
+      }
 
-.divider{display:flex;align-items:center;gap:14px;margin:24px 0;color:#555;font-size:.78rem;width:100%;max-width:360px}
-.divider::before,.divider::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.08)}
+      .divider {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin: 24px 0;
+        color: #555;
+        font-size: 0.78rem;
+        width: 100%;
+        max-width: 360px;
+      }
+      .divider::before,
+      .divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.08);
+      }
 
-.wa-link{display:flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#fff;padding:14px 28px;border-radius:10px;font-family:'Heebo';font-weight:700;font-size:.92rem;text-decoration:none;transition:transform .2s,box-shadow .2s;width:100%;max-width:360px}
-.wa-link:hover{transform:scale(1.04);box-shadow:0 6px 24px rgba(37,211,102,.35)}
-.wa-link svg{width:20px;height:20px;fill:#fff;flex-shrink:0}
+      .wa-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: #25d366;
+        color: #fff;
+        padding: 14px 28px;
+        border-radius: 10px;
+        font-family: "Heebo";
+        font-weight: 700;
+        font-size: 0.92rem;
+        text-decoration: none;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        width: 100%;
+        max-width: 360px;
+      }
+      .wa-link:hover {
+        transform: scale(1.04);
+        box-shadow: 0 6px 24px rgba(37, 211, 102, 0.35);
+      }
+      .wa-link svg {
+        width: 20px;
+        height: 20px;
+        fill: #fff;
+        flex-shrink: 0;
+      }
 
-/* REPLACE: cal-link — כפתור קביעת פגישה -->  */
-.cal-link{display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#F0F0F5;padding:14px 28px;border-radius:10px;font-family:'Heebo';font-weight:600;font-size:.92rem;text-decoration:none;transition:all .25s;width:100%;max-width:360px;margin-top:12px}
-.cal-link:hover{border-color:var(--accent);color:var(--accent);background:rgba(200,255,0,.06)}
+      /* REPLACE: cal-link — כפתור קביעת פגישה -->  */
+      .cal-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #f0f0f5;
+        padding: 14px 28px;
+        border-radius: 10px;
+        font-family: "Heebo";
+        font-weight: 600;
+        font-size: 0.92rem;
+        text-decoration: none;
+        transition: all 0.25s;
+        width: 100%;
+        max-width: 360px;
+        margin-top: 12px;
+      }
+      .cal-link:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: rgba(200, 255, 0, 0.06);
+      }
 
-.back{margin-top:32px;color:#555;font-size:.82rem;text-decoration:none;transition:color .2s}
-.back:hover{color:var(--accent)}
-</style>
-</head>
-<body>
+      .back {
+        margin-top: 32px;
+        color: #555;
+        font-size: 0.82rem;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .back:hover {
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="check">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M5 13l4 4L19 7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
 
-<div class="card">
-  <div class="check"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <!-- Progress -->
+      <div class="steps">
+        <div class="step-badge">
+          <div class="step-num done">✓</div>
+          <div class="step-text">פנייה</div>
+        </div>
+        <div class="step-line done-line"></div>
+        <div class="step-badge active">
+          <div class="step-num current">2</div>
+          <div class="step-text">שאלון אפיון</div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-badge">
+          <div class="step-num later">3</div>
+          <div class="step-text">פגישה</div>
+        </div>
+      </div>
 
-  <!-- Progress -->
-  <div class="steps">
-    <div class="step-badge"><div class="step-num done">✓</div><div class="step-text">פנייה</div></div>
-    <div class="step-line done-line"></div>
-    <div class="step-badge active"><div class="step-num current">2</div><div class="step-text">שאלון אפיון</div></div>
-    <div class="step-line"></div>
-    <div class="step-badge"><div class="step-num later">3</div><div class="step-text">פגישה</div></div>
-  </div>
+      <h1>קיבלנו! <span>נחזור אליך תוך 24 שעות</span></h1>
+      <p class="sub">
+        רציני לגבי הפרויקט? מלא שאלון אפיון קצר — נגיע מוכנים לשיחה.
+      </p>
 
-  <h1>קיבלנו! <span>נחזור אליך תוך 24 שעות</span></h1>
-  <p class="sub">רציני לגבי הפרויקט? מלא שאלון אפיון קצר — נגיע מוכנים לשיחה.</p>
+      <a href="questionnaire.html" class="cta-main">
+        למילוי שאלון אפיון
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+        >
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </a>
 
-  <a href="https://69c7c5eab87820b77e8f8cdb--coruscating-platypus-fa2275.netlify.app/" target="_blank" rel="noopener" class="cta-main">
-    למילוי שאלון אפיון
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-  </a>
+      <div class="divider">או</div>
 
-  <div class="divider">או</div>
+      <a
+        href="https://calendar.app.google/jMZqPkqbNPXFdMc37"
+        target="_blank"
+        rel="noopener"
+        class="cal-link"
+      >
+        📅 קביעת פגישת ייעוץ חינם
+      </a>
 
-  <a href="https://cal.com/%D7%90%D7%9C%D7%95%D7%9F-%D7%95%D7%99%D7%99%D7%A1-xzyamu/30min" target="_blank" rel="noopener" class="cal-link">
-    📅 קביעת פגישת ייעוץ חינם
-  </a>
+      <a
+        href="https://wa.me/972587879796?text=%D7%94%D7%99%D7%99%20%D7%90%D7%9C%D7%95%D7%9F%2C%20%D7%9E%D7%99%D7%9C%D7%90%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%98%D7%95%D7%A4%D7%A1%20%D7%95%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%94%D7%AA%D7%A7%D7%93%D7%9D"
+        target="_blank"
+        rel="noopener"
+        class="wa-link"
+        style="margin-top: 12px"
+      >
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+          />
+        </svg>
+        שלח הודעה בוואטסאפ
+      </a>
 
-  <a href="https://wa.me/972587879796?text=%D7%94%D7%99%D7%99%20%D7%90%D7%9C%D7%95%D7%9F%2C%20%D7%9E%D7%99%D7%9C%D7%90%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%98%D7%95%D7%A4%D7%A1%20%D7%95%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%94%D7%AA%D7%A7%D7%93%D7%9D" target="_blank" rel="noopener" class="wa-link" style="margin-top:12px">
-    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    שלח הודעה בוואטסאפ
-  </a>
-
-  <a href="index-v2.html" class="back">← חזרה לאתר</a>
-</div>
-
-</body>
+      <a href="index.html" class="back">← חזרה לאתר</a>
+    </div>
+  </body>
 </html>
