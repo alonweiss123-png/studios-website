@@ -1,0 +1,13 @@
+# Local Netlify folder
+.netlify
+
+# OS / editor junk
+.DS_Store
+
+# Local-only working files (not part of the deployed site)
+_backup/
+shots
+ai-image-preview (75).png
+
+# Claude Code project config (dev tooling, not a deployed asset)
+.claude/

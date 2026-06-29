@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>404 — הדף לא נמצא | Studios</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --dark: #0a0a0f;
+        --accent: #c8ff00;
+        --text: #f5f5f7;
+        --muted: rgba(245, 245, 247, 0.55);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(
+          120% 120% at 50% 0%,
+          #14141d,
+          var(--dark) 70%
+        );
+        color: var(--text);
+        font-family:
+          "Heebo",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        text-align: center;
+        padding: 32px;
+      }
+      .wrap {
+        max-width: 540px;
+      }
+      .code {
+        font-size: clamp(96px, 22vw, 200px);
+        font-weight: 900;
+        line-height: 0.9;
+        letter-spacing: -0.04em;
+        color: var(--accent);
+      }
+      h1 {
+        font-size: clamp(22px, 5vw, 32px);
+        font-weight: 700;
+        margin-top: 12px;
+      }
+      p {
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.7;
+        margin-top: 16px;
+      }
+      .actions {
+        margin-top: 36px;
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 26px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 1rem;
+        text-decoration: none;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s,
+          background 0.2s;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: var(--dark);
+      }
+      .btn-primary:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 28px rgba(200, 255, 0, 0.3);
+      }
+      .btn-ghost {
+        border: 1px solid rgba(245, 245, 247, 0.2);
+        color: var(--text);
+      }
+      .btn-ghost:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <div class="code">404</div>
+      <h1>הדף שחיפשתם לא נמצא</h1>
+      <p>
+        יכול להיות שהקישור ישן או שהכתובת לא מדויקת. בואו נחזיר אתכם למסלול —
+        הדף הראשי מחכה, ואם אתם צריכים משהו ספציפי אני כאן בוואטסאפ.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/">חזרה לדף הבית</a>
+        <a
+          class="btn btn-ghost"
+          href="https://wa.me/972587879796"
+          target="_blank"
+          rel="noopener"
+          >דברו איתי בוואטסאפ</a
+        >
+      </div>
+    </main>
+  </body>
+</html>

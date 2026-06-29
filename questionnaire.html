@@ -1,0 +1,1904 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>שאלון אפיון פרויקט — Studios</title>
+    <!-- Facebook Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js",
+      );
+      fbq("init", "3078561329005345");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=3078561329005345&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+    <meta property="fb:app_id" content="1632523821147758" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #dce3ed;
+        --card: #fff;
+        --lime: #c8ff00;
+        --lime2: #b5e600;
+        --lime-glow: rgba(200, 255, 0, 0.35);
+        --coral: #ff6b4a;
+        --black: #0a0a0a;
+        --text: #1a1a1a;
+        --text2: #555;
+        --text3: #999;
+        --border: rgba(0, 0, 0, 0.07);
+        --shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent;
+      }
+      body {
+        font-family: "Heebo", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        padding-bottom: 80px;
+        direction: rtl;
+        overflow-x: hidden;
+      }
+      input,
+      textarea {
+        font-size: 16px !important;
+        -webkit-appearance: none;
+        appearance: none;
+        font-family: "Heebo", sans-serif;
+      }
+      button {
+        cursor: pointer;
+        transition: all 0.2s ease;
+        -webkit-appearance: none;
+        font-family: "Heebo", sans-serif;
+        border: none;
+        background: none;
+        color: var(--text);
+      }
+      button:active {
+        transform: scale(0.97);
+      }
+
+      /* HERO */
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 50px 24px 60px;
+        background: linear-gradient(180deg, #e8edf4 0%, #dce3ed 100%);
+      }
+      .shapes {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .sh {
+        position: absolute;
+        animation: fl var(--d, 7s) ease-in-out infinite var(--del, 0s);
+      }
+      .sh-cube {
+        top: 15%;
+        right: 5%;
+        width: 48px;
+        height: 48px;
+        background: var(--lime);
+        border-radius: 10px;
+        transform: rotate(25deg);
+        box-shadow: 0 10px 30px rgba(200, 255, 0, 0.25);
+        --d: 7s;
+      }
+      .sh-sphere {
+        top: 28%;
+        left: 4%;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: linear-gradient(145deg, #f0f3f7, #fff);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        --d: 8s;
+        --del: 1s;
+      }
+      .sh-ring {
+        bottom: 22%;
+        right: 9%;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 4px solid var(--lime);
+        opacity: 0.6;
+        --d: 6s;
+        --del: 0.5s;
+      }
+      @keyframes fl {
+        0%,
+        100% {
+          transform: translateY(0) rotate(25deg);
+        }
+        50% {
+          transform: translateY(-16px) rotate(30deg);
+        }
+      }
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        max-width: 560px;
+        margin: 0 auto;
+      }
+      .hero-badge {
+        display: inline-block;
+        padding: 8px 22px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 50px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text2);
+        margin-bottom: 26px;
+        background: rgba(255, 255, 255, 0.55);
+        backdrop-filter: blur(10px);
+      }
+      .hero h1 {
+        font-size: 34px;
+        font-weight: 900;
+        line-height: 1.15;
+        margin: 0 0 14px;
+        letter-spacing: -1.5px;
+        color: var(--black);
+      }
+      .hero h1 em {
+        font-style: normal;
+        position: relative;
+        display: inline;
+      }
+      .hero h1 em::after {
+        content: "";
+        position: absolute;
+        bottom: 3px;
+        right: 0;
+        width: 100%;
+        height: 11px;
+        background: var(--lime);
+        z-index: -1;
+        border-radius: 2px;
+      }
+      .hero p {
+        font-size: 15px;
+        color: var(--text2);
+        line-height: 1.7;
+        max-width: 440px;
+        margin: 0 auto;
+      }
+
+      /* Progress */
+      .prog-outer {
+        max-width: 560px;
+        margin: -24px auto 28px;
+        padding: 0 20px;
+        position: relative;
+        z-index: 2;
+      }
+      .prog-wrap {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 16px 20px;
+        box-shadow: var(--shadow);
+      }
+      .prog-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+      }
+      .prog-lbl {
+        font-size: 13px;
+        color: var(--text2);
+        font-weight: 500;
+      }
+      .prog-pct {
+        font-size: 14px;
+        font-weight: 800;
+        color: var(--black);
+      }
+      .prog-track {
+        height: 7px;
+        background: #e8e8e8;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .prog-fill {
+        height: 100%;
+        border-radius: 4px;
+        transition: width 0.6s ease;
+        background: var(--lime);
+        width: 0%;
+      }
+
+      /* SECTIONS */
+      .body-wrap {
+        padding: 0 16px;
+        max-width: 660px;
+        margin: 0 auto;
+      }
+      .section {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        margin-bottom: 12px;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(16px);
+        transition: all 0.4s ease;
+        box-shadow: var(--shadow);
+      }
+      .section.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .section.hidden {
+        display: none;
+      }
+      .sec-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 16px 20px;
+        min-height: 68px;
+        text-align: right;
+      }
+      .sec-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .sec-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        flex-shrink: 0;
+        background: #f2f4f7;
+      }
+      .sec-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--black);
+      }
+      .sec-sub {
+        font-size: 12px;
+        color: var(--text3);
+        margin-top: 2px;
+      }
+      .sec-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .badge {
+        font-size: 11px;
+        font-weight: 700;
+        padding: 3px 11px;
+        border-radius: 20px;
+        background: var(--lime);
+        color: var(--black);
+      }
+      .badge.partial {
+        background: #f0f0f0;
+        color: var(--text2);
+      }
+      .chevron {
+        font-size: 9px;
+        color: #ccc;
+        transition: transform 0.3s ease;
+        display: inline-block;
+      }
+      .chevron.open {
+        transform: rotate(180deg);
+      }
+      .sec-body {
+        padding: 4px 20px 24px;
+        border-top: 1px solid #f0f0f0;
+        display: none;
+      }
+      .sec-body.open {
+        display: block;
+        animation: su 0.25s ease;
+      }
+
+      /* Questions */
+      .q-wrap {
+        margin-top: 20px;
+      }
+      .q-wrap label {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 8px;
+      }
+      .q-wrap label .req {
+        color: var(--coral);
+        margin-right: 4px;
+      }
+      .q-wrap input[type="text"],
+      .q-wrap textarea {
+        width: 100%;
+        padding: 14px 16px;
+        border: 2px solid #e8e8e8;
+        border-radius: 12px;
+        font-size: 16px;
+        background: #fafbfc;
+        color: var(--text);
+        transition: all 0.2s;
+        direction: rtl;
+      }
+      .q-wrap input:focus,
+      .q-wrap textarea:focus {
+        outline: none;
+        border-color: var(--black);
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+      }
+      .q-wrap textarea {
+        resize: vertical;
+        min-height: 84px;
+        line-height: 1.6;
+      }
+      .q-wrap input.error,
+      .q-wrap textarea.error {
+        border-color: var(--coral);
+        box-shadow: 0 0 0 3px rgba(255, 107, 74, 0.1);
+      }
+      .error-msg {
+        font-size: 12px;
+        color: var(--coral);
+        margin-top: 4px;
+        display: none;
+      }
+      .error-msg.show {
+        display: block;
+      }
+      ::placeholder {
+        color: #bbb;
+      }
+      .select-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .sel-btn {
+        padding: 10px 18px;
+        border: 2px solid #e8e8e8;
+        border-radius: 12px;
+        background: #fafbfc;
+        font-size: 14px;
+        color: var(--text2);
+        min-height: 46px;
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+      }
+      .sel-btn.active {
+        background: var(--black);
+        color: #fff;
+        border-color: var(--black);
+        font-weight: 600;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        transform: scale(1.03);
+      }
+      .check-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .chk-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border: 2px solid #e8e8e8;
+        border-radius: 12px;
+        background: #fafbfc;
+        font-size: 13.5px;
+        color: var(--text2);
+        min-height: 46px;
+        font-weight: 500;
+      }
+      .chk-btn.active {
+        background: rgba(200, 255, 0, 0.12);
+        border-color: var(--lime2);
+        color: var(--black);
+        font-weight: 600;
+      }
+      .chk-box {
+        width: 20px;
+        height: 20px;
+        border-radius: 6px;
+        border: 2px solid #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        color: var(--black);
+        font-weight: 700;
+        transition: all 0.15s;
+        flex-shrink: 0;
+      }
+      .chk-btn.active .chk-box {
+        background: var(--lime);
+        border-color: var(--lime2);
+      }
+      .next-btn {
+        display: block;
+        width: 100%;
+        margin-top: 24px;
+        padding: 14px;
+        color: #fff;
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: 700;
+        background: var(--black);
+      }
+
+      /* Submit */
+      /* Milestone toast */
+      .milestone {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-100px);
+        background: var(--black);
+        color: #fff;
+        padding: 14px 24px;
+        border-radius: 14px;
+        font-size: 14px;
+        font-weight: 700;
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        white-space: nowrap;
+      }
+      .milestone.show {
+        transform: translateX(-50%) translateY(0);
+      }
+      .milestone .ml-icon {
+        font-size: 22px;
+      }
+      .milestone .ml-bar {
+        height: 3px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 2px;
+        margin-top: 6px;
+        overflow: hidden;
+      }
+      .milestone .ml-bar-fill {
+        height: 100%;
+        background: var(--lime);
+        border-radius: 2px;
+        transition: width 0.6s ease;
+      }
+
+      /* Section complete celebration */
+      .sec-complete {
+        position: relative;
+      }
+      .sec-complete::after {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        border-radius: 20px;
+        border: 2px solid var(--lime);
+        opacity: 0;
+        animation: secPulse 0.6s ease forwards;
+        pointer-events: none;
+      }
+      @keyframes secPulse {
+        0% {
+          opacity: 0.6;
+          transform: scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(1.02);
+        }
+      }
+
+      /* Encouragement tips */
+      .tip-bar {
+        background: rgba(200, 255, 0, 0.08);
+        border: 1px solid rgba(200, 255, 0, 0.15);
+        border-radius: 12px;
+        padding: 12px 16px;
+        margin: 12px 16px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--text2);
+        max-width: 660px;
+        margin-left: auto;
+        margin-right: auto;
+        transition: all 0.3s;
+      }
+      .tip-bar .tip-icon {
+        font-size: 18px;
+        flex-shrink: 0;
+      }
+      .tip-bar strong {
+        color: var(--black);
+      }
+
+      /* Media links area */
+      .media-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 8px;
+      }
+      .media-row {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .media-row input {
+        flex: 1;
+      }
+      .media-add {
+        padding: 10px 16px;
+        border: 2px dashed #ddd;
+        border-radius: 12px;
+        font-size: 13px;
+        color: var(--text3);
+        font-weight: 600;
+        width: 100%;
+        text-align: center;
+        margin-top: 4px;
+      }
+      .media-add:hover {
+        border-color: var(--lime2);
+        color: var(--text2);
+      }
+      .media-remove {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        color: var(--coral);
+        border: 1px solid rgba(255, 107, 74, 0.15);
+        flex-shrink: 0;
+      }
+
+      .submit-wrap {
+        padding: 32px 16px 0;
+        max-width: 660px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .submit-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 18px 44px;
+        background: var(--lime);
+        color: var(--black);
+        border-radius: 14px;
+        font-size: 18px;
+        font-weight: 800;
+        box-shadow: 0 8px 30px var(--lime-glow);
+        width: 100%;
+        max-width: 420px;
+      }
+      .submit-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+      }
+      .submit-hint {
+        font-size: 12.5px;
+        color: var(--text3);
+        margin-top: 12px;
+      }
+      .validation-error {
+        background: rgba(255, 107, 74, 0.08);
+        border: 1px solid rgba(255, 107, 74, 0.2);
+        border-radius: 12px;
+        padding: 14px 18px;
+        margin-bottom: 20px;
+        font-size: 13px;
+        color: var(--coral);
+        font-weight: 600;
+        display: none;
+        text-align: center;
+      }
+      .validation-error.show {
+        display: block;
+        animation: shake 0.4s ease;
+      }
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        20%,
+        60% {
+          transform: translateX(-6px);
+        }
+        40%,
+        80% {
+          transform: translateX(6px);
+        }
+      }
+
+      /* Summary */
+      .summary-page {
+        max-width: 660px;
+        margin: 0 auto;
+        padding: 24px 16px;
+        display: none;
+      }
+      .summary-page.show {
+        display: block;
+        animation: su 0.4s ease;
+      }
+      .sum-hero {
+        text-align: center;
+        margin-bottom: 28px;
+        padding: 40px 24px;
+        background: linear-gradient(180deg, #e8edf4, var(--bg));
+        border-radius: 22px;
+        border: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+      }
+      .sum-hero::before {
+        content: "";
+        position: absolute;
+        top: -30px;
+        right: -20px;
+        width: 90px;
+        height: 90px;
+        background: var(--lime);
+        border-radius: 14px;
+        transform: rotate(25deg);
+        opacity: 0.15;
+        pointer-events: none;
+      }
+      .logo {
+        font-size: 20px;
+        font-weight: 900;
+        margin-bottom: 14px;
+        letter-spacing: -1px;
+        color: var(--black);
+      }
+      .logo span {
+        color: var(--lime2);
+      }
+      .sum-hero h1 {
+        font-size: 28px;
+        font-weight: 900;
+        margin: 0 0 8px;
+        color: var(--black);
+        position: relative;
+      }
+      .sum-hero p {
+        font-size: 14px;
+        color: var(--text2);
+        margin: 0;
+        position: relative;
+      }
+      .sum-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 24px 20px;
+        margin-bottom: 20px;
+        box-shadow: var(--shadow);
+      }
+      .sum-sec {
+        margin-bottom: 24px;
+      }
+      .sum-sec:last-child {
+        margin-bottom: 0;
+      }
+      .sum-sec-title {
+        font-size: 16px;
+        font-weight: 700;
+        padding-right: 14px;
+        border-right: 4px solid var(--lime);
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--black);
+      }
+      .sum-item {
+        padding: 9px 0;
+        border-bottom: 1px solid #f2f2f2;
+      }
+      .sum-item:last-child {
+        border-bottom: none;
+      }
+      .sum-label {
+        font-size: 11.5px;
+        color: var(--text3);
+        margin-bottom: 3px;
+        font-weight: 500;
+      }
+      .sum-val {
+        font-size: 14px;
+        color: var(--text);
+        line-height: 1.6;
+      }
+      .act-bar {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-bottom: 14px;
+      }
+      .wa-btn {
+        background: #25d366;
+        padding: 17px 34px;
+        font-size: 17px;
+        border-radius: 14px;
+        box-shadow: 0 6px 28px rgba(37, 211, 102, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-weight: 700;
+        color: #fff;
+        width: 100%;
+        max-width: 380px;
+        margin: 0 auto;
+      }
+      .secondary-actions {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        margin-top: 12px;
+        margin-bottom: 18px;
+      }
+      .sec-act-btn {
+        padding: 11px 22px;
+        border: 2px solid #ddd;
+        border-radius: 12px;
+        font-size: 13.5px;
+        color: var(--text2);
+        font-weight: 500;
+        min-height: 44px;
+        background: var(--card);
+      }
+      .back-btn {
+        display: block;
+        margin: 0 auto;
+        padding: 13px 28px;
+        border: 2px solid #ddd;
+        border-radius: 12px;
+        font-size: 14px;
+        color: var(--text2);
+        min-height: 44px;
+        background: var(--card);
+      }
+      .form-view {
+        display: block;
+      }
+      .form-view.hide {
+        display: none;
+      }
+      @keyframes su {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="milestone" id="milestone">
+      <span class="ml-icon"></span><span class="ml-text"></span>
+    </div>
+    <div id="formView" class="form-view">
+      <div class="hero">
+        <div class="shapes">
+          <div class="sh sh-cube"></div>
+          <div class="sh sh-sphere"></div>
+          <div class="sh sh-ring"></div>
+        </div>
+        <div class="hero-inner">
+          <div class="hero-badge">Studios — סטודיו לאתרים ממירים</div>
+          <h1>שאלון אפיון<br /><em>פרויקט</em></h1>
+          <p>ככל שתענו על יותר שאלות, נוכל לבנות עבורכם אתר שמותאם ומוכר.</p>
+        </div>
+      </div>
+      <div class="prog-outer">
+        <div class="prog-wrap">
+          <div class="prog-row">
+            <span class="prog-lbl">התקדמות כללית</span
+            ><span class="prog-pct" id="progPct">0%</span>
+          </div>
+          <div class="prog-track">
+            <div class="prog-fill" id="progFill"></div>
+          </div>
+        </div>
+      </div>
+      <div class="tip-bar" id="tipBar">
+        <span class="tip-icon">💡</span
+        ><span id="tipText"
+          >ענו על <strong>שדות החובה</strong> בסקשן הראשון ותוכלו לשלוח. כל שאלה
+          נוספת עוזרת לנו לדייק.</span
+        >
+      </div>
+      <div class="body-wrap" id="sectionsWrap">
+        <div class="validation-error" id="valError">
+          יש למלא את שדות החובה (שם עסק, טלפון, מה העסק מוכר)
+        </div>
+      </div>
+      <div class="submit-wrap">
+        <button class="submit-btn" onclick="trySubmit()">סיכום ושליחה ←</button>
+        <p class="submit-hint">ניתן לחזור ולערוך לפני שליחה</p>
+      </div>
+    </div>
+
+    <div class="summary-page" id="summaryView">
+      <div class="sum-hero">
+        <div class="logo">Studios<span>.</span></div>
+        <h1>סיכום האפיון</h1>
+        <p id="sumSubtitle"></p>
+      </div>
+      <div class="sum-card" id="sumContent"></div>
+      <div class="act-bar">
+        <button class="wa-btn" onclick="sendWA()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+            />
+          </svg>
+          שליחה בוואטסאפ
+        </button>
+      </div>
+      <div class="secondary-actions">
+        <button class="sec-act-btn" onclick="copyText()" id="copyBtn">
+          📋 העתקה
+        </button>
+        <button class="sec-act-btn" onclick="dlFile()">📥 הורדה</button>
+      </div>
+      <button class="back-btn" onclick="hideSummary()">← חזרה לעריכה</button>
+    </div>
+
+    <script>
+      const S = [
+        {
+          id: "business",
+          icon: "🏢",
+          title: "פרטי העסק",
+          subtitle: "מי אתם ומה העסק עושה",
+          open: true,
+          q: [
+            {
+              id: "business_name",
+              l: "שם העסק",
+              t: "text",
+              ph: "לדוגמה: dezernoo",
+              r: 1,
+            },
+            { id: "contact_name", l: "שם איש קשר", t: "text", ph: "שם מלא" },
+            { id: "phone", l: "טלפון", t: "text", ph: "050-0000000", r: 1 },
+            { id: "email", l: "אימייל", t: "text", ph: "example@email.com" },
+            {
+              id: "what_sells",
+              l: "מה העסק מוכר / מציע?",
+              t: "textarea",
+              ph: "תיארו בקצרה את המוצרים או השירותים שלכם",
+              r: 1,
+            },
+            {
+              id: "website",
+              l: "כתובת אתר קיים (אם יש)",
+              t: "text",
+              ph: "https://...",
+            },
+            {
+              id: "instagram",
+              l: "קישור לאינסטגרם",
+              t: "text",
+              ph: "https://instagram.com/...",
+            },
+            {
+              id: "goals",
+              l: "מה המטרה העיקרית של הפרויקט?",
+              t: "textarea",
+              ph: "להגדיל מכירות? להשיק? לשפר המרות?",
+            },
+          ],
+        },
+        {
+          id: "avatar",
+          icon: "🎯",
+          title: "קהל יעד",
+          subtitle: "מי הלקוח שלכם?",
+          q: [
+            {
+              id: "age_range",
+              l: "טווח גילאים",
+              t: "select",
+              o: ["14-20", "20-30", "30-40", "40-50", "50+", "כל הגילאים"],
+            },
+            {
+              id: "gender",
+              l: "מגדר קהל יעד",
+              t: "select",
+              o: ["גברים", "נשים", "שני המינים"],
+            },
+            {
+              id: "avatar_story",
+              l: "תארו את הלקוח הטיפוסי",
+              t: "textarea",
+              ph: "מי הוא/היא? מה מעניין אותם? מה הם מחפשים?",
+            },
+            {
+              id: "pain_points",
+              l: "מה הבעיות / הכאבים של הלקוח?",
+              t: "textarea",
+              ph: "למה הלקוח סובל? מה מתסכל אותם?",
+            },
+            {
+              id: "objections",
+              l: "מה ההתנגדויות הנפוצות?",
+              t: "textarea",
+              ph: "למה לקוחות מהססים? מה מפריע להם לקנות?",
+            },
+          ],
+        },
+        {
+          id: "design",
+          icon: "🎨",
+          title: "עיצוב ומיתוג",
+          subtitle: "איך האתר צריך להיראות",
+          q: [
+            {
+              id: "has_branding",
+              l: "יש לכם מיתוג קיים?",
+              t: "select",
+              r: 1,
+              o: [
+                "כן — לוגו + צבעים + פונטים",
+                "חלקי — יש לוגו בלבד",
+                "לא — צריך הכל מאפס",
+              ],
+            },
+            {
+              id: "style_pref",
+              l: "סגנון עיצוב מועדף",
+              t: "select",
+              o: [
+                "מינימליסטי נקי",
+                "מודרני וצבעוני",
+                "עסקי ומקצועי",
+                "יצירתי ובולט",
+                "לוקס / פרימיום",
+                "ספורטיבי / אנרגטי",
+              ],
+            },
+            {
+              id: "colors",
+              l: "צבעים מועדפים",
+              t: "text",
+              ph: "לדוגמה: שחור, זהב, לבן",
+            },
+            {
+              id: "design_refs",
+              l: "השראות / אתרים שאתם אוהבים",
+              t: "textarea",
+              ph: "שימו קישורים + מה אהבתם בהם",
+            },
+            {
+              id: "logo_file",
+              l: "קישור ללוגו (דרייב / קישור ישיר)",
+              t: "text",
+              ph: "https://drive.google.com/...",
+            },
+          ],
+        },
+        {
+          id: "features",
+          icon: "⚙️",
+          title: "פיצ'רים ועמודים",
+          subtitle: "מה האתר צריך לדעת לעשות",
+          q: [
+            {
+              id: "features_list",
+              l: "אילו פיצ'רים נדרשים?",
+              t: "checklist",
+              o: [
+                "טופס יצירת קשר",
+                "צ'אט באתר / WhatsApp",
+                "מערכת תשלומים / סליקה",
+                "בלוג / כתבות",
+                "גלריה / פורטפוליו",
+                "פופאפים שיווקיים",
+                "אפסיילים / קרוס-סיילינג",
+                "הרשמה לניוזלטר",
+                "חיפוש מתקדם",
+                "סינון מוצרים",
+                "מערכת הזמנות / הקצאות",
+                "קופון / הנחות",
+                "Wishlist / מועדפים",
+                "השוואת מוצרים",
+                "קופה פיזית / סנכרון מלאי",
+              ],
+            },
+            {
+              id: "pages",
+              l: "אילו עמודים צריך באתר?",
+              t: "checklist",
+              o: [
+                "עמוד ראשי",
+                "אודות",
+                "חנות / מוצרים",
+                "עמוד מוצר בודד",
+                "עגלת קניות + צ'קאאוט",
+                "צור קשר",
+                "בלוג",
+                "FAQ",
+                "מדיניות פרטיות",
+                "תקנון",
+                "דף נחיתה",
+                "עמוד תודה",
+              ],
+            },
+            {
+              id: "languages",
+              l: "שפות נדרשות",
+              t: "select",
+              o: [
+                "עברית בלבד",
+                "עברית + אנגלית",
+                "עברית + אנגלית + ערבית",
+                "אחר",
+              ],
+            },
+          ],
+        },
+        {
+          id: "shipping",
+          icon: "📦",
+          title: "משלוחים ומדיניות",
+          subtitle: "פרטים על הלוגיסטיקה",
+          q: [
+            {
+              id: "shipping_areas",
+              l: "אזורי משלוח",
+              t: "select",
+              o: [
+                "כל הארץ",
+                "אזורים מסוימים בלבד",
+                'ישראל + חו"ל',
+                'חו"ל בלבד',
+              ],
+            },
+            {
+              id: "shipping_cost",
+              l: "עלות משלוח + תנאי משלוח חינם",
+              t: "text",
+              ph: "לדוגמה: 45₪, חינם מעל 399₪",
+            },
+            {
+              id: "self_pickup",
+              l: "אפשרות לאיסוף עצמי?",
+              t: "select",
+              o: ["כן", "לא", "אולי"],
+            },
+            {
+              id: "return_policy",
+              l: "מדיניות החזרות",
+              t: "textarea",
+              ph: "תארו את מדיניות ההחזרות שלכם",
+            },
+          ],
+        },
+        {
+          id: "technical",
+          icon: "🔧",
+          title: "דרישות טכניות",
+          subtitle: "במצב הנוכחי של הפרויקט",
+          q: [
+            {
+              id: "integrations",
+              l: "אילו אינטגרציות נדרשות",
+              t: "textarea",
+              ph: "סליקה, Google Analytics, מערכת מיילים, CRM...",
+            },
+          ],
+        },
+        {
+          id: "media",
+          icon: "📁",
+          title: "חומרים ומדיה",
+          subtitle: "לוגו, תמונות, סרטונים — הכל פה",
+          q: [
+            {
+              id: "drive_folder",
+              l: "קישור לתיקיית Google Drive עם כל החומרים",
+              t: "text",
+              ph: "https://drive.google.com/...",
+            },
+            {
+              id: "media_links",
+              l: "קישורים נוספים (סרטונים, תמונות, לוגו)",
+              t: "media",
+            },
+            {
+              id: "media_notes",
+              l: "הערות לגבי החומרים",
+              t: "textarea",
+              ph: "מה יש בתיקייה? יש תמונות מוצר? סרטונים? לוגו בפורמטים שונים?",
+            },
+          ],
+        },
+        {
+          id: "extra",
+          icon: "📝",
+          title: "הערות נוספות",
+          subtitle: "כמעט סיימנו!",
+          q: [
+            {
+              id: "deadline",
+              l: "תאריך יעד ספציפי?",
+              t: "text",
+              ph: "לדוגמה: לפני חג הפסח...",
+            },
+            {
+              id: "extra_notes",
+              l: "הערות נוספות",
+              t: "textarea",
+              ph: "כל דבר נוסף שחשוב לכם שנדע...",
+            },
+          ],
+        },
+      ];
+
+      const A = {},
+        O = { business: true };
+      const REQUIRED = ["business_name", "phone", "what_sells"];
+      const WEBHOOK_URL =
+        "https://hook.eu1.make.com/hql29s4vsnlwbbv21ujo9rbem59xl";
+      const FORMSPREE_URL = "https://formspree.io/f/mqegqozk";
+      let submitted = false;
+
+      function sendToSupabase(notes) {
+        // Routed through the proven CRM webhook (service-role backed). The old
+        // submit_lead path was doubly broken: its publishable key was rotated
+        // (401 Unregistered) AND source="questionnaire" violates leads_source_check
+        // (allowed: fb_ads/ig_ads/whatsapp/organic/referral). We send a valid
+        // source and tag origin via created_via so it stays distinguishable.
+        return fetch(
+          "https://studios-hub.vercel.app/api/leads/webhook?secret=" +
+            "84373481945a8a0b8c3" +
+            "18e4c3241f49d709b6bb6fec7ad9680a71f18fb75e8cf",
+          {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            keepalive: true,
+            body: JSON.stringify({
+              full_name: A.contact_name || A.business_name || "שאלון אפיון",
+              phone: A.phone || undefined,
+              email: A.email || undefined,
+              business_name: A.business_name || undefined,
+              source: "organic",
+              created_via: "questionnaire",
+              initial_message: notes || undefined,
+            }),
+          },
+        ).catch(() => null);
+      }
+
+      // === LOCAL STORAGE — auto save/restore ===
+      function saveLocal() {
+        try {
+          localStorage.setItem("studios_q", JSON.stringify(A));
+        } catch (e) {}
+      }
+      function loadLocal() {
+        try {
+          const d = JSON.parse(localStorage.getItem("studios_q"));
+          if (!d) return;
+          Object.assign(A, d);
+        } catch (e) {}
+      }
+      function restoreUI() {
+        // Restore text/textarea inputs
+        S.forEach((s) =>
+          s.q.forEach((q) => {
+            const v = A[q.id];
+            if (!v) return;
+            if (q.t === "text" || q.t === "textarea") {
+              const inp = document.getElementById("inp-" + q.id);
+              if (inp) inp.value = v;
+            } else if (q.t === "select") {
+              document
+                .querySelectorAll('[data-q="' + q.id + '"]')
+                .forEach((b) => {
+                  if (b.textContent.trim() === v) b.classList.add("active");
+                });
+            } else if (q.t === "checklist" && Array.isArray(v)) {
+              document
+                .querySelectorAll('[data-q="' + q.id + '"]')
+                .forEach((b) => {
+                  if (v.includes(b.textContent.trim()))
+                    b.classList.add("active");
+                });
+            }
+          }),
+        );
+      }
+
+      // === שליחה אוטומטית ברקע ===
+      let lastSentData = "";
+      let sendCount = 0;
+
+      function buildMessage() {
+        let msg =
+          "שאלון אפיון" +
+          (sendCount > 0 ? " (עדכון)" : "") +
+          "\n" +
+          new Date().toLocaleString("he-IL") +
+          "\n\n";
+        S.forEach((s) => {
+          const items = s.q.filter((q) => {
+            const v = A[q.id];
+            return Array.isArray(v) ? v.length > 0 : v && String(v).trim();
+          });
+          if (!items.length) return;
+          msg += s.icon + " " + s.title + "\n";
+          items.forEach((q) => {
+            const v = A[q.id];
+            msg += Array.isArray(v)
+              ? q.l + ": " + v.join(", ") + "\n"
+              : q.l + ": " + v + "\n";
+          });
+          msg += "\n";
+        });
+        return msg;
+      }
+
+      function silentSend() {
+        if (submitted) return;
+        const hasData = Object.values(A).some((v) =>
+          Array.isArray(v) ? v.length > 0 : v && String(v).trim(),
+        );
+        if (!hasData) return;
+        const msg = buildMessage();
+        if (msg === lastSentData) return;
+        lastSentData = msg;
+        sendCount++;
+        const fd = new FormData();
+        fetch(WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            full_name: A.contact_name || A.business_name || "שאלון אפיון",
+            phone: A.phone || null,
+            email: A.email || null,
+            source: "questionnaire",
+          }),
+        }).catch(() => {});
+        fetch(FORMSPREE_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: A.contact_name || A.business_name || "שאלון אפיון",
+            phone: A.phone || "",
+            email: A.email || "",
+            source: "questionnaire",
+            message: msg,
+          }),
+        }).catch(() => {});
+        // NOTE: no CRM webhook call here on purpose. The webhook dedupes by phone
+        // (5-min window), so an auto-save would create a partial lead that then
+        // BLOCKS the final full brief from being stored. The single authoritative
+        // CRM lead is created once, on completion, by sendWA -> sendToSupabase(gSum()).
+        // Formspree above still emails partial/abandoned questionnaires as a safety net.
+      }
+
+      // שולח 10 שניות אחרי שמתחילים למלא, ואז כל 30 שניות אם יש שינוי
+      let firstSendDone = false;
+      let autoInterval;
+      function startAutoSend() {
+        if (firstSendDone) return;
+        firstSendDone = true;
+        // Facebook Pixel — InitiateCheckout (התחיל למלא שאלון)
+        if (typeof fbq !== "undefined")
+          fbq("track", "InitiateCheckout", {
+            content_name: "Briefing Questionnaire Started",
+            content_category: "questionnaire",
+          });
+        setTimeout(() => {
+          silentSend();
+          autoInterval = setInterval(silentSend, 30000);
+        }, 10000);
+      }
+      // גם שולח ביציאה מהדף
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "hidden") silentSend();
+      });
+      window.addEventListener("pagehide", () => {
+        const hasData = Object.values(A).some((v) =>
+          Array.isArray(v) ? v.length > 0 : v && String(v).trim(),
+        );
+        if (hasData && !submitted) {
+          try {
+            navigator.sendBeacon(
+              WEBHOOK_URL,
+              JSON.stringify({
+                full_name: A.contact_name || A.business_name || "שאלון חלקי",
+                phone: A.phone || null,
+                email: A.email || null,
+                source: "questionnaire_partial",
+              }),
+            );
+          } catch (e) {}
+        }
+      });
+
+      function init() {
+        loadLocal();
+        const w = document.getElementById("sectionsWrap");
+        const valErr = document.getElementById("valError");
+        S.forEach((s, i) => {
+          const d = document.createElement("div");
+          d.className = "section" + (s.showIf ? " hidden" : "");
+          d.id = "sec-" + s.id;
+          d.innerHTML = bSec(s, i);
+          w.insertBefore(d, valErr);
+          setTimeout(() => d.classList.add("show"), 50 * i + 80);
+        });
+        restoreUI();
+        uProg();
+      }
+
+      function bSec(s, i) {
+        let h =
+          '<button class="sec-head" onclick="tog(\'' +
+          s.id +
+          '\')"><div class="sec-right"><div class="sec-icon">' +
+          s.icon +
+          '</div><div><div class="sec-title">' +
+          s.title +
+          '</div><div class="sec-sub">' +
+          s.subtitle +
+          '</div></div></div><div class="sec-left"><span class="badge" id="b-' +
+          s.id +
+          '" style="display:none"></span><span class="chevron' +
+          (s.open ? " open" : "") +
+          '" id="c-' +
+          s.id +
+          '">▼</span></div></button><div class="sec-body' +
+          (s.open ? " open" : "") +
+          '" id="d-' +
+          s.id +
+          '">';
+        s.q.forEach((q) => (h += bQ(q)));
+        if (i < S.length - 1) {
+          const n = S[i + 1];
+          if (!n.showIf)
+            h +=
+              '<button class="next-btn" onclick="tog(\'' +
+              s.id +
+              "');tog('" +
+              n.id +
+              "')\">המשך ל" +
+              n.title +
+              " " +
+              n.icon +
+              "</button>";
+        }
+        return h + "</div>";
+      }
+
+      function bQ(q) {
+        let h =
+          '<div class="q-wrap" id="qw-' +
+          q.id +
+          '"><label>' +
+          q.l +
+          (q.r ? '<span class="req">*</span>' : "") +
+          "</label>";
+        if (q.t === "text")
+          h +=
+            '<input type="text" id="inp-' +
+            q.id +
+            '" placeholder="' +
+            (q.ph || "") +
+            '" oninput="u(\'' +
+            q.id +
+            "',this.value)\">";
+        else if (q.t === "textarea")
+          h +=
+            '<textarea id="inp-' +
+            q.id +
+            '" placeholder="' +
+            (q.ph || "") +
+            '" rows="3" oninput="u(\'' +
+            q.id +
+            "',this.value)\"></textarea>";
+        else if (q.t === "media")
+          h +=
+            '<div class="media-grid" id="mg-' +
+            q.id +
+            '"><div class="media-row"><input type="text" class="form-i" placeholder="https://..." oninput="uMedia(\'' +
+            q.id +
+            '\')"></div></div><button class="media-add" onclick="addMedia(\'' +
+            q.id +
+            "')\">+ הוסיפו קישור נוסף</button>";
+        else if (q.t === "select") {
+          h += '<div class="select-grid">';
+          q.o.forEach(
+            (o) =>
+              (h +=
+                '<button class="sel-btn" data-q="' +
+                q.id +
+                '" onclick="sel(\'' +
+                q.id +
+                "','" +
+                o.replace(/'/g, "\\'") +
+                "',this)\">" +
+                o +
+                "</button>"),
+          );
+          h += "</div>";
+        } else if (q.t === "checklist") {
+          h += '<div class="check-grid">';
+          q.o.forEach(
+            (o) =>
+              (h +=
+                '<button class="chk-btn" data-q="' +
+                q.id +
+                '" onclick="chk(\'' +
+                q.id +
+                "','" +
+                o.replace(/'/g, "\\'") +
+                '\',this)"><span class="chk-box"></span>' +
+                o +
+                "</button>"),
+          );
+          h += "</div>";
+        }
+        h += '<div class="error-msg" id="err-' + q.id + '">שדה חובה</div>';
+        return h + "</div>";
+      }
+
+      function tog(id) {
+        O[id] = !O[id];
+        document.getElementById("d-" + id).classList.toggle("open", O[id]);
+        document.getElementById("c-" + id).classList.toggle("open", O[id]);
+        if (O[id])
+          setTimeout(
+            () =>
+              document
+                .getElementById("sec-" + id)
+                .scrollIntoView({ behavior: "smooth", block: "start" }),
+            100,
+          );
+      }
+
+      function u(id, v) {
+        A[id] = v;
+        saveLocal();
+        startAutoSend();
+        const inp = document.getElementById("inp-" + id);
+        if (inp) inp.classList.remove("error");
+        document.getElementById("err-" + id).classList.remove("show");
+        uProg();
+      }
+
+      function sel(q, v, b) {
+        const w = A[q] === v;
+        A[q] = w ? "" : v;
+        document
+          .querySelectorAll('[data-q="' + q + '"]')
+          .forEach((x) => x.classList.remove("active"));
+        if (!w) b.classList.add("active");
+        saveLocal();
+        startAutoSend();
+        uProg();
+      }
+
+      function chk(q, v, b) {
+        if (!A[q]) A[q] = [];
+        const i = A[q].indexOf(v);
+        if (i > -1) {
+          A[q].splice(i, 1);
+          b.classList.remove("active");
+        } else {
+          A[q].push(v);
+          b.classList.add("active");
+        }
+        saveLocal();
+        startAutoSend();
+        uProg();
+      }
+
+      function uProg() {
+        let t = 0,
+          f = 0;
+        S.forEach((s) => {
+          if (
+            s.showIf &&
+            document.getElementById("sec-" + s.id).classList.contains("hidden")
+          )
+            return;
+          let sf = 0;
+          s.q.forEach((q) => {
+            t++;
+            const v = A[q.id];
+            if (Array.isArray(v) && v.length > 0) {
+              f++;
+              sf++;
+            } else if (typeof v === "string" && v.trim()) {
+              f++;
+              sf++;
+            }
+          });
+          const b = document.getElementById("b-" + s.id);
+          if (b) {
+            if (sf > 0) {
+              b.style.display = "inline-block";
+              const d = sf === s.q.length;
+              b.className = d ? "badge" : "badge partial";
+              b.textContent = d ? "✓" : sf + "/" + s.q.length;
+            } else b.style.display = "none";
+          }
+        });
+        const p = t ? Math.round((f / t) * 100) : 0;
+        document.getElementById("progPct").textContent = p + "%";
+        document.getElementById("progFill").style.width = p + "%";
+      }
+
+      function validate() {
+        let ok = true;
+        REQUIRED.forEach((id) => {
+          const v = A[id];
+          const has = typeof v === "string" && v.trim();
+          const inp = document.getElementById("inp-" + id);
+          const err = document.getElementById("err-" + id);
+          if (!has) {
+            ok = false;
+            if (inp) inp.classList.add("error");
+            if (err) err.classList.add("show");
+          } else {
+            if (inp) inp.classList.remove("error");
+            if (err) err.classList.remove("show");
+          }
+        });
+        return ok;
+      }
+
+      function trySubmit() {
+        const valErr = document.getElementById("valError");
+        if (!validate()) {
+          valErr.classList.add("show");
+          valErr.scrollIntoView({ behavior: "smooth", block: "center" });
+          // Open business section if closed
+          if (!O.business) tog("business");
+          return;
+        }
+        valErr.classList.remove("show");
+        showSummary();
+      }
+
+      function gSum() {
+        let t =
+          "══════════════════════════════════\n  Studios — סיכום אפיון פרויקט\n  " +
+          new Date().toLocaleDateString("he-IL") +
+          "\n";
+        if (A.business_name) t += "  " + A.business_name + "\n";
+        t += "══════════════════════════════════\n\n";
+        S.forEach((s) => {
+          if (
+            s.showIf &&
+            document.getElementById("sec-" + s.id).classList.contains("hidden")
+          )
+            return;
+          const items = s.q.filter((q) => {
+            const v = A[q.id];
+            return Array.isArray(v) ? v.length > 0 : v && v.trim();
+          });
+          if (!items.length) return;
+          t += s.icon + " " + s.title + "\n─────────────────────────\n";
+          items.forEach((q) => {
+            const v = A[q.id];
+            if (Array.isArray(v)) {
+              t += q.l + ":\n  • " + v.join("\n  • ") + "\n";
+            } else {
+              t += q.l + ": " + v + "\n";
+            }
+          });
+          t += "\n";
+        });
+        return t;
+      }
+
+      function showSummary() {
+        document.getElementById("formView").classList.add("hide");
+        document.getElementById("summaryView").classList.add("show");
+        document.getElementById("sumSubtitle").textContent =
+          (A.business_name || "הפרויקט שלכם") +
+          " • " +
+          new Date().toLocaleDateString("he-IL");
+        let h = "";
+        S.forEach((s) => {
+          if (
+            s.showIf &&
+            document.getElementById("sec-" + s.id).classList.contains("hidden")
+          )
+            return;
+          const items = s.q.filter((q) => {
+            const v = A[q.id];
+            return Array.isArray(v) ? v.length > 0 : v && v.trim();
+          });
+          if (!items.length) return;
+          h +=
+            '<div class="sum-sec"><div class="sum-sec-title"><span>' +
+            s.icon +
+            "</span> " +
+            s.title +
+            "</div>";
+          items.forEach((q) => {
+            const v = A[q.id];
+            let val = Array.isArray(v) ? v.join(" • ") : v;
+            h +=
+              '<div class="sum-item"><div class="sum-label">' +
+              q.l +
+              '</div><div class="sum-val">' +
+              val +
+              "</div></div>";
+          });
+          h += "</div>";
+        });
+        document.getElementById("sumContent").innerHTML = h;
+        window.scrollTo(0, 0);
+      }
+
+      function hideSummary() {
+        document.getElementById("summaryView").classList.remove("show");
+        document.getElementById("formView").classList.remove("hide");
+        window.scrollTo(0, 0);
+      }
+
+      function sendWA() {
+        submitted = true;
+        clearInterval(autoInterval);
+        localStorage.removeItem("studios_q");
+        sendToSupabase(gSum());
+        // Facebook Pixel — CompleteRegistration + Contact
+        if (typeof fbq !== "undefined") {
+          fbq("init", "3078561329005345", {
+            em: A.email || "",
+            ph: A.phone || "",
+            fn: (A.contact_name || "").split(" ")[0] || "",
+            ln: (A.contact_name || "").split(" ").slice(1).join(" ") || "",
+            country: "il",
+          });
+          fbq("track", "CompleteRegistration", {
+            content_name: "Briefing Questionnaire Completed",
+            content_category: "questionnaire",
+            status: "completed",
+          });
+          fbq("track", "Contact", {
+            content_name: "WhatsApp Click",
+            content_category: "contact",
+          });
+        }
+        window.open(
+          "https://wa.me/972587879796?text=" + encodeURIComponent(gSum()),
+          "_blank",
+        );
+      }
+      function copyText() {
+        navigator.clipboard.writeText(gSum());
+        const b = document.getElementById("copyBtn");
+        b.textContent = "✓ הועתק!";
+        setTimeout(() => (b.textContent = "📋 העתקה"), 2500);
+      }
+      function dlFile() {
+        const b = new Blob([gSum()], { type: "text/plain;charset=utf-8" });
+        const u = URL.createObjectURL(b);
+        const a = document.createElement("a");
+        a.href = u;
+        a.download = "אפיון_" + (A.business_name || "פרויקט") + ".txt";
+        a.click();
+        URL.revokeObjectURL(u);
+      }
+
+      // Media links
+      function addMedia(q) {
+        const grid = document.getElementById("mg-" + q);
+        const row = document.createElement("div");
+        row.className = "media-row";
+        row.innerHTML =
+          '<input type="text" class="form-i" placeholder="https://..." oninput="uMedia(\'' +
+          q +
+          '\')"><button class="media-remove" onclick="this.parentElement.remove();uMedia(\'' +
+          q +
+          "')\">✕</button>";
+        grid.appendChild(row);
+      }
+      function uMedia(q) {
+        const grid = document.getElementById("mg-" + q);
+        const inputs = grid.querySelectorAll("input");
+        const links = [];
+        inputs.forEach((inp) => {
+          if (inp.value.trim()) links.push(inp.value.trim());
+        });
+        A[q] = links.length ? links : undefined;
+        uProg();
+      }
+
+      // Milestones & encouragement
+      let lastPct = 0;
+      const MILESTONES = [
+        { pct: 25, icon: "🚀", text: "רבע מהדרך! יופי של התחלה" },
+        { pct: 50, icon: "🔥", text: "חצי מהשאלון מאחוריכם!" },
+        { pct: 75, icon: "⚡", text: "כמעט שם! עוד קצת" },
+        { pct: 100, icon: "🎉", text: "מלאו הכל! אפשר לשלוח" },
+      ];
+      const TIPS = [
+        {
+          pct: 0,
+          text: "ענו על <strong>שדות החובה</strong> בסקשן הראשון ותוכלו לשלוח. כל שאלה נוספת עוזרת לנו לדייק.",
+        },
+        {
+          pct: 20,
+          text: "<strong>טיפ:</strong> ככל שנדע יותר על קהל היעד שלכם, כך נבנה אתר שמדבר אליהם.",
+        },
+        {
+          pct: 40,
+          text: "<strong>טיפ:</strong> שימו קישורים לאתרים שאתם אוהבים — זה עוזר לנו להבין את הסגנון.",
+        },
+        {
+          pct: 60,
+          text: "<strong>מעולה!</strong> עברתם את רוב השאלון. אם יש לכם חומרים בדרייב — זה הזמן לשתף.",
+        },
+        {
+          pct: 80,
+          text: "<strong>כמעט סיימתם!</strong> רק הערות אחרונות ואפשר לשלוח.",
+        },
+      ];
+
+      function showMilestone(pct) {
+        const m = MILESTONES.find((x) => x.pct <= pct && x.pct > lastPct);
+        if (!m) return;
+        const el = document.getElementById("milestone");
+        el.querySelector(".ml-icon").textContent = m.icon;
+        el.querySelector(".ml-text").textContent = m.text;
+        el.classList.add("show");
+        setTimeout(() => el.classList.remove("show"), 3000);
+
+        // Section complete celebration
+        S.forEach((s) => {
+          if (
+            s.showIf &&
+            document.getElementById("sec-" + s.id).classList.contains("hidden")
+          )
+            return;
+          const allFilled = s.q.every((q) => {
+            const v = A[q.id];
+            return Array.isArray(v) ? v.length > 0 : v && String(v).trim();
+          });
+          const sec = document.getElementById("sec-" + s.id);
+          if (allFilled && !sec.classList.contains("sec-complete")) {
+            sec.classList.add("sec-complete");
+          }
+        });
+      }
+
+      function updateTip(pct) {
+        let tip = TIPS[0];
+        for (let i = TIPS.length - 1; i >= 0; i--) {
+          if (pct >= TIPS[i].pct) {
+            tip = TIPS[i];
+            break;
+          }
+        }
+        document.getElementById("tipText").innerHTML = tip.text;
+      }
+
+      // Override uProg to include milestones
+      const _origUProg = uProg;
+      uProg = function () {
+        let t = 0,
+          f = 0;
+        S.forEach((s) => {
+          if (
+            s.showIf &&
+            document.getElementById("sec-" + s.id) &&
+            document.getElementById("sec-" + s.id).classList.contains("hidden")
+          )
+            return;
+          let sf = 0;
+          s.q.forEach((q) => {
+            t++;
+            const v = A[q.id];
+            if (Array.isArray(v) && v.length > 0) {
+              f++;
+              sf++;
+            } else if (typeof v === "string" && v.trim()) {
+              f++;
+              sf++;
+            }
+          });
+          const b = document.getElementById("b-" + s.id);
+          if (b) {
+            if (sf > 0) {
+              b.style.display = "inline-block";
+              const d = sf === s.q.length;
+              b.className = d ? "badge" : "badge partial";
+              b.textContent = d ? "✓" : sf + "/" + s.q.length;
+            } else b.style.display = "none";
+          }
+        });
+        const p = t ? Math.round((f / t) * 100) : 0;
+        document.getElementById("progPct").textContent = p + "%";
+        document.getElementById("progFill").style.width = p + "%";
+        showMilestone(p);
+        updateTip(p);
+        lastPct = p;
+      };
+
+      document.addEventListener("DOMContentLoaded", init);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0A0A0F" />
+    <title>הצהרת נגישות — Studios</title>
+    <meta
+      name="description"
+      content="הצהרת נגישות של אתר Studios בהתאם לתקנות שוויון זכויות לאנשים עם מוגבלות."
+    />
+    <meta name="robots" content="noindex,follow" />
+    <link rel="canonical" href="https://studios.ninja/accessibility.html" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      :root {
+        --bg: #0a0a0f;
+        --bg-card: #111118;
+        --accent: #c8ff00;
+        --text: #f0f0f5;
+        --text-muted: #8888aa;
+        --border: rgba(255, 255, 255, 0.08);
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family:
+          "Heebo",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.75;
+        direction: rtl;
+        min-height: 100vh;
+        min-height: 100svh;
+      }
+      .topbar {
+        background: rgba(10, 10, 15, 0.85);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+      .topbar-inner {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 18px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 900;
+        font-size: 1.15rem;
+        letter-spacing: -0.02em;
+      }
+      .logo::before {
+        content: "";
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+      .back {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: color 0.2s;
+      }
+      .back:hover {
+        color: var(--accent);
+      }
+      main {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 64px 24px 96px;
+      }
+      .eyebrow {
+        display: inline-block;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        color: var(--accent);
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+      h1 {
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: 900;
+        letter-spacing: -0.035em;
+        line-height: 1.1;
+        margin-bottom: 16px;
+      }
+      .updated {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin-bottom: 48px;
+        padding-bottom: 32px;
+        border-bottom: 1px solid var(--border);
+      }
+      h2 {
+        font-size: 1.4rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin: 48px 0 14px;
+        color: var(--text);
+      }
+      h2:first-of-type {
+        margin-top: 0;
+      }
+      p {
+        color: rgba(240, 240, 245, 0.82);
+        margin-bottom: 16px;
+        font-size: 1.02rem;
+      }
+      ul {
+        list-style: none;
+        margin-bottom: 16px;
+        padding-right: 0;
+      }
+      ul li {
+        color: rgba(240, 240, 245, 0.82);
+        padding: 6px 0;
+        padding-right: 24px;
+        position: relative;
+      }
+      ul li::before {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 16px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+      strong {
+        color: var(--text);
+        font-weight: 700;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.2s;
+      }
+      a:hover {
+        border-bottom-color: var(--accent);
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(200, 255, 0, 0.08);
+        border: 1px solid rgba(200, 255, 0, 0.25);
+        color: var(--accent);
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        margin-bottom: 32px;
+      }
+      .badge svg {
+        width: 14px;
+        height: 14px;
+      }
+      .contact-card {
+        margin-top: 56px;
+        padding: 28px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+      }
+      .contact-card h3 {
+        font-size: 1.1rem;
+        font-weight: 800;
+        margin-bottom: 12px;
+      }
+      .contact-card p {
+        margin-bottom: 6px;
+      }
+      footer.page-foot {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 24px;
+        text-align: center;
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.3);
+        border-top: 1px solid var(--border);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a href="/index.html" class="logo">Studios</a>
+        <a href="/index.html" class="back">← חזרה לאתר</a>
+      </div>
+    </header>
+
+    <main>
+      <span class="eyebrow">משפטי</span>
+      <h1>הצהרת נגישות</h1>
+      <p class="updated">עודכן לאחרונה: מאי 2026</p>
+
+      <div class="badge">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          aria-hidden="true"
+        >
+          <path
+            d="M5 13l4 4L19 7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        תקן ישראלי 5568 · WCAG 2.0 AA
+      </div>
+
+      <h2>המחויבות שלנו לנגישות</h2>
+      <p>
+        Studios רואה בהנגשת האתר ערך מרכזי בעבודה השוטפת. אנחנו פועלים כדי לאפשר
+        חוויית גלישה שווה, נעימה ואיכותית גם לאנשים עם מוגבלויות, בהתאם ל<strong
+          >חוק שוויון זכויות לאנשים עם מוגבלות, התשנ"ח-1998</strong
+        >
+        ול<strong
+          >תקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות),
+          התשע"ג-2013</strong
+        >.
+      </p>
+
+      <h2>תקן הנגישות</h2>
+      <p>
+        האתר מתוכנן ומפותח בהתאם לתקן הישראלי
+        <strong>ת"י 5568</strong>
+        ברמת AA, המבוסס על הנחיות
+        <strong>WCAG 2.0</strong>
+        של ארגון
+        <a
+          href="https://www.w3.org/WAI/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >W3C</a
+        >.
+      </p>
+
+      <h2>מה הונגש באתר</h2>
+      <ul>
+        <li>ניווט מלא באמצעות מקלדת בלבד (Tab / Shift+Tab / Enter / Esc).</li>
+        <li>ניגודיות צבעים גבוהה בין טקסט לרקע, ברמה העומדת בדרישת WCAG AA.</li>
+        <li>טקסטים חלופיים (alt) לתמונות מהותיות.</li>
+        <li>
+          סמנטיקה תקינה של HTML5 (כותרות, קישורים, טפסים) לקריאה נכונה על-ידי
+          תוכנות הקראה.
+        </li>
+        <li>תוויות (labels) ברורות לכל שדה טופס.</li>
+        <li>
+          אפשרות לעצור או להאט אנימציות עבור משתמשים עם רגישות לתנועה (תמיכה
+          ב-<code>prefers-reduced-motion</code>).
+        </li>
+        <li>
+          תצוגה ריספונסיבית מותאמת לכל סוגי המכשירים, כולל זום עד 200% ללא איבוד
+          תוכן.
+        </li>
+        <li>זמני תגובה סבירים — האתר אינו מטיל מגבלות זמן על מילוי טפסים.</li>
+      </ul>
+
+      <h2>חלקים שעדיין מטופלים</h2>
+      <p>
+        על אף מאמצינו, ייתכן ובאתר עדיין קיימים אזורים שנמצאים בתהליך הנגשה או
+        שאינם נגישים באופן מלא. אנו פועלים באופן רציף לשיפור הנגישות.
+      </p>
+      <ul>
+        <li>סרטוני YouTube משובצים — תלויים בכתוביות שספק הוידאו מציע.</li>
+        <li>
+          תמונות פורטפוליו מסוימות — מתבצעת עבודה על שיפור התיאורים החלופיים.
+        </li>
+      </ul>
+
+      <h2>שימוש בדפדפנים ובטכנולוגיות עזר</h2>
+      <p>
+        האתר נבדק בדפדפנים מובילים (Chrome, Safari, Firefox, Edge) בגרסאות
+        העדכניות. הוא תומך בקוראי מסך נפוצים כגון <strong>NVDA</strong>,
+        <strong>JAWS</strong> ו-<strong>VoiceOver</strong>.
+      </p>
+
+      <h2>פניות בנושא נגישות</h2>
+      <p>
+        אם נתקלת בבעיית נגישות, או שיש לך הצעה לשיפור — נשמח לשמוע ונטפל בפנייה
+        בהקדם האפשרי, ולא יאוחר מ-30 ימי עסקים מקבלתה.
+      </p>
+
+      <div class="contact-card">
+        <h3>רכז הנגישות</h3>
+        <p><strong>שם:</strong> אלון וייס</p>
+        <p>
+          <strong>אימייל:</strong>
+          <a href="mailto:alonweiss123@icloud.com">alonweiss123@icloud.com</a>
+        </p>
+        <p>
+          <strong>טלפון:</strong> <a href="tel:+972587879796">058-787-9796</a>
+        </p>
+        <p
+          style="margin-top: 12px; font-size: 0.9rem; color: var(--text-muted)"
+        >
+          אנא ציין בפנייה את כתובת העמוד שבו נתקלת בבעיה ותיאור קצר של הקושי.
+        </p>
+      </div>
+
+      <h2>הצהרה זו</h2>
+      <p>
+        הצהרת נגישות זו עודכנה לאחרונה במאי 2026, ותעודכן מעת לעת בהתאם להתפתחות
+        התקנים ולשינויים באתר.
+      </p>
+    </main>
+
+    <footer class="page-foot">© 2026 Studios · כל הזכויות שמורות</footer>
+  </body>
+</html>

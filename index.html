@@ -5884,6 +5884,7 @@
               {
                 method: "POST",
                 headers: { "content-type": "application/json" },
+                keepalive: true,
                 body: JSON.stringify({
                   full_name: name,
                   phone: phone,
@@ -5900,42 +5901,35 @@
                 }),
               },
             ).catch(() => null);
-            const webhookReq = fetch(
-              "https://hook.eu1.make.com/hql29s4vsnlwbbv21ujo9rbem59xl",
-              {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  full_name: name,
-                  phone: phone,
-                  email: email || null,
-                  source: "website",
-                }),
+            // Independent EMAIL BACKUP — fire-and-forget. Deliberately NOT part of
+            // the delivery gate below, so it can never fake a "thank-you" on its own.
+            // Guarantees the lead still reaches Alon by email even if the CRM webhook
+            // is momentarily down (the CRM is otherwise a single point of failure).
+            // Replaces the old Make.com hook, whose URL was dead (404).
+            fetch("https://formspree.io/f/mqegqozk", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
               },
-            ).catch(() => null);
-            // Facebook Pixel — Lead + Advanced Matching
-            if (typeof fbq !== "undefined") {
-              fbq("init", "3078561329005345", {
-                em: email || "",
-                ph: phone || "",
-                fn: name.split(" ")[0] || "",
-                ln: name.split(" ").slice(1).join(" ") || "",
-                country: "il",
-              });
-              fbq("track", "Lead", {
-                content_name: "Landing Page Lead Form",
-                content_category: "lead_form",
-                value: 0,
-                currency: "ILS",
-              });
-            }
-            // fetch() only rejects on a network failure — NOT on HTTP errors
-            // (401 from an expired secret, 500, …). A failed target therefore
-            // resolves either to null (its own .catch) or to a Response whose
-            // res.ok is false. Only treat the submit as delivered when at least
-            // ONE target accepted it; otherwise the lead is lost and we must not
-            // pretend it worked. The CRM webhook returns permissive CORS, so its
-            // res.ok is readable cross-origin.
+              keepalive: true,
+              body: JSON.stringify({
+                name: name,
+                phone: phone,
+                email: email || "",
+                message: message || "",
+                source: "landing_page",
+                _subject: "ליד חדש מדף הנחיתה (גיבוי) — " + (name || ""),
+              }),
+            }).catch(() => {});
+            // The thank-you redirect is gated ONLY on the CRM webhook (the system
+            // of record). fetch() rejects only on a network failure — NOT on HTTP
+            // errors (401 expired secret, 500, …) — so a failed CRM call resolves
+            // to null (its .catch) or a Response with res.ok=false, and we show the
+            // error + WhatsApp fallback instead of faking success. The CRM webhook
+            // returns permissive CORS, so res.ok is readable cross-origin. The
+            // Formspree email above is a fire-and-forget backup, intentionally
+            // excluded from this gate so it can never mask a CRM failure.
             function showFormError() {
               btn.innerHTML = origBtn;
               btn.disabled = false;
@@ -5951,14 +5945,48 @@
                 btn.parentNode.insertBefore(err, btn.nextSibling);
               }
             }
-            Promise.all([supaReq, webhookReq])
+            Promise.all([supaReq])
               .then((results) => {
-                const delivered = results.some((r) => r && r.ok);
-                if (delivered) {
-                  window.location.href = "thank-you.html";
-                } else {
+                const res = results[0];
+                if (!res || !res.ok) {
                   showFormError();
+                  return;
                 }
+                // Lead saved. Read lead_id + is_duplicate from the webhook response.
+                // Fire the Pixel Lead event ONLY for a genuinely NEW lead, with
+                // event_id = lead UUID so it dedups against the server-side
+                // Conversions API event (which uses the same id and also skips
+                // duplicates). Never fires on a failed save, a mere field-touch,
+                // or a duplicate submission of the same person.
+                return res
+                  .json()
+                  .catch(() => null)
+                  .then((data) => {
+                    const result = data && data.result ? data.result : {};
+                    const leadId = result.lead_id || null;
+                    const isDuplicate = result.is_duplicate === true;
+                    if (!isDuplicate && typeof fbq !== "undefined") {
+                      fbq("init", "3078561329005345", {
+                        em: email || "",
+                        ph: phone || "",
+                        fn: name.split(" ")[0] || "",
+                        ln: name.split(" ").slice(1).join(" ") || "",
+                        country: "il",
+                      });
+                      fbq(
+                        "track",
+                        "Lead",
+                        {
+                          content_name: "Landing Page Lead Form",
+                          content_category: "lead_form",
+                          value: 0,
+                          currency: "ILS",
+                        },
+                        leadId ? { eventID: leadId } : undefined,
+                      );
+                    }
+                    window.location.href = "thank-you.html";
+                  });
               })
               .catch(showFormError);
           });

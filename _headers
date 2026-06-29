@@ -1,0 +1,11 @@
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  X-XSS-Protection: 1; mode=block
+
+# Note: no Content-Security-Policy here on purpose. The page relies on inline
+# scripts/styles plus several third parties (YouTube, Facebook Pixel, GSAP CDN,
+# the Make + CRM webhooks). A CSP must all-list every one of those or it will
+# silently break the site, so it needs its own careful pass — not a blind add.
