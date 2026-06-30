@@ -5331,6 +5331,15 @@
         }
       }
 
+      // Reads a single cookie value by name (used for the Meta _fbc / _fbp
+      // click/browser ids that boost Conversions API Match Quality).
+      function getCookie(name) {
+        const match = document.cookie.match(
+          new RegExp("(^| )" + name + "=([^;]+)"),
+        );
+        return match ? match[2] : null;
+      }
+
       // === STUDIOS CRM ANALYTICS BEACONS ===
       // Full side-channel telemetry: page_view, scroll_depth, form_start,
       // form_abandon, heartbeat. Does NOT touch the lead-form submission to
@@ -5872,6 +5881,20 @@
             const email = fd.get("email") || null;
             const message = fd.get("message") || null;
             const utm = getUtm();
+            // Meta click/browser ids for Conversions API Match Quality.
+            // _fbp/_fbc are set by the Pixel; if the visitor submits within
+            // seconds of landing the Pixel may not have written _fbc yet, so
+            // we reconstruct it from the fbclid URL param in Meta's official
+            // format: fb.1.<timestamp>.<fbclid>. Absent entirely (no ad click)
+            // is fine — we just send undefined.
+            let fbc = getCookie("_fbc");
+            const fbp = getCookie("_fbp");
+            if (!fbc) {
+              const fbclid = new URLSearchParams(window.location.search).get(
+                "fbclid",
+              );
+              if (fbclid) fbc = "fb.1." + Date.now() + "." + fbclid;
+            }
             // Studios CRM webhook (replaces direct Supabase RPC).
             // NOTE: this secret is PUBLIC — it ships in client JS and is visible
             // via view-source, so the string-splitting below hides nothing. It
@@ -5898,6 +5921,8 @@
                   utm_campaign: utm.utm_campaign || undefined,
                   utm_content: utm.utm_content || undefined,
                   utm_term: utm.utm_term || undefined,
+                  fbc: fbc || undefined,
+                  fbp: fbp || undefined,
                 }),
               },
             ).catch(() => null);
