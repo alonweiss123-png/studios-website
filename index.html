@@ -238,6 +238,94 @@
                 }
               }
             ]
+          },
+          {
+            "@type": "ItemList",
+            "@id": "https://studios.ninja/#portfolio",
+            "name": "פרויקטים נבחרים — Studios",
+            "description": "חנויות ואתרי איקומרס ש-Studios בנתה ומעלה באוויר.",
+            "itemListOrder": "https://schema.org/ItemListOrderAscending",
+            "numberOfItems": 6,
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                  "@type": "WebSite",
+                  "name": "ŌNN",
+                  "url": "https://onn.co.il/",
+                  "description": "מזווה מזון אמיתי — חנות אונליין עם עשרות מוצרים, מארזים ומסע לקוח ממוקד המרה.",
+                  "image": "https://studios.ninja/port-onn.webp",
+                  "inLanguage": "he-IL",
+                  "creator": { "@id": "https://studios.ninja/#organization" }
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                  "@type": "WebSite",
+                  "name": "Hybrid by Amit Portal",
+                  "url": "https://hybrid-israel.com",
+                  "description": "חנות תוספי תזונה למאמן הכושר המוביל בישראל.",
+                  "image": "https://studios.ninja/port-hybrid.webp",
+                  "inLanguage": "he-IL",
+                  "creator": { "@id": "https://studios.ninja/#organization" }
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                  "@type": "WebSite",
+                  "name": "IL CAPITANO",
+                  "url": "https://ilcapitano.store/",
+                  "description": "מותג סבוני בוטיק בהשראת הים התיכון — חנות בינלאומית באנגלית.",
+                  "image": "https://studios.ninja/port-capitano.webp",
+                  "inLanguage": "en",
+                  "creator": { "@id": "https://studios.ninja/#organization" }
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                  "@type": "WebSite",
+                  "name": "Dezernoo",
+                  "url": "https://dezernoo.co.il",
+                  "description": "מותג אופנה ישראלי בהשראת הרחוב האירופאי וההיפ-הופ האמריקאי.",
+                  "image": "https://studios.ninja/port-dezernoo.webp",
+                  "inLanguage": "he-IL",
+                  "creator": { "@id": "https://studios.ninja/#organization" }
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "item": {
+                  "@type": "WebSite",
+                  "name": "Sensei Titanium",
+                  "url": "https://senseiil.com/",
+                  "description": "אביזרי מטבח פרמיום עם משטחי חיתוך טיטניום ייחודיים.",
+                  "image": "https://studios.ninja/port-sensei.webp",
+                  "inLanguage": "he-IL",
+                  "creator": { "@id": "https://studios.ninja/#organization" }
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "item": {
+                  "@type": "WebSite",
+                  "name": "Sheket Earplugs",
+                  "url": "https://sheketearplugs.com/",
+                  "description": "חנות אטמי אוזניים פרמיום עם חוויית קנייה ממוקדת המרה.",
+                  "image": "https://studios.ninja/port-sheket.webp",
+                  "inLanguage": "he-IL",
+                  "creator": { "@id": "https://studios.ninja/#organization" }
+                }
+              }
+            ]
           }
         ]
       }
@@ -2456,11 +2544,82 @@
       }
       .port-card--featured .port-desc {
         font-size: 1.02rem;
+        max-width: 62ch;
+      }
+
+      /* Mid card — spans 3 cols → 2 per row */
+      .port-card--mid {
+        grid-column: span 3;
+      }
+      .port-card--mid .port-meta {
+        padding: 30px 30px 32px;
+        gap: 16px;
+      }
+      .port-card--mid .port-name {
+        font-size: clamp(1.35rem, 1.9vw, 1.65rem);
+        line-height: 1.15;
+      }
+      .port-card--mid .port-desc {
+        font-size: 0.97rem;
       }
 
       /* Regular card — spans 2 cols → 3 per row */
       .port-card--normal {
         grid-column: span 2;
+      }
+
+      /* "חדש" badge — lives in the meta row, never over the screenshot */
+      .port-meta-end {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .port-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 5px 12px;
+        border-radius: 999px;
+        background: var(--accent);
+        color: #0a0a0f;
+        font-size: 0.64rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        line-height: 1;
+      }
+
+      /* Live indicator inside the browser chrome */
+      .port-live {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        flex-shrink: 0;
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.14em;
+        color: rgba(200, 255, 0, 0.7);
+      }
+      .port-live b {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+        animation: portPulse 2.6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+      }
+      @keyframes portPulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(200, 255, 0, 0.5);
+        }
+        70% {
+          box-shadow: 0 0 0 8px rgba(200, 255, 0, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(200, 255, 0, 0);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .port-live b {
+          animation: none;
+        }
       }
 
       /* Browser frame mockup */
@@ -2680,6 +2839,12 @@
         .port-card--featured {
           flex-direction: column;
         }
+        /* Stacked: let the frame keep its 16/10 ratio instead of being
+           flex-sized by height (which crops the screenshot). */
+        .port-card--featured .port-frame,
+        .port-card--featured .port-meta {
+          flex: none;
+        }
         .port-card--featured .port-meta {
           padding: 28px 24px;
         }
@@ -2696,8 +2861,24 @@
           padding: 0 16px;
         }
         .port-card--featured,
+        .port-card--mid,
         .port-card--normal {
           grid-column: span 1;
+        }
+        .port-card--mid .port-meta {
+          padding: 20px 18px 22px;
+          gap: 12px;
+        }
+        .port-card--mid .port-name {
+          font-size: 1.2rem;
+        }
+        .port-badge {
+          font-size: 0.58rem;
+          padding: 4px 10px;
+        }
+        .port-live {
+          font-size: 0.55rem;
+          letter-spacing: 0.1em;
         }
         .port-card--featured .port-meta {
           padding: 22px 20px 24px;
@@ -4533,9 +4714,74 @@
           </div>
 
           <div class="port-grid">
-            <!-- 01 — FEATURED: Hybrid -->
+            <!-- 01 — FEATURED: ŌNN -->
             <a
               class="port-card port-card--featured reveal"
+              href="https://onn.co.il/"
+              target="_blank"
+              rel="noopener"
+              aria-label="ŌNN — מזווה מזון אמיתי, חנות אונליין"
+            >
+              <div class="port-frame">
+                <div class="port-frame-bar">
+                  <span class="port-dot"></span>
+                  <span class="port-dot"></span>
+                  <span class="port-dot"></span>
+                  <span class="port-frame-url">onn.co.il</span>
+                  <span class="port-live"><b></b>LIVE</span>
+                </div>
+                <div class="port-frame-shot">
+                  <img
+                    src="port-onn.webp"
+                    alt="ŌNN — מזווה מזון אמיתי, חנות אונליין ישראלית"
+                    loading="lazy"
+                    decoding="async"
+                    width="1600"
+                    height="1000"
+                  />
+                </div>
+              </div>
+              <div class="port-meta">
+                <div class="port-meta-top">
+                  <span class="port-tag">מזון פונקציונלי · E-commerce</span>
+                  <span class="port-meta-end">
+                    <span class="port-badge">חדש</span>
+                    <span class="port-num">פרויקט מוביל / 01</span>
+                  </span>
+                </div>
+                <h3 class="port-name">ŌNN</h3>
+                <p class="port-desc">
+                  מזווה שלם של אוכל אמיתי — מותג עם עשרות מוצרים, מארזים וסיפור
+                  חזק שמככב בתקשורת. בנינו אתר שמחזיק את הסיפור ואת המכירה באותה
+                  נשימה: מסע לקוח שמוביל מהסקרנות הראשונה ועד לעגלה מלאה.
+                </p>
+                <div class="port-services">
+                  <span>עיצוב UX/UI</span>
+                  <span>פיתוח</span>
+                  <span>מיתוג דיגיטלי</span>
+                  <span>מסע לקוח</span>
+                  <span>אופטימיזציה</span>
+                </div>
+                <span class="port-cta">
+                  צפייה באתר
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M19 12H5M12 5l-7 7 7 7" />
+                  </svg>
+                </span>
+              </div>
+            </a>
+
+            <!-- 02 — Hybrid by Amit Portal -->
+            <a
+              class="port-card port-card--mid reveal"
               href="https://hybrid-israel.com"
               target="_blank"
               rel="noopener"
@@ -4562,18 +4808,16 @@
               <div class="port-meta">
                 <div class="port-meta-top">
                   <span class="port-tag">תוספי ספורט · E-commerce</span>
-                  <span class="port-num">פרויקט מוביל / 01</span>
+                  <span class="port-num">/ 02</span>
                 </div>
                 <h3 class="port-name">Hybrid by Amit Portal</h3>
                 <p class="port-desc">
                   חנות תוספי תזונה למאמן הכושר המוביל בישראל. עיצוב מותג חדש,
-                  מסע לקוח ממוקד-המרה, ואופטימיזציה מתמשכת לקמפיינים מבוצעים.
+                  מסע לקוח ממוקד-המרה ואופטימיזציה מתמשכת לקמפיינים מבוצעים.
                 </p>
                 <div class="port-services">
-                  <span>עיצוב UX/UI</span>
-                  <span>פיתוח</span>
-                  <span>מסע לקוח</span>
-                  <span>אופטימיזציה</span>
+                  <span>עיצוב UX/UI</span><span>פיתוח</span><span>מסע לקוח</span
+                  ><span>אופטימיזציה</span>
                 </div>
                 <span class="port-cta">
                   צפייה באתר
@@ -4592,43 +4836,48 @@
               </div>
             </a>
 
-            <!-- 02 — Clean Look -->
+            <!-- 03 — IL CAPITANO -->
             <a
-              class="port-card port-card--normal reveal"
-              href="https://www.cleanlook.online/"
+              class="port-card port-card--mid reveal"
+              href="https://ilcapitano.store/"
               target="_blank"
               rel="noopener"
-              aria-label="Clean Look — מוצרי ניקיון פרמיום"
+              aria-label="IL CAPITANO — מותג סבוני בוטיק בהשראת הים"
             >
               <div class="port-frame">
                 <div class="port-frame-bar">
                   <span class="port-dot"></span>
                   <span class="port-dot"></span>
                   <span class="port-dot"></span>
-                  <span class="port-frame-url">cleanlook.online</span>
+                  <span class="port-frame-url">ilcapitano.store</span>
                 </div>
                 <div class="port-frame-shot">
                   <img
-                    src="port-cleanlook.webp"
-                    alt="Clean Look — חנות מוצרי ניקיון"
+                    src="port-capitano.webp"
+                    alt="IL CAPITANO — חנות סבוני בוטיק בהשראת הים התיכון"
                     loading="lazy"
                     decoding="async"
-                    width="800"
-                    height="500"
+                    width="1200"
+                    height="750"
                   />
                 </div>
               </div>
               <div class="port-meta">
                 <div class="port-meta-top">
-                  <span class="port-tag">מוצרי ניקיון</span>
-                  <span class="port-num">/ 02</span>
+                  <span class="port-tag">טיפוח · מותג בינלאומי</span>
+                  <span class="port-meta-end">
+                    <span class="port-badge">חדש</span>
+                    <span class="port-num">/ 03</span>
+                  </span>
                 </div>
-                <h3 class="port-name">Clean Look</h3>
+                <h3 class="port-name">IL CAPITANO</h3>
                 <p class="port-desc">
-                  חנות מוצרי ניקיון פרמיום עם חוויית קנייה ממוקדת המרה.
+                  מותג סבוני בוטיק בהשראת הים התיכון. חנות בינלאומית באנגלית עם
+                  שפה ויזואלית קולנועית וחוויית קנייה נקייה מקצה לקצה.
                 </p>
                 <div class="port-services">
-                  <span>עיצוב</span><span>פיתוח</span><span>מסחר</span>
+                  <span>עיצוב</span><span>פיתוח</span><span>מיתוג</span
+                  ><span>מסחר בינלאומי</span>
                 </div>
                 <span class="port-cta">
                   צפייה באתר
@@ -4647,7 +4896,7 @@
               </div>
             </a>
 
-            <!-- 03 — Dezernoo -->
+            <!-- 04 — Dezernoo -->
             <a
               class="port-card port-card--normal reveal"
               href="https://dezernoo.co.il"
@@ -4676,7 +4925,7 @@
               <div class="port-meta">
                 <div class="port-meta-top">
                   <span class="port-tag">אופנה · Streetwear</span>
-                  <span class="port-num">/ 03</span>
+                  <span class="port-num">/ 04</span>
                 </div>
                 <h3 class="port-name">Dezernoo</h3>
                 <p class="port-desc">
@@ -4702,7 +4951,7 @@
               </div>
             </a>
 
-            <!-- 04 — Sensei Titanium -->
+            <!-- 05 — Sensei Titanium -->
             <a
               class="port-card port-card--normal reveal"
               href="https://senseiil.com/"
@@ -4731,7 +4980,7 @@
               <div class="port-meta">
                 <div class="port-meta-top">
                   <span class="port-tag">אביזרי מטבח · פרמיום</span>
-                  <span class="port-num">/ 04</span>
+                  <span class="port-num">/ 05</span>
                 </div>
                 <h3 class="port-name">Sensei Titanium</h3>
                 <p class="port-desc">
@@ -4757,7 +5006,7 @@
               </div>
             </a>
 
-            <!-- 05 — Sheket -->
+            <!-- 06 — Sheket -->
             <a
               class="port-card port-card--normal reveal"
               href="https://sheketearplugs.com/"
@@ -4785,8 +5034,8 @@
               </div>
               <div class="port-meta">
                 <div class="port-meta-top">
-                  <span class="port-tag">מוצרי בריאות · אקסטיק</span>
-                  <span class="port-num">/ 05</span>
+                  <span class="port-tag">מוצרי בריאות · אקוסטיקה</span>
+                  <span class="port-num">/ 06</span>
                 </div>
                 <h3 class="port-name">Sheket Earplugs</h3>
                 <p class="port-desc">
@@ -4794,61 +5043,6 @@
                 </p>
                 <div class="port-services">
                   <span>עיצוב</span><span>פיתוח</span><span>מסחר</span>
-                </div>
-                <span class="port-cta">
-                  צפייה באתר
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M19 12H5M12 5l-7 7 7 7" />
-                  </svg>
-                </span>
-              </div>
-            </a>
-
-            <!-- 06 — Lurva -->
-            <a
-              class="port-card port-card--normal reveal"
-              href="https://mylurva.com"
-              target="_blank"
-              rel="noopener"
-              aria-label="Lurva — מכשירי הגברת החלמה לשריר לספורטאים"
-            >
-              <div class="port-frame">
-                <div class="port-frame-bar">
-                  <span class="port-dot"></span>
-                  <span class="port-dot"></span>
-                  <span class="port-dot"></span>
-                  <span class="port-frame-url">mylurva.com</span>
-                </div>
-                <div class="port-frame-shot">
-                  <img
-                    src="port-lurva.webp"
-                    alt="Lurva — מכשירי הגברת החלמה לשריר לספורטאים"
-                    loading="lazy"
-                    decoding="async"
-                    width="800"
-                    height="500"
-                  />
-                </div>
-              </div>
-              <div class="port-meta">
-                <div class="port-meta-top">
-                  <span class="port-tag">ספורט · התאוששות שריר</span>
-                  <span class="port-num">/ 06</span>
-                </div>
-                <h3 class="port-name">Lurva</h3>
-                <p class="port-desc">
-                  מכשירי הגברת החלמה לשריר לספורטאים. מותג + חנות אונליין.
-                </p>
-                <div class="port-services">
-                  <span>עיצוב</span><span>פיתוח</span><span>אופטימיזציה</span>
                 </div>
                 <span class="port-cta">
                   צפייה באתר
