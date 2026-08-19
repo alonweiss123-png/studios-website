@@ -6,7 +6,10 @@ Disallow: /_deploy/
 Disallow: /_backup/
 Disallow: /.netlify/
 
-# Post-submit confirmation page has no search value.
+# Internal funnel pages — no search value, and they leak project intake questions.
 Disallow: /thank-you.html
+Disallow: /questionnaire.html
+Disallow: /CONTRACT.md
+Disallow: /_backup-index-*
 
 Sitemap: https://studios.ninja/sitemap.xml

@@ -1,415 +1,232 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="he" dir="rtl">
   <head>
+    <script>document.documentElement.className+=" js";</script>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#08080C" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="google-site-verification" content="FbyoC4QHkjr1cm2Mk32IlyPSn1jHs05O2UeodZkUIXY" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&family=Heebo:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&family=Heebo:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="/assets/studios.css" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="robots" content="noindex, nofollow" />
     <title>תודה! — Studios</title>
-    <!-- Facebook Pixel Code -->
+    <meta property="og:site_name" content="Studios" />
+    <meta property="og:title" content="תודה! — Studios" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="he_IL" />
+    <meta property="og:image" content="https://studios.ninja/og-image.png" />
+    <!-- Meta Pixel -->
     <script>
       !(function (f, b, e, v, n, t, s) {
         if (f.fbq) return;
         n = f.fbq = function () {
-          n.callMethod
-            ? n.callMethod.apply(n, arguments)
-            : n.queue.push(arguments);
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
         };
         if (!f._fbq) f._fbq = n;
-        n.push = n;
-        n.loaded = !0;
-        n.version = "2.0";
-        n.queue = [];
-        t = b.createElement(e);
-        t.async = !0;
-        t.src = v;
+        n.push = n; n.loaded = !0; n.version = "2.0"; n.queue = [];
+        t = b.createElement(e); t.async = !0; t.src = v;
         s = b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t, s);
-      })(
-        window,
-        document,
-        "script",
-        "https://connect.facebook.net/en_US/fbevents.js",
-      );
+      })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
       fbq("init", "3078561329005345");
       fbq("track", "PageView");
     </script>
-    <noscript
-      ><img
-        height="1"
-        width="1"
-        style="display: none"
-        src="https://www.facebook.com/tr?id=3078561329005345&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Facebook Pixel Code -->
-    <meta property="fb:app_id" content="1632523821147758" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      *,
-      *::before,
-      *::after {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      body {
-        font-family: "Heebo", sans-serif;
-        background: #0a0a0f;
-        color: #f0f0f5;
-        min-height: 100vh;
-        min-height: 100svh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 24px;
-        direction: rtl;
-        position: relative;
-      }
-      :root {
-        --accent: #c8ff00;
-      }
-      body::before {
-        content: "";
-        position: absolute;
-        width: 500px;
-        height: 500px;
-        border-radius: 50%;
-        background: rgba(200, 255, 0, 0.06);
-        filter: blur(120px);
-        top: -100px;
-        right: -100px;
-        pointer-events: none;
-      }
-      body::after {
-        content: "";
-        position: absolute;
-        width: 400px;
-        height: 400px;
-        border-radius: 50%;
-        background: rgba(200, 255, 0, 0.04);
-        filter: blur(100px);
-        bottom: -80px;
-        left: -80px;
-        pointer-events: none;
-      }
+    <noscript><img height="1" width="1" style="display:none" alt=""
+      src="https://www.facebook.com/tr?id=3078561329005345&ev=PageView&noscript=1" /></noscript>
 
-      .card {
-        max-width: 480px;
-        width: 100%;
-        text-align: center;
-        position: relative;
-        z-index: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .check {
-        width: 72px;
-        height: 72px;
-        border-radius: 50%;
-        background: var(--accent);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 28px;
-        animation: popIn 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-      }
-      .check svg {
-        width: 36px;
-        height: 36px;
-        stroke: #0a0a0f;
-        stroke-width: 3;
-        fill: none;
-      }
-      @keyframes popIn {
-        0% {
-          transform: scale(0);
-          opacity: 0;
-        }
-        100% {
-          transform: scale(1);
-          opacity: 1;
-        }
-      }
-
-      /* Progress */
-      .steps {
-        display: flex;
-        align-items: center;
-        gap: 0;
-        margin-bottom: 36px;
-        width: 100%;
-        max-width: 360px;
-        justify-content: center;
-      }
-      .step-badge {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 6px;
-        flex: 0 0 auto;
-      }
-      .step-num {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 800;
-        font-size: 0.85rem;
-      }
-      .step-num.done {
-        background: var(--accent);
-        color: #0a0a0f;
-      }
-      .step-num.current {
-        background: rgba(200, 255, 0, 0.15);
-        color: var(--accent);
-        border: 2px solid var(--accent);
-      }
-      .step-num.later {
-        background: rgba(255, 255, 255, 0.06);
-        color: #555;
-      }
-      .step-text {
-        font-size: 0.68rem;
-        color: #8888aa;
-        font-weight: 600;
-        white-space: nowrap;
-      }
-      .step-badge.active .step-text {
-        color: var(--accent);
-      }
-      .step-line {
-        flex: 1;
-        height: 2px;
-        background: rgba(255, 255, 255, 0.08);
-        min-width: 28px;
-        margin: 0 6px;
-        margin-bottom: 18px;
-      }
-      .step-line.done-line {
-        background: var(--accent);
-      }
-
-      h1 {
-        font-size: clamp(1.5rem, 5vw, 2.2rem);
-        font-weight: 900;
-        letter-spacing: -0.03em;
-        margin-bottom: 14px;
-        line-height: 1.2;
-      }
-      h1 span {
-        color: var(--accent);
-      }
-      .sub {
-        color: #8888aa;
-        font-size: 0.92rem;
-        line-height: 1.7;
-        margin-bottom: 32px;
-        max-width: 400px;
-      }
-
-      .cta-main {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        background: var(--accent);
-        color: #0a0a0f;
-        padding: 16px 36px;
-        border-radius: 10px;
-        font-family: "Heebo";
-        font-weight: 800;
-        font-size: 1.05rem;
-        text-decoration: none;
-        transition:
-          transform 0.25s,
-          box-shadow 0.25s;
-        width: 100%;
-        max-width: 360px;
-        animation: pulse 2.5s ease-in-out infinite;
-      }
-      .cta-main:hover {
-        transform: scale(1.04);
-        box-shadow: 0 8px 32px rgba(200, 255, 0, 0.4);
-      }
-      @keyframes pulse {
-        0%,
-        100% {
-          box-shadow: 0 0 0 0 rgba(200, 255, 0, 0.3);
-        }
-        50% {
-          box-shadow: 0 0 0 12px rgba(200, 255, 0, 0);
-        }
-      }
-
-      .divider {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        margin: 24px 0;
-        color: #555;
-        font-size: 0.78rem;
-        width: 100%;
-        max-width: 360px;
-      }
-      .divider::before,
-      .divider::after {
-        content: "";
-        flex: 1;
-        height: 1px;
-        background: rgba(255, 255, 255, 0.08);
-      }
-
-      .wa-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        background: #25d366;
-        color: #fff;
-        padding: 14px 28px;
-        border-radius: 10px;
-        font-family: "Heebo";
-        font-weight: 700;
-        font-size: 0.92rem;
-        text-decoration: none;
-        transition:
-          transform 0.2s,
-          box-shadow 0.2s;
-        width: 100%;
-        max-width: 360px;
-      }
-      .wa-link:hover {
-        transform: scale(1.04);
-        box-shadow: 0 6px 24px rgba(37, 211, 102, 0.35);
-      }
-      .wa-link svg {
-        width: 20px;
-        height: 20px;
-        fill: #fff;
-        flex-shrink: 0;
-      }
-
-      /* REPLACE: cal-link — כפתור קביעת פגישה -->  */
-      .cal-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: #f0f0f5;
-        padding: 14px 28px;
-        border-radius: 10px;
-        font-family: "Heebo";
-        font-weight: 600;
-        font-size: 0.92rem;
-        text-decoration: none;
-        transition: all 0.25s;
-        width: 100%;
-        max-width: 360px;
-        margin-top: 12px;
-      }
-      .cal-link:hover {
-        border-color: var(--accent);
-        color: var(--accent);
-        background: rgba(200, 255, 0, 0.06);
-      }
-
-      .back {
-        margin-top: 32px;
-        color: #555;
-        font-size: 0.82rem;
-        text-decoration: none;
-        transition: color 0.2s;
-      }
-      .back:hover {
-        color: var(--accent);
-      }
-    </style>
+    <script src="/assets/analytics.js" defer></script>
   </head>
   <body>
-    <div class="card">
-      <div class="check">
-        <svg viewBox="0 0 24 24">
-          <path
-            d="M5 13l4 4L19 7"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </div>
+    <a class="skip" href="#main">דלג לתוכן</a>
 
-      <!-- Progress -->
-      <div class="steps">
-        <div class="step-badge">
-          <div class="step-num done">✓</div>
-          <div class="step-text">פנייה</div>
-        </div>
-        <div class="step-line done-line"></div>
-        <div class="step-badge active">
-          <div class="step-num current">2</div>
-          <div class="step-text">שאלון אפיון</div>
-        </div>
-        <div class="step-line"></div>
-        <div class="step-badge">
-          <div class="step-num later">3</div>
-          <div class="step-text">פגישה</div>
+    <header class="hdr">
+      <div class="hdr-in">
+        <a href="/" class="logo" aria-label="Studios — דף הבית">Studios<i>.</i></a>
+
+        <nav class="nav" aria-label="ניווט ראשי">
+          <a href="/services.html">שירותים</a>
+          <a href="/work/">עבודות</a>
+          <a href="/about.html">הצוות</a>
+          <a href="/blog/">מדריכים</a>
+          <a href="/pricing.html">מחירים</a>
+        </nav>
+
+        <div class="hdr-cta">
+          <a href="/#contact" class="btn btn-primary btn-sm">שיחת ייעוץ חינם</a>
+          <button class="burger" id="burger" aria-label="פתיחת תפריט" aria-expanded="false" aria-controls="sheet">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <path d="M4 7h16M4 12h16M4 17h16" />
+            </svg>
+          </button>
         </div>
       </div>
+    </header>
 
-      <h1>קיבלנו! <span>נחזור אליך תוך 24 שעות</span></h1>
-      <p class="sub">
-        רציני לגבי הפרויקט? מלא שאלון אפיון קצר — נגיע מוכנים לשיחה.
-      </p>
-
-      <a href="questionnaire.html" class="cta-main">
-        למילוי שאלון אפיון
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.5"
-        >
-          <path d="M5 12h14M12 5l7 7-7 7" />
-        </svg>
-      </a>
-
-      <div class="divider">או</div>
-
-      <a
-        href="https://calendar.app.google/jMZqPkqbNPXFdMc37"
-        target="_blank"
-        rel="noopener"
-        class="cal-link"
-      >
-        📅 קביעת פגישת ייעוץ חינם
-      </a>
-
-      <a
-        href="https://wa.me/972587879796?text=%D7%94%D7%99%D7%99%20%D7%90%D7%9C%D7%95%D7%9F%2C%20%D7%9E%D7%99%D7%9C%D7%90%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%98%D7%95%D7%A4%D7%A1%20%D7%95%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%94%D7%AA%D7%A7%D7%93%D7%9D"
-        target="_blank"
-        rel="noopener"
-        class="wa-link"
-        style="margin-top: 12px"
-      >
-        <svg viewBox="0 0 24 24">
-          <path
-            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
-          />
-        </svg>
-        שלח הודעה בוואטסאפ
-      </a>
-
-      <a href="index.html" class="back">← חזרה לאתר</a>
+    <div class="sheet" id="sheet">
+      <div class="sheet-top">
+        <span class="logo">Studios<i>.</i></span>
+        <button class="burger" id="sheetClose" aria-label="סגירת תפריט">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
+      </div>
+      <nav aria-label="ניווט נייד">
+        <a href="/services.html">שירותים</a>
+        <a href="/work/">עבודות</a>
+        <a href="/about.html">הצוות</a>
+        <a href="/blog/">מדריכים</a>
+        <a href="/pricing.html">מחירים</a>
+        <a href="/#contact">צור קשר</a>
+      </nav>
+      <div class="sheet-foot">
+        <a href="/#contact" class="btn btn-primary btn-lg">שיחת ייעוץ חינם</a>
+        <a class="btn btn-ghost btn-lg sheet-foot-book" href="https://calendar.app.google/jMZqPkqbNPXFdMc37" target="_blank" rel="noopener">קביעת פגישה ביומן</a>
+        <a href="https://wa.me/972587879796" class="btn btn-ghost btn-lg" target="_blank" rel="noopener">וואטסאפ · 058-787-9796</a>
+      </div>
     </div>
+
+    <main id="main">
+      <section class="hero" style="min-height:auto;padding-block:150px 0">
+        <div class="sky" aria-hidden="true">
+          <div class="sky-l sky-far"></div><div class="sky-l sky-mid"></div>
+          <div class="sky-l sky-near"></div><div class="sky-l sky-bleed"></div>
+          <div class="sky-horizon"></div>
+        </div>
+        <div class="shell hero-in" style="text-align:center">
+          <div class="itile" style="margin:0 auto 28px;width:56px;height:56px" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:26px;height:26px"><path d="M20 6 9 17l-5-5"/></svg>
+          </div>
+          <h1 class="h-lg" style="margin-inline:auto">קיבלנו.<br />נחזור אליכם תוך 24 שעות.</h1>
+          <p class="lead" style="margin-inline:auto;text-align:center;margin-top:20px">
+            רציניים לגבי הפרויקט? מלאו שאלון אפיון קצר — נגיע מוכנים לשיחה,
+            והיא תהיה הרבה יותר שווה לשניכם.
+          </p>
+        </div>
+      </section>
+
+      <section class="sec">
+        <div class="shell" style="max-width:760px">
+          <div class="rail" style="margin-bottom:56px">
+            <div class="step on">
+              <div class="step-dot">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M20 6 9 17l-5-5"/></svg>
+              </div>
+              <div class="step-body"><h3>הפנייה נקלטה</h3><p>הפרטים שלכם אצלנו.</p></div>
+            </div>
+            <div class="step">
+              <div class="step-dot">02</div>
+              <div class="step-body"><h3>שאלון אפיון</h3><p>5 דקות שחוסכות חצי שיחה. אופציונלי, אבל מומלץ מאוד.</p></div>
+            </div>
+            <div class="step">
+              <div class="step-dot">03</div>
+              <div class="step-body"><h3>שיחת ייעוץ</h3><p>15 דקות. מבינים את העסק ואומרים לכם מה היינו עושים.</p></div>
+            </div>
+          </div>
+
+          <div class="form-wrap" style="text-align:center">
+            <h2 class="h-md" style="margin-bottom:14px">בואו נגיע מוכנים</h2>
+            <p class="body-2" style="margin-bottom:28px">שאלון קצר על העסק, הקהל והיעדים.</p>
+            <a href="/questionnaire.html" class="btn btn-primary btn-lg" style="width:100%">
+              למילוי שאלון אפיון <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            </a>
+            <div class="form-note" style="justify-content:center;gap:12px">
+              <a href="https://calendar.app.google/jMZqPkqbNPXFdMc37" class="btn btn-ghost btn-sm" target="_blank" rel="noopener">קביעת פגישה ביומן</a>
+              <a href="https://wa.me/972587879796?text=%D7%94%D7%99%D7%99%20%D7%90%D7%9C%D7%95%D7%9F%2C%20%D7%9E%D7%99%D7%9C%D7%90%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%98%D7%95%D7%A4%D7%A1%20%D7%95%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%94%D7%AA%D7%A7%D7%93%D7%9D" class="btn btn-ghost btn-sm" target="_blank" rel="noopener">הודעה בוואטסאפ</a>
+            </div>
+          </div>
+
+          <p style="text-align:center;margin-top:36px">
+            <a href="/" class="link-a" style="justify-content:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> חזרה לאתר</a>
+          </p>
+        </div>
+      </section>
+    </main>
+    <footer class="ftr">
+      <div class="shell">
+        <div class="ftr-grid">
+          <div class="ftr-brand">
+            <span class="logo">Studios<i>.</i></span>
+            <p>סטודיו ישראלי לבניית חנויות אונליין ואתרי איקומרס. Shopify Partner רשמי. אנחנו מתכננים סביב ההחלטה לקנות.</p>
+            <div class="ftr-contact">
+              <a href="mailto:hello@studios.ninja">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+                hello@studios.ninja
+              </a>
+              <a href="tel:0587879796">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+                058-787-9796
+              </a>
+              <a href="https://wa.me/972587879796" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1a8 8 0 0 1-4-3.5c-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5l-1-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4l-.4-.2Z"/><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2Z"/></svg>
+                וואטסאפ
+              </a>
+              <a class="ftr-contact-book" href="https://calendar.app.google/jMZqPkqbNPXFdMc37" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/></svg>
+                קביעת פגישה ביומן
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h4>שירותים</h4>
+            <ul>
+              <li><a href="/shopify.html">בניית חנות שופיפיי</a></li>
+              <li><a href="/ecommerce.html">בניית אתרי איקומרס</a></li>
+              <li><a href="/cro.html">שיפור יחס המרה</a></li>
+              <li><a href="/migration.html">מעבר לשופיפיי</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>החברה</h4>
+            <ul>
+              <li><a href="/work/">תיק עבודות</a></li>
+              <li><a href="/about.html">הצוות</a></li>
+              <li><a href="/pricing.html">מחירים</a></li>
+              <li><a href="/#contact">צור קשר</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>מדריכים</h4>
+            <ul>
+              <li><a href="/blog/">כל המדריכים</a></li>
+              <li><a href="/blog/mechir-chanut-shopify.html">כמה עולה חנות שופיפיי</a></li>
+              <li><a href="/blog/shopify-vs-woocommerce.html">שופיפיי מול ווקומרס</a></li>
+              <li><a href="/blog/rtl-shopify.html">RTL בשופיפיי</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ftr-btm">
+          <p>© 2026 Studios · כל הזכויות שמורות</p>
+          <div class="ftr-legal">
+            <a href="/privacy.html">מדיניות פרטיות</a>
+            <a href="/accessibility.html">הצהרת נגישות</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <a class="wa" href="https://wa.me/972587879796" target="_blank" rel="noopener" aria-label="וואטסאפ">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1a8 8 0 0 1-4-3.5c-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5l-1-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4l-.4-.2Z"/><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2Z"/></svg>
+    </a>
+
+    <div class="float-cta" id="floatCta">
+      <a href="/#contact" class="btn btn-primary">בואו נדבר</a>
+    </div>
+
+    <script src="/assets/app.js" defer></script>
+
   </body>
 </html>

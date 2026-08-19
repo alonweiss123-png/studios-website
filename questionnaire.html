@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="he" dir="rtl">
   <head>
+    <script>document.documentElement.className+=" js";</script>
+
+    <meta name="robots" content="noindex, nofollow" />
     <meta charset="UTF-8" />
     <meta
       name="viewport"
@@ -817,6 +820,13 @@
         min-height: 44px;
         background: var(--card);
       }
+      a.sec-act-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        box-sizing: border-box;
+      }
       .back-btn {
         display: block;
         margin: 0 auto;
@@ -845,6 +855,7 @@
         }
       }
     </style>
+    <script src="/assets/analytics.js" defer></script>
   </head>
   <body>
     <div class="milestone" id="milestone">
@@ -895,7 +906,7 @@
     <div class="summary-page" id="summaryView">
       <div class="sum-hero">
         <div class="logo">Studios<span>.</span></div>
-        <h1>סיכום האפיון</h1>
+        <h2>סיכום האפיון</h2>
         <p id="sumSubtitle"></p>
       </div>
       <div class="sum-card" id="sumContent"></div>
@@ -914,6 +925,7 @@
           📋 העתקה
         </button>
         <button class="sec-act-btn" onclick="dlFile()">📥 הורדה</button>
+        <a class="sec-act-btn" href="https://calendar.app.google/jMZqPkqbNPXFdMc37" target="_blank" rel="noopener" onclick="bookMeeting()">📅 קביעת פגישה</a>
       </div>
       <button class="back-btn" onclick="hideSummary()">← חזרה לעריכה</button>
     </div>
@@ -1213,8 +1225,6 @@
       const A = {},
         O = { business: true };
       const REQUIRED = ["business_name", "phone", "what_sells"];
-      const WEBHOOK_URL =
-        "https://hook.eu1.make.com/hql29s4vsnlwbbv21ujo9rbem59xl";
       const FORMSPREE_URL = "https://formspree.io/f/mqegqozk";
       let submitted = false;
 
@@ -1288,6 +1298,8 @@
       // === שליחה אוטומטית ברקע ===
       let lastSentData = "";
       let sendCount = 0;
+      let partialSends = 0;
+      const MAX_PARTIAL_SENDS = 2;
 
       function buildMessage() {
         let msg =
@@ -1324,17 +1336,14 @@
         if (msg === lastSentData) return;
         lastSentData = msg;
         sendCount++;
-        const fd = new FormData();
-        fetch(WEBHOOK_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            full_name: A.contact_name || A.business_name || "שאלון אפיון",
-            phone: A.phone || null,
-            email: A.email || null,
-            source: "questionnaire",
-          }),
-        }).catch(() => {});
+        // Formspree is a 50-submission/month plan. This used to fire every 30
+        // seconds while someone filled the form — one visitor burned 5-10 of the
+        // quota and the account went over-limit mid-month (14-17.7.2026), taking
+        // the email backup down exactly when volume was highest. Hard cap: two
+        // partial sends per visitor. The completed brief always sends, via sendWA.
+        if (partialSends >= MAX_PARTIAL_SENDS) return;
+        partialSends++;
+        // (the old hook.eu1.make.com call was removed here — that URL 404s)
         fetch(FORMSPREE_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -1353,9 +1362,8 @@
         // Formspree above still emails partial/abandoned questionnaires as a safety net.
       }
 
-      // שולח 10 שניות אחרי שמתחילים למלא, ואז כל 30 שניות אם יש שינוי
+      // שומר טיוטה אחת אחרי שתי דקות מילוי, ועוד אחת ביציאה מהדף. לא יותר.
       let firstSendDone = false;
-      let autoInterval;
       function startAutoSend() {
         if (firstSendDone) return;
         firstSendDone = true;
@@ -1365,32 +1373,18 @@
             content_name: "Briefing Questionnaire Started",
             content_category: "questionnaire",
           });
-        setTimeout(() => {
-          silentSend();
-          autoInterval = setInterval(silentSend, 30000);
-        }, 10000);
+        setTimeout(silentSend, 120000);
       }
       // גם שולח ביציאה מהדף
       document.addEventListener("visibilitychange", () => {
         if (document.visibilityState === "hidden") silentSend();
       });
       window.addEventListener("pagehide", () => {
-        const hasData = Object.values(A).some((v) =>
-          Array.isArray(v) ? v.length > 0 : v && String(v).trim(),
-        );
-        if (hasData && !submitted) {
-          try {
-            navigator.sendBeacon(
-              WEBHOOK_URL,
-              JSON.stringify({
-                full_name: A.contact_name || A.business_name || "שאלון חלקי",
-                phone: A.phone || null,
-                email: A.email || null,
-                source: "questionnaire_partial",
-              }),
-            );
-          } catch (e) {}
-        }
+        // The old sendBeacon here targeted the dead Make.com hook (404) and its
+        // source "questionnaire_partial" also violates the leads_source_check
+        // constraint — it never stored anything. silentSend (Formspree, capped)
+        // is the real abandonment net.
+        if (!submitted) silentSend();
       });
 
       function init() {
@@ -1720,7 +1714,6 @@
 
       function sendWA() {
         submitted = true;
-        clearInterval(autoInterval);
         localStorage.removeItem("studios_q");
         sendToSupabase(gSum());
         // Facebook Pixel — CompleteRegistration + Contact
@@ -1747,6 +1740,34 @@
           "_blank",
         );
       }
+      // Booking from the summary screen is a completed brief just like the
+      // WhatsApp send — it has to create the CRM lead too, or the hottest lead
+      // on the site disappears. The href opens the calendar; this only records.
+      function bookMeeting() {
+        if (submitted) return;
+        submitted = true;
+        localStorage.removeItem("studios_q");
+        sendToSupabase(gSum());
+        if (typeof fbq !== "undefined") {
+          fbq("init", "3078561329005345", {
+            em: A.email || "",
+            ph: A.phone || "",
+            fn: (A.contact_name || "").split(" ")[0] || "",
+            ln: (A.contact_name || "").split(" ").slice(1).join(" ") || "",
+            country: "il",
+          });
+          fbq("track", "CompleteRegistration", {
+            content_name: "Briefing Questionnaire Completed",
+            content_category: "questionnaire",
+            status: "completed",
+          });
+          fbq("track", "Contact", {
+            content_name: "Booking Click",
+            content_category: "contact",
+          });
+        }
+      }
+
       function copyText() {
         navigator.clipboard.writeText(gSum());
         const b = document.getElementById("copyBtn");
