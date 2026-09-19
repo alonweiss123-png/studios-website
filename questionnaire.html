@@ -1228,6 +1228,63 @@
       const FORMSPREE_URL = "https://formspree.io/f/mqegqozk";
       let submitted = false;
 
+      // מזהה מילוי יציב לאורך הביקור, גם אחרי רענון דף. נשמר בנפרד מהתשובות
+      // כדי ששחזור טיוטה אחרי סגירת הדפדפן יימשך כאותו מילוי ולא כמילוי חדש.
+      function sessionId() {
+        try {
+          let s = localStorage.getItem("studios_q_sid");
+          if (!s) {
+            s =
+              Date.now().toString(36) +
+              "-" +
+              Math.random().toString(36).slice(2, 10);
+            localStorage.setItem("studios_q_sid", s);
+          }
+          return s;
+        } catch (e) {
+          return null;
+        }
+      }
+
+      // הבריף כנתונים, לצד gSum() שהוא אותו בריף כטקסט.
+      // הטקסט נכנס ל-notes של הליד כדי שייקרא בשטף; המבנה הזה נכנס ל-lead_briefs
+      // כדי שכרטיס הליד ב-CRM יציג שאלה-שאלה ויידע גם על מה לא נענה.
+      //
+      // התוויות נשלחות יחד עם התשובות ולא ממופות בצד ה-CRM: השאלון יושב על
+      // דיפלוי אחר (Netlify), ושאלה שתתווסף כאן הייתה מופיעה שם כמזהה באנגלית
+      // עד שמישהו יזכור לעדכן גם את הפאנל.
+      function gBrief(status) {
+        const sections = [];
+        let total = 0,
+          filled = 0;
+        S.forEach((s) => {
+          const el = document.getElementById("sec-" + s.id);
+          if (s.showIf && el && el.classList.contains("hidden")) return;
+          const items = s.q.map((q) => {
+            const v = A[q.id];
+            const answered = Array.isArray(v)
+              ? v.length > 0
+              : typeof v === "string" && !!v.trim();
+            total++;
+            if (answered) filled++;
+            return { id: q.id, label: q.l, value: answered ? v : "" };
+          });
+          sections.push({
+            id: s.id,
+            icon: s.icon,
+            title: s.title,
+            items: items,
+          });
+        });
+        return {
+          session_id: sessionId(),
+          status: status,
+          completion_percentage: total ? Math.round((filled / total) * 100) : 0,
+          source_url: location.href,
+          answers: { sections: sections },
+        };
+      }
+
       function sendToSupabase(notes) {
         // Routed through the proven CRM webhook (service-role backed). The old
         // submit_lead path was doubly broken: its publishable key was rotated
@@ -1250,6 +1307,7 @@
               source: "organic",
               created_via: "questionnaire",
               initial_message: notes || undefined,
+              brief: gBrief("completed"),
             }),
           },
         ).catch(() => null);
