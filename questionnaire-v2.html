@@ -1,0 +1,1911 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <script>document.documentElement.className += " js";</script>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>אפיון פרויקט — Studios</title>
+    <!-- Facebook Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js",
+      );
+      fbq("init", "3078561329005345");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=3078561329005345&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+    <meta property="fb:app_id" content="1632523821147758" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #dce3ed;
+        --card: #fff;
+        --lime: #c8ff00;
+        --lime2: #b5e600;
+        --lime-glow: rgba(200, 255, 0, 0.35);
+        --coral: #ff6b4a;
+        --black: #0a0a0a;
+        --text: #1a1a1a;
+        --text2: #555;
+        --text3: #999;
+        --border: rgba(0, 0, 0, 0.07);
+        --shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent;
+      }
+      html {
+        height: 100%;
+      }
+      body {
+        font-family: "Heebo", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100%;
+        direction: rtl;
+        overflow-x: hidden;
+      }
+      input,
+      textarea {
+        font-size: 16px !important;
+        -webkit-appearance: none;
+        appearance: none;
+        font-family: "Heebo", sans-serif;
+      }
+      button {
+        cursor: pointer;
+        transition: all 0.2s ease;
+        -webkit-appearance: none;
+        font-family: "Heebo", sans-serif;
+        border: none;
+        background: none;
+        color: var(--text);
+      }
+      button:active {
+        transform: scale(0.97);
+      }
+
+      /* ===== Top bar: logo + progress only. No counts, no sections. ===== */
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(220, 227, 237, 0.85);
+        backdrop-filter: blur(12px);
+        padding: 14px 20px 12px;
+      }
+      .topbar-inner {
+        max-width: 560px;
+        margin: 0 auto;
+      }
+      .topbar-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+      .logo {
+        font-size: 17px;
+        font-weight: 900;
+        letter-spacing: -0.5px;
+        color: var(--black);
+      }
+      .logo span {
+        color: var(--lime2);
+      }
+      .saved-chip {
+        font-size: 11.5px;
+        font-weight: 600;
+        color: var(--text3);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        opacity: 0;
+        transition: opacity 0.4s;
+      }
+      .saved-chip.show {
+        opacity: 1;
+      }
+      .saved-chip .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--lime2);
+      }
+      .prog-track {
+        height: 6px;
+        background: rgba(0, 0, 0, 0.07);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .prog-fill {
+        height: 100%;
+        border-radius: 4px;
+        background: var(--lime);
+        width: 4%;
+        transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        box-shadow: 0 0 12px var(--lime-glow);
+        position: relative;
+        overflow: hidden;
+      }
+      .prog-fill::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          105deg,
+          transparent 40%,
+          rgba(255, 255, 255, 0.55) 50%,
+          transparent 60%
+        );
+        animation: shimmer 2.6s ease-in-out infinite;
+      }
+      @keyframes shimmer {
+        0% {
+          transform: translateX(120%);
+        }
+        60%,
+        100% {
+          transform: translateX(-120%);
+        }
+      }
+      .prog-msg {
+        font-size: 11.5px;
+        color: var(--text3);
+        font-weight: 600;
+        margin-top: 7px;
+        text-align: center;
+        transition: opacity 0.4s;
+        min-height: 15px;
+      }
+
+      /* ===== Intro screen ===== */
+      .intro {
+        max-width: 560px;
+        margin: 0 auto;
+        padding: 44px 24px 60px;
+        text-align: center;
+      }
+      .shapes {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .sh {
+        position: absolute;
+        animation: fl var(--d, 7s) ease-in-out infinite var(--del, 0s);
+      }
+      .sh-cube {
+        top: 12%;
+        right: 6%;
+        width: 44px;
+        height: 44px;
+        background: var(--lime);
+        border-radius: 10px;
+        transform: rotate(25deg);
+        box-shadow: 0 10px 30px rgba(200, 255, 0, 0.25);
+        --d: 7s;
+      }
+      .sh-sphere {
+        top: 30%;
+        left: 5%;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: linear-gradient(145deg, #f0f3f7, #fff);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        --d: 8s;
+        --del: 1s;
+      }
+      @keyframes fl {
+        0%,
+        100% {
+          transform: translateY(0) rotate(25deg);
+        }
+        50% {
+          transform: translateY(-16px) rotate(30deg);
+        }
+      }
+      .intro-badge {
+        display: inline-block;
+        padding: 7px 20px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 50px;
+        font-size: 12.5px;
+        font-weight: 500;
+        color: var(--text2);
+        margin-bottom: 24px;
+        background: rgba(255, 255, 255, 0.55);
+      }
+      .intro h1 {
+        font-size: 32px;
+        font-weight: 900;
+        line-height: 1.18;
+        letter-spacing: -1.2px;
+        color: var(--black);
+        margin-bottom: 14px;
+      }
+      .intro h1 em {
+        font-style: normal;
+        position: relative;
+      }
+      .intro h1 em::after {
+        content: "";
+        position: absolute;
+        bottom: 3px;
+        right: 0;
+        width: 100%;
+        height: 10px;
+        background: var(--lime);
+        z-index: -1;
+        border-radius: 2px;
+      }
+      .intro p {
+        font-size: 15px;
+        color: var(--text2);
+        line-height: 1.7;
+        max-width: 400px;
+        margin: 0 auto 10px;
+      }
+      .intro .mins {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text2);
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 50px;
+        padding: 8px 18px;
+        margin: 14px 0 28px;
+        box-shadow: var(--shadow);
+      }
+      .start-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 17px 46px;
+        background: var(--black);
+        color: #fff;
+        border-radius: 14px;
+        font-size: 17px;
+        font-weight: 800;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+        width: 100%;
+        max-width: 380px;
+      }
+      .start-btn:hover {
+        transform: translateY(-2px);
+      }
+      .intro .resume-note {
+        margin-top: 14px;
+        font-size: 12.5px;
+        color: var(--text3);
+      }
+
+      /* ===== Card stage ===== */
+      .stage {
+        max-width: 560px;
+        margin: 0 auto;
+        padding: 26px 16px 40px;
+        display: none;
+      }
+      .stage.show {
+        display: block;
+      }
+      .qcard {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 28px 22px 24px;
+        box-shadow: var(--shadow);
+        animation: cardIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .qcard.leaving {
+        animation: cardOut 0.22s ease forwards;
+      }
+      @keyframes cardIn {
+        from {
+          opacity: 0;
+          transform: translateY(22px) scale(0.985);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      @keyframes cardOut {
+        to {
+          opacity: 0;
+          transform: translateY(-16px) scale(0.985);
+        }
+      }
+      .q-kicker {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--lime2);
+        background: rgba(200, 255, 0, 0.14);
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        margin-bottom: 12px;
+        letter-spacing: 0.2px;
+      }
+      .q-title {
+        font-size: 21px;
+        font-weight: 800;
+        color: var(--black);
+        line-height: 1.35;
+        margin-bottom: 6px;
+        letter-spacing: -0.4px;
+      }
+      .q-sub {
+        font-size: 13.5px;
+        color: var(--text2);
+        line-height: 1.6;
+        margin-bottom: 18px;
+      }
+      .f-wrap {
+        margin-bottom: 16px;
+        animation: fieldIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+        animation-delay: calc(var(--i, 0) * 70ms + 80ms);
+      }
+      @keyframes fieldIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .f-wrap:last-of-type {
+        margin-bottom: 4px;
+      }
+      .f-label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text2);
+        margin-bottom: 7px;
+      }
+      .f-label .req {
+        color: var(--coral);
+        margin-right: 3px;
+      }
+      .f-wrap input[type="text"],
+      .f-wrap input[type="tel"],
+      .f-wrap input[type="email"],
+      .f-wrap textarea {
+        width: 100%;
+        padding: 14px 16px;
+        border: 2px solid #e8e8e8;
+        border-radius: 12px;
+        background: #fafbfc;
+        color: var(--text);
+        transition: all 0.2s;
+        direction: rtl;
+      }
+      .f-wrap input:focus,
+      .f-wrap textarea:focus {
+        outline: none;
+        border-color: var(--black);
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+        background: #fff;
+      }
+      .f-wrap textarea {
+        resize: vertical;
+        min-height: 96px;
+        line-height: 1.6;
+      }
+      .f-wrap input.error,
+      .f-wrap textarea.error {
+        border-color: var(--coral);
+        box-shadow: 0 0 0 3px rgba(255, 107, 74, 0.1);
+      }
+      .err-msg {
+        font-size: 12px;
+        color: var(--coral);
+        margin-top: 5px;
+        display: none;
+        font-weight: 600;
+      }
+      .err-msg.show {
+        display: block;
+      }
+      ::placeholder {
+        color: #bbb;
+      }
+      .ltr-input {
+        direction: ltr !important;
+        text-align: left;
+      }
+
+      /* chips */
+      .chip-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+      }
+      .chip {
+        padding: 12px 18px;
+        border: 2px solid #e8e8e8;
+        border-radius: 13px;
+        background: #fafbfc;
+        font-size: 14.5px;
+        color: var(--text2);
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 500;
+      }
+      .chip.active {
+        background: var(--black);
+        color: #fff;
+        border-color: var(--black);
+        font-weight: 700;
+        box-shadow: 0 5px 18px rgba(0, 0, 0, 0.14);
+        animation: chipPop 0.32s cubic-bezier(0.22, 1.6, 0.36, 1) both;
+      }
+      @keyframes chipPop {
+        0% {
+          transform: scale(0.94);
+        }
+        60% {
+          transform: scale(1.07);
+        }
+        100% {
+          transform: scale(1.03);
+        }
+      }
+      .chip-grid.multi .chip.active {
+        background: rgba(200, 255, 0, 0.14);
+        border-color: var(--lime2);
+        color: var(--black);
+        box-shadow: none;
+        transform: none;
+      }
+      .chip-grid.multi .chip.active::before {
+        content: "✓";
+        font-weight: 800;
+        color: var(--black);
+      }
+      /* quick-fill helpers under a text input */
+      .quick-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-top: 9px;
+      }
+      .quick {
+        padding: 7px 13px;
+        border: 1.5px solid #e4e4e4;
+        border-radius: 20px;
+        background: #fff;
+        font-size: 12.5px;
+        color: var(--text2);
+        font-weight: 500;
+      }
+      .quick:hover {
+        border-color: var(--lime2);
+        color: var(--black);
+      }
+
+      /* nav */
+      .card-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 22px;
+      }
+      .next-btn {
+        width: 100%;
+        padding: 15px;
+        background: var(--black);
+        color: #fff;
+        border-radius: 13px;
+        font-size: 16px;
+        font-weight: 800;
+      }
+      .next-btn.lime {
+        background: var(--lime);
+        color: var(--black);
+        box-shadow: 0 8px 26px var(--lime-glow);
+      }
+      .skip-btn {
+        width: 100%;
+        padding: 11px;
+        font-size: 13.5px;
+        color: var(--text3);
+        font-weight: 600;
+        border-radius: 12px;
+      }
+      .skip-btn:hover {
+        color: var(--text2);
+        background: #f6f7f9;
+      }
+      .under-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 14px;
+      }
+      .back-link {
+        font-size: 13px;
+        color: var(--text3);
+        font-weight: 600;
+        padding: 8px 14px;
+        border-radius: 10px;
+      }
+      .back-link:hover {
+        color: var(--text2);
+        background: rgba(255, 255, 255, 0.7);
+      }
+      .trust-line {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 11.5px;
+        color: var(--text3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+
+      /* milestone toast */
+      .milestone {
+        position: fixed;
+        top: 16px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-110px);
+        background: var(--black);
+        color: #fff;
+        padding: 13px 22px;
+        border-radius: 14px;
+        font-size: 13.5px;
+        font-weight: 700;
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.22);
+        transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        white-space: nowrap;
+      }
+      .milestone.show {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      /* ===== Done screen ===== */
+      .done {
+        max-width: 560px;
+        margin: 0 auto;
+        padding: 40px 20px 60px;
+        display: none;
+        text-align: center;
+      }
+      .done.show {
+        display: block;
+        animation: cardIn 0.4s ease;
+      }
+      .done-hero {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        padding: 40px 24px 34px;
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 16px;
+      }
+      .done-hero::before {
+        content: "";
+        position: absolute;
+        top: -34px;
+        right: -24px;
+        width: 100px;
+        height: 100px;
+        background: var(--lime);
+        border-radius: 16px;
+        transform: rotate(25deg);
+        opacity: 0.14;
+      }
+      .done-check {
+        width: 68px;
+        height: 68px;
+        border-radius: 50%;
+        background: var(--lime);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        font-weight: 900;
+        color: var(--black);
+        margin: 0 auto 18px;
+        box-shadow: 0 10px 30px var(--lime-glow);
+        animation: pop 0.5s cubic-bezier(0.22, 1.4, 0.36, 1) 0.15s both;
+      }
+      @keyframes pop {
+        from {
+          transform: scale(0);
+        }
+        to {
+          transform: scale(1);
+        }
+      }
+      .done-hero h2 {
+        font-size: 25px;
+        font-weight: 900;
+        color: var(--black);
+        margin-bottom: 8px;
+        letter-spacing: -0.6px;
+      }
+      .done-hero p {
+        font-size: 14px;
+        color: var(--text2);
+        line-height: 1.7;
+        max-width: 380px;
+        margin: 0 auto;
+      }
+      .done-hero p strong {
+        color: var(--black);
+      }
+      .confetti {
+        position: fixed;
+        top: -12px;
+        width: 9px;
+        height: 14px;
+        border-radius: 2px;
+        z-index: 998;
+        pointer-events: none;
+        animation: confFall var(--cd, 2.6s) ease-in var(--cdel, 0s) forwards;
+      }
+      @keyframes confFall {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(105vh) rotate(var(--cr, 540deg));
+          opacity: 0.6;
+        }
+      }
+      .recap {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 20px;
+        margin-bottom: 16px;
+        box-shadow: var(--shadow);
+        text-align: right;
+      }
+      .recap-title {
+        font-size: 13px;
+        font-weight: 800;
+        color: var(--text2);
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .recap-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .recap-chip {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--black);
+        background: rgba(200, 255, 0, 0.14);
+        border: 1px solid rgba(181, 230, 0, 0.4);
+        border-radius: 20px;
+        padding: 7px 14px;
+      }
+      .book-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        padding: 18px;
+        background: var(--lime);
+        color: var(--black);
+        border-radius: 14px;
+        font-size: 17px;
+        font-weight: 800;
+        box-shadow: 0 8px 30px var(--lime-glow);
+        text-decoration: none;
+        margin-bottom: 10px;
+      }
+      .book-btn:hover {
+        transform: translateY(-2px);
+      }
+      .book-sub {
+        font-size: 12px;
+        color: var(--text3);
+        margin-bottom: 22px;
+      }
+      .wa-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        width: 100%;
+        padding: 14px;
+        background: #fff;
+        border: 2px solid #e4e4e4;
+        border-radius: 13px;
+        font-size: 14.5px;
+        font-weight: 700;
+        color: var(--text);
+      }
+      .wa-btn:hover {
+        border-color: #25d366;
+      }
+      @media (max-width: 400px) {
+        .q-title {
+          font-size: 19px;
+        }
+        .intro h1 {
+          font-size: 28px;
+        }
+      }
+    </style>
+    <script src="/assets/analytics.js" defer></script>
+  </head>
+  <body>
+    <div class="milestone" id="milestone">
+      <span class="ml-icon"></span><span class="ml-text"></span>
+    </div>
+
+    <div class="topbar" id="topbar" style="display: none">
+      <div class="topbar-inner">
+        <div class="topbar-row">
+          <div class="logo">Studios<span>.</span></div>
+          <div class="saved-chip" id="savedChip">
+            <span class="dot"></span> נשמר
+          </div>
+        </div>
+        <div class="prog-track">
+          <div class="prog-fill" id="progFill"></div>
+        </div>
+        <div class="prog-msg" id="progMsg"></div>
+      </div>
+    </div>
+
+    <!-- ============ INTRO ============ -->
+    <div class="intro" id="introView">
+      <div class="shapes">
+        <div class="sh sh-cube"></div>
+        <div class="sh sh-sphere"></div>
+      </div>
+      <div style="position: relative; z-index: 1">
+        <div class="intro-badge">Studios — סטודיו לאתרים ממירים</div>
+        <h1>בואו נבנה לכם<br /><em>אתר שמוכר</em></h1>
+        <p>
+          כמה שאלות קצרות — שאלה אחת בכל פעם — כדי שנגיע לשיחה כשאנחנו כבר
+          מבינים את העסק שלכם.
+        </p>
+        <div class="mins">⏱️ בערך 3 דקות · אפשר לדלג על כל שאלה</div>
+        <div>
+          <button class="start-btn" onclick="startForm()">
+            מתחילים ←
+          </button>
+        </div>
+        <div class="resume-note" id="resumeNote" style="display: none">
+          👋 שמרנו את התשובות מהפעם הקודמת — ממשיכים מאותה נקודה.
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ CARD STAGE ============ -->
+    <div class="stage" id="stage">
+      <div id="cardHost"></div>
+      <div class="trust-line">🔒 הפרטים נשמרים אצלנו בלבד ולא מועברים הלאה</div>
+    </div>
+
+    <!-- ============ DONE ============ -->
+    <div class="done" id="doneView">
+      <div class="done-hero">
+        <div class="done-check">✓</div>
+        <h2>האפיון אצלנו!</h2>
+        <p id="doneText">
+          קיבלנו הכל ואנחנו כבר עוברים על התשובות. הצעד הבא —
+          <strong>שיחת אפיון קצרה</strong> שבה נחזור אליכם עם כיוון וכימות
+          מדויק.
+        </p>
+      </div>
+      <div class="recap" id="recapCard" style="display: none">
+        <div class="recap-title">🧠 מה כבר הבנו עליכם</div>
+        <div class="recap-chips" id="recapChips"></div>
+      </div>
+      <a
+        class="book-btn"
+        href="https://calendar.app.google/jMZqPkqbNPXFdMc37"
+        target="_blank"
+        rel="noopener"
+        onclick="trackBooking()"
+        >📅 קביעת שיחת אפיון — בחרו שעה שנוחה לכם</a
+      >
+      <div class="book-sub">30 דקות · בלי התחייבות · הזמינות מתעדכנת חיה</div>
+      <button class="wa-btn" onclick="openWA()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#25d366">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+          />
+        </svg>
+        מעדיפים וואטסאפ? שלחו לנו את הסיכום
+      </button>
+    </div>
+
+    <script>
+      /* =====================================================================
+         Studios — שאלון אפיון v2
+         כרטיס אחד בכל פעם. האורך לא נחשף. הליד הסמכותי נוצר פעם אחת, בסיום.
+         חוזה הצינור זהה ל-v1: webhook של ה-CRM + brief עם תוויות בפנים
+         (lead_briefs) + Formspree כרשת ביטחון לנטישות, מוגבל ל-2 שליחות.
+         ===================================================================== */
+
+      // ---- שאלות. sec = הסקשן שבו התשובה תוצג בבריף שב-CRM.
+      // branch:"ecom" מוצג רק כשבחרו חנות. r=חובה.
+      const SECS = {
+        business: { icon: "🏢", title: "פרטי העסק" },
+        avatar: { icon: "🎯", title: "קהל יעד" },
+        design: { icon: "🎨", title: "עיצוב ומיתוג" },
+        features: { icon: "⚙️", title: "פיצ'רים" },
+        shipping: { icon: "📦", title: "משלוחים" },
+        media: { icon: "📁", title: "חומרים ומדיה" },
+        extra: { icon: "📝", title: "הערות נוספות" },
+        sales: { icon: "🧭", title: "מניעים והקשר" },
+      };
+
+      const STEPS = [
+        {
+          kicker: "בואו נכיר",
+          title: "מה העסק שלכם מוכר או מציע?",
+          sub: "משפט-שניים, בלי להתאמץ. זה עוזר לנו להבין עם מי יש לנו עסק.",
+          fields: [
+            {
+              id: "what_sells",
+              sec: "business",
+              l: "מה העסק מוכר / מציע?",
+              t: "textarea",
+              ph: "לדוגמה: תכשיטים בעבודת יד / קליניקת קוסמטיקה / קורסים דיגיטליים...",
+              r: 1,
+            },
+          ],
+        },
+        {
+          kicker: "הפרויקט",
+          title: "מה בונים?",
+          fields: [
+            {
+              id: "project_type",
+              sec: "business",
+              l: "סוג הפרויקט",
+              t: "select",
+              o: [
+                "חנות אונליין חדשה",
+                "שדרוג חנות קיימת",
+                "אתר תדמית",
+                "דף נחיתה",
+                "עוד לא בטוחים",
+              ],
+            },
+          ],
+        },
+        {
+          kicker: "המטרה",
+          title: "מה הכי חשוב שהאתר הזה ישיג?",
+          sub: "אפשר לבחור אחד — את השאר נדייק בשיחה.",
+          fields: [
+            {
+              id: "goals",
+              sec: "business",
+              l: "מטרת הפרויקט",
+              t: "select",
+              o: [
+                "להשיק את העסק אונליין",
+                "להגדיל מכירות",
+                "יותר פניות מלקוחות",
+                "לשפר המרות באתר הקיים",
+                "מראה ומיתוג חדש",
+                "משהו אחר — נספר בשיחה",
+              ],
+            },
+          ],
+        },
+        {
+          // מודיעין מכירה: הטריגר. איפה בוער — זה טיעון הפתיחה בשיחת המכירה.
+          kicker: "הסיפור שלכם",
+          title: "למה דווקא עכשיו?",
+          sub: "מה קרה שהביא אתכם לכאן היום? אין תשובה לא נכונה.",
+          fields: [
+            {
+              id: "why_now",
+              sec: "sales",
+              l: "מה הביא אתכם אלינו עכשיו",
+              t: "select",
+              o: [
+                "משיקים משהו חדש ורוצים להתחיל נכון",
+                "המכירות לא איפה שהן צריכות להיות",
+                "משלמים על פרסום — והאתר לא ממיר",
+                "המתחרים נראים טוב יותר",
+                "עונה חזקה מתקרבת, חייבים להספיק",
+                "פשוט הגיע הזמן",
+              ],
+            },
+          ],
+        },
+        {
+          // שער הפרטים — אחרי שכבר הושקעו 4 תשובות. ממוסגר כשמירת ההשקעה.
+          kicker: "שנייה לפני שממשיכים",
+          title: "נשמור את האפיון על שמכם",
+          sub: "כדי שהתשובות לא ילכו לאיבוד — ושנדע למי לחזור עם התוכנית.",
+          gate: true,
+          fields: [
+            {
+              id: "business_name",
+              sec: "business",
+              l: "שם העסק",
+              t: "text",
+              ph: "לדוגמה: dezernoo",
+              r: 1,
+            },
+            {
+              id: "contact_name",
+              sec: "business",
+              l: "שם מלא",
+              t: "text",
+              ph: "איך קוראים לכם?",
+            },
+            {
+              id: "phone",
+              sec: "business",
+              l: "טלפון",
+              t: "tel",
+              ph: "050-0000000",
+              r: 1,
+            },
+            {
+              id: "email",
+              sec: "business",
+              l: "אימייל (לא חובה)",
+              t: "email",
+              ph: "example@email.com",
+            },
+          ],
+        },
+        {
+          kicker: "נוכחות קיימת",
+          title: "יש לכם כבר אתר או אינסטגרם?",
+          sub: "נציץ לפני השיחה — זה חוסך לכם הסברים.",
+          fields: [
+            {
+              id: "website",
+              sec: "business",
+              l: "כתובת אתר קיים",
+              t: "text",
+              ph: "https://...",
+              ltr: 1,
+            },
+            {
+              id: "instagram",
+              sec: "business",
+              l: "אינסטגרם",
+              t: "text",
+              ph: "https://instagram.com/...",
+              ltr: 1,
+            },
+          ],
+        },
+        {
+          // מודיעין מכירה: היסטוריית כוויות. מי שנכווה מסוכנות צריך שיחת
+          // אמון; מי שבנה לבד צריך להבין למה הפעם זה אחרת.
+          kicker: "הדרך עד לכאן",
+          title: "מה כבר ניסיתם?",
+          personal: true,
+          sub: "מה שעבד ומה שאכזב — כדי שלא נחזור על טעויות של אחרים.",
+          fields: [
+            {
+              id: "tried_before",
+              sec: "sales",
+              l: "מה נוסה עד היום",
+              t: "checklist",
+              o: [
+                "בנינו אתר לבד (וויקס / אחר)",
+                "עבדנו עם פרילנסר או סוכנות",
+                "הרצנו קמפיינים ממומנים",
+                "רק אורגני ורשתות חברתיות",
+                "כלום עדיין — זה הצעד הראשון",
+              ],
+            },
+            {
+              id: "tried_notes",
+              sec: "sales",
+              l: "מה עבד? מה אכזב? (לא חובה)",
+              t: "text",
+              ph: "לדוגמה: הסוכנות הקודמת נעלמה באמצע...",
+            },
+          ],
+        },
+        {
+          kicker: "קהל היעד",
+          title: "מי הלקוח שלכם?",
+          fields: [
+            {
+              id: "age_range",
+              sec: "avatar",
+              l: "טווח גילאים",
+              t: "select",
+              o: ["14-20", "20-30", "30-40", "40-50", "50+", "כל הגילאים"],
+            },
+            {
+              id: "gender",
+              sec: "avatar",
+              l: "מגדר",
+              t: "select",
+              o: ["גברים", "נשים", "שני המינים"],
+            },
+          ],
+        },
+        {
+          kicker: "קהל היעד",
+          title: "למה לקוחות מגיעים אליכם?",
+          sub: "מה כואב להם, מה הם מחפשים — ומה בדרך כלל עוצר אותם מלקנות.",
+          fields: [
+            {
+              id: "pain_points",
+              sec: "avatar",
+              l: "כאבים, צרכים והתנגדויות של הלקוח",
+              t: "textarea",
+              ph: "לדוגמה: מחפשות פתרון לעור רגיש, מהססות בגלל מחיר...",
+            },
+          ],
+        },
+        {
+          kicker: "עיצוב",
+          title: "איזה וייב האתר צריך לשדר?",
+          fields: [
+            {
+              id: "has_branding",
+              sec: "design",
+              l: "יש מיתוג קיים?",
+              t: "select",
+              o: [
+                "כן — לוגו + צבעים + פונטים",
+                "חלקי — יש לוגו בלבד",
+                "לא — צריך הכל מאפס",
+              ],
+            },
+            {
+              id: "style_pref",
+              sec: "design",
+              l: "סגנון עיצוב",
+              t: "select",
+              o: [
+                "מינימליסטי נקי",
+                "מודרני וצבעוני",
+                "עסקי ומקצועי",
+                "יצירתי ובולט",
+                "לוקס / פרימיום",
+                "ספורטיבי / אנרגטי",
+              ],
+            },
+            {
+              id: "colors",
+              sec: "design",
+              l: "צבעים מועדפים (אם יש)",
+              t: "text",
+              ph: "לדוגמה: שחור, זהב, לבן",
+            },
+          ],
+        },
+        {
+          kicker: "עיצוב",
+          title: "אתרים שאתם אוהבים?",
+          sub: "קישור או שניים + מילה על מה אהבתם. שווה זהב בשבילנו.",
+          fields: [
+            {
+              id: "design_refs",
+              sec: "design",
+              l: "השראות",
+              t: "textarea",
+              ph: "https://...\nאהבתי את ה...",
+            },
+          ],
+        },
+        {
+          branch: "ecom",
+          kicker: "החנות",
+          title: "מה החנות צריכה לדעת לעשות?",
+          sub: "סמנו מה שרלוונטי — את הרשימה המלאה נסגור יחד.",
+          fields: [
+            {
+              id: "features_list",
+              sec: "features",
+              l: "פיצ'רים",
+              t: "checklist",
+              o: [
+                "צ'אט / WhatsApp באתר",
+                "פופאפים שיווקיים",
+                "אפסיילים והמלצות",
+                "מועדון לקוחות / ניוזלטר",
+                "קופונים והנחות",
+                "בלוג",
+                "סנכרון מלאי / קופה פיזית",
+                "משהו אחר — נספר בשיחה",
+              ],
+            },
+          ],
+        },
+        {
+          branch: "ecom",
+          kicker: "החנות",
+          title: "איך עובדים המשלוחים?",
+          fields: [
+            {
+              id: "shipping_areas",
+              sec: "shipping",
+              l: "אזורי משלוח",
+              t: "select",
+              o: [
+                "כל הארץ",
+                "אזורים מסוימים בלבד",
+                'ישראל + חו"ל',
+                'חו"ל בלבד',
+              ],
+            },
+            {
+              id: "shipping_cost",
+              sec: "shipping",
+              l: "עלות משלוח + תנאי משלוח חינם",
+              t: "text",
+              ph: "לדוגמה: 45₪, חינם מעל 399₪",
+            },
+          ],
+        },
+        {
+          kicker: "חומרים",
+          title: "יש חומרים מוכנים? תמונות, לוגו, סרטונים?",
+          sub: "קישור לדרייב מספיק. אין? לא נורא — נפתור בשיחה.",
+          fields: [
+            {
+              id: "drive_folder",
+              sec: "media",
+              l: "קישור לתיקיית Drive / חומרים",
+              t: "text",
+              ph: "https://drive.google.com/...",
+              ltr: 1,
+            },
+            {
+              id: "media_notes",
+              sec: "media",
+              l: "מה יש בפנים?",
+              t: "text",
+              ph: "תמונות מוצר, לוגו בפורמטים שונים...",
+            },
+          ],
+        },
+        {
+          kicker: "כמעט סיימנו",
+          title: "יש דדליין?",
+          fields: [
+            {
+              id: "deadline",
+              sec: "extra",
+              l: "תאריך יעד",
+              t: "text",
+              ph: "לדוגמה: לפני חג הפסח",
+              quick: ["אין תאריך לחוץ", "בחודש הקרוב", "כמה שיותר מהר"],
+            },
+          ],
+        },
+        {
+          kicker: "אחרון!",
+          title: "משהו שחשוב לכם שנדע?",
+          personal: true,
+          sub: "כל דבר — תקציב, חששות, רעיונות. הכל נשאר בינינו.",
+          last: true,
+          fields: [
+            {
+              id: "extra_notes",
+              sec: "extra",
+              l: "הערות נוספות",
+              t: "textarea",
+              ph: "מקום חופשי לגמרי...",
+            },
+          ],
+        },
+      ];
+
+      /* ---- שכבת החוויה: הטופס מגיב כמו בן-אדם שמקשיב ----
+         תגובה קצרה ואמפתית לתשובות נבחרות. לא לכל תשובה — רק איפה
+         שיש מה להגיד. יותר מדי תגובות = רעש שמוזיל את כולן. */
+      const REACTIONS = {
+        why_now: {
+          "משלמים על פרסום — והאתר לא ממיר":
+            "אאוץ'. שורף כסף כל יום — בדיוק בשביל זה אנחנו כאן 🎯",
+          "המתחרים נראים טוב יותר": "עוד לא לאורך זמן 😉",
+          "עונה חזקה מתקרבת, חייבים להספיק": "אז בואו לא נבזבז זמן ⏱️",
+          "המכירות לא איפה שהן צריכות להיות": "בואו נתקן את זה 💪",
+        },
+        project_type: {
+          "עוד לא בטוחים": "לגמרי בסדר — בשביל זה יש שיחת אפיון 👍",
+        },
+        has_branding: {
+          "לא — צריך הכל מאפס": "אנחנו אוהבים דף חלק 🎨",
+        },
+      };
+      function react(id, v) {
+        const r = REACTIONS[id] && REACTIONS[id][v];
+        if (r) setTimeout(() => toast("", r), 150);
+      }
+      function buzz() {
+        try {
+          if (navigator.vibrate) navigator.vibrate(10);
+        } catch (e) {}
+      }
+      function firstName() {
+        return (A.contact_name || "").trim().split(" ")[0] || "";
+      }
+
+      const A = {};
+      let cur = 0;
+      let submitted = false;
+      const REQUIRED = ["business_name", "phone", "what_sells"];
+      const FORMSPREE_URL = "https://formspree.io/f/mqegqozk";
+
+      // ---- מזהה מילוי יציב לאורך הביקור (משותף עם v1 בכוונה — אותו מבקר).
+      function sessionId() {
+        try {
+          let s = localStorage.getItem("studios_q_sid");
+          if (!s) {
+            s =
+              Date.now().toString(36) +
+              "-" +
+              Math.random().toString(36).slice(2, 10);
+            localStorage.setItem("studios_q_sid", s);
+          }
+          return s;
+        } catch (e) {
+          return null;
+        }
+      }
+
+      // ---- ברנצ'ינג: שלבי ecom רק כשנבחרה חנות (או שדרוג חנות).
+      function isEcom() {
+        return (A.project_type || "").indexOf("חנות") > -1;
+      }
+      function visibleSteps() {
+        return STEPS.filter((s) => !s.branch || (s.branch === "ecom" && isEcom()));
+      }
+
+      // ---- פרוגרס עם עקומת חזקה: ההתחלה מקפיצה, הסוף מתכנס בעדינות.
+      function uProg() {
+        const steps = visibleSteps();
+        const done = Math.min(cur, steps.length);
+        const raw = steps.length ? done / steps.length : 0;
+        const pct = Math.max(4, Math.round(100 * Math.pow(raw, 0.6)));
+        document.getElementById("progFill").style.width = pct + "%";
+        // מומנטום בלי מספרים — האורך לא נחשף, רק תחושת התקדמות.
+        const msg =
+          raw >= 0.85
+            ? "עוד רגע מסיימים ✨"
+            : raw >= 0.55
+              ? "הכי קשה מאחוריכם 💪"
+              : raw >= 0.25
+                ? "יש תנופה, יפה 🚀"
+                : "";
+        const el = document.getElementById("progMsg");
+        if (el && el.textContent !== msg) el.textContent = msg;
+      }
+
+      // ---- שמירה מקומית + חיווי "נשמר"
+      let savedTimer = null;
+      function saveLocal() {
+        try {
+          localStorage.setItem("studios_q2", JSON.stringify(A));
+          localStorage.setItem("studios_q2_step", String(cur));
+        } catch (e) {}
+        const chip = document.getElementById("savedChip");
+        chip.classList.add("show");
+        clearTimeout(savedTimer);
+        savedTimer = setTimeout(() => chip.classList.remove("show"), 1600);
+      }
+      function loadLocal() {
+        try {
+          const d = JSON.parse(localStorage.getItem("studios_q2"));
+          if (d) Object.assign(A, d);
+          const s = parseInt(localStorage.getItem("studios_q2_step"), 10);
+          if (!isNaN(s) && s > 0) cur = Math.min(s, visibleSteps().length);
+          return !!d && Object.keys(d).length > 0;
+        } catch (e) {
+          return false;
+        }
+      }
+
+      /* =========== הבריף המובנה — אותו חוזה בדיוק כמו v1 ===========
+         התוויות נשלחות עם התשובות ולא ממופות בצד ה-CRM: השאלון יושב על
+         דיפלוי אחר (Netlify), ושאלה שתשתנה כאן הייתה מוצגת שם כמזהה
+         באנגלית עד שמישהו יזכור לעדכן גם את הפאנל. */
+      function gBrief(status) {
+        const sections = [];
+        const bySec = {};
+        let total = 0,
+          filled = 0;
+        visibleSteps().forEach((st) => {
+          st.fields.forEach((q) => {
+            const v = A[q.id];
+            const answered = Array.isArray(v)
+              ? v.length > 0
+              : typeof v === "string" && !!v.trim();
+            total++;
+            if (answered) filled++;
+            if (!bySec[q.sec]) {
+              bySec[q.sec] = {
+                id: q.sec,
+                icon: SECS[q.sec].icon,
+                title: SECS[q.sec].title,
+                items: [],
+              };
+              sections.push(bySec[q.sec]);
+            }
+            bySec[q.sec].items.push({
+              id: q.id,
+              label: q.l,
+              value: answered ? v : "",
+            });
+          });
+        });
+        return {
+          session_id: sessionId(),
+          status: status,
+          completion_percentage: total ? Math.round((filled / total) * 100) : 0,
+          source_url: location.href,
+          answers: { sections: sections },
+        };
+      }
+
+      // ---- סיכום טקסטואלי (notes של הליד + הודעת וואטסאפ)
+      function gSum() {
+        let t =
+          "══════════════════════════════════\n  Studios — סיכום אפיון פרויקט\n  " +
+          new Date().toLocaleDateString("he-IL") +
+          "\n";
+        if (A.business_name) t += "  " + A.business_name + "\n";
+        t += "══════════════════════════════════\n\n";
+        const bySec = {};
+        const order = [];
+        visibleSteps().forEach((st) =>
+          st.fields.forEach((q) => {
+            const v = A[q.id];
+            const has = Array.isArray(v) ? v.length > 0 : v && String(v).trim();
+            if (!has) return;
+            if (!bySec[q.sec]) {
+              bySec[q.sec] = [];
+              order.push(q.sec);
+            }
+            bySec[q.sec].push(q);
+          }),
+        );
+        order.forEach((secId) => {
+          t +=
+            SECS[secId].icon +
+            " " +
+            SECS[secId].title +
+            "\n─────────────────────────\n";
+          bySec[secId].forEach((q) => {
+            const v = A[q.id];
+            t += Array.isArray(v)
+              ? q.l + ":\n  • " + v.join("\n  • ") + "\n"
+              : q.l + ": " + v + "\n";
+          });
+          t += "\n";
+        });
+        return t;
+      }
+
+      /* =========== הליד הסמכותי — נוצר פעם אחת, בסיום ===========
+         דרך ה-webhook המוכח של ה-CRM (service-role). source חייב להיות
+         ערך חוקי לפי leads_source_check; המקור האמיתי מתועד ב-created_via.
+         אין קריאת webhook על חלקיים בכוונה — הדדופ (חלון 5 דק') היה חוסם
+         את הבריף המלא אם ליד חלקי היה נוצר קודם. */
+      function sendToSupabase(notes) {
+        return fetch(
+          "https://studios-hub.vercel.app/api/leads/webhook?secret=" +
+            "84373481945a8a0b8c3" +
+            "18e4c3241f49d709b6bb6fec7ad9680a71f18fb75e8cf",
+          {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            keepalive: true,
+            body: JSON.stringify({
+              full_name: A.contact_name || A.business_name || "שאלון אפיון",
+              phone: A.phone || undefined,
+              email: A.email || undefined,
+              business_name: A.business_name || undefined,
+              source: "organic",
+              created_via: "questionnaire",
+              initial_message: notes || undefined,
+              brief: gBrief("completed"),
+            }),
+          },
+        ).catch(() => null);
+      }
+
+      /* =========== רשת ביטחון לנטישות — Formspree בלבד ===========
+         תוכנית של 50 שליחות בחודש. שליחה כל 30 שניות שרפה את המכסה
+         באמצע יולי — לכן תקרה קשיחה: 2 שליחות חלקיות למבקר. */
+      let lastSentData = "";
+      let sendCount = 0;
+      let partialSends = 0;
+      const MAX_PARTIAL_SENDS = 2;
+
+      function buildMessage() {
+        return (
+          "שאלון אפיון v2" +
+          (sendCount > 0 ? " (עדכון)" : "") +
+          "\n" +
+          new Date().toLocaleString("he-IL") +
+          "\n\n" +
+          gSum()
+        );
+      }
+
+      function silentSend() {
+        if (submitted) return;
+        const hasData = Object.values(A).some((v) =>
+          Array.isArray(v) ? v.length > 0 : v && String(v).trim(),
+        );
+        if (!hasData) return;
+        const msg = buildMessage();
+        if (msg === lastSentData) return;
+        lastSentData = msg;
+        sendCount++;
+        if (partialSends >= MAX_PARTIAL_SENDS) return;
+        partialSends++;
+        fetch(FORMSPREE_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: A.contact_name || A.business_name || "שאלון אפיון",
+            phone: A.phone || "",
+            email: A.email || "",
+            source: "questionnaire",
+            message: msg,
+          }),
+        }).catch(() => {});
+      }
+
+      let firstSendDone = false;
+      function startAutoSend() {
+        if (firstSendDone) return;
+        firstSendDone = true;
+        if (typeof fbq !== "undefined")
+          fbq("track", "InitiateCheckout", {
+            content_name: "Briefing Questionnaire Started",
+            content_category: "questionnaire",
+          });
+        setTimeout(silentSend, 120000);
+      }
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "hidden") silentSend();
+      });
+      window.addEventListener("pagehide", () => {
+        if (!submitted) silentSend();
+      });
+
+      // ================== רינדור כרטיס ==================
+      function esc(s) {
+        return String(s).replace(/"/g, "&quot;");
+      }
+
+      function renderField(q) {
+        let h =
+          '<div class="f-wrap"><label class="f-label">' +
+          q.l +
+          (q.r ? '<span class="req">*</span>' : "") +
+          "</label>";
+        const v = A[q.id];
+        if (q.t === "text" || q.t === "tel" || q.t === "email") {
+          h +=
+            '<input type="' +
+            q.t +
+            '" id="inp-' +
+            q.id +
+            '" class="' +
+            (q.ltr ? "ltr-input" : "") +
+            '" placeholder="' +
+            esc(q.ph || "") +
+            '" value="' +
+            esc(typeof v === "string" ? v : "") +
+            '" oninput="u(\'' +
+            q.id +
+            "',this.value)\" onkeydown=\"if(event.key==='Enter'){event.preventDefault();next();}\">";
+          if (q.quick) {
+            h += '<div class="quick-row">';
+            q.quick.forEach(
+              (opt) =>
+                (h +=
+                  '<button class="quick" onclick="quickFill(\'' +
+                  q.id +
+                  "','" +
+                  opt.replace(/'/g, "\\'") +
+                  "')\">" +
+                  opt +
+                  "</button>"),
+            );
+            h += "</div>";
+          }
+        } else if (q.t === "textarea") {
+          h +=
+            '<textarea id="inp-' +
+            q.id +
+            '" placeholder="' +
+            esc(q.ph || "") +
+            '" rows="3" oninput="u(\'' +
+            q.id +
+            "',this.value)\">" +
+            (typeof v === "string" ? v : "") +
+            "</textarea>";
+        } else if (q.t === "select") {
+          h += '<div class="chip-grid">';
+          q.o.forEach(
+            (o) =>
+              (h +=
+                '<button class="chip' +
+                (v === o ? " active" : "") +
+                '" data-q="' +
+                q.id +
+                '" onclick="sel(\'' +
+                q.id +
+                "','" +
+                o.replace(/'/g, "\\'") +
+                "',this)\">" +
+                o +
+                "</button>"),
+          );
+          h += "</div>";
+        } else if (q.t === "checklist") {
+          h += '<div class="chip-grid multi">';
+          q.o.forEach(
+            (o) =>
+              (h +=
+                '<button class="chip' +
+                (Array.isArray(v) && v.includes(o) ? " active" : "") +
+                '" data-q="' +
+                q.id +
+                '" onclick="chk(\'' +
+                q.id +
+                "','" +
+                o.replace(/'/g, "\\'") +
+                "',this)\">" +
+                o +
+                "</button>"),
+          );
+          h += "</div>";
+        }
+        h += '<div class="err-msg" id="err-' + q.id + '">שדה חובה</div></div>';
+        return h;
+      }
+
+      function renderCard() {
+        const steps = visibleSteps();
+        if (cur >= steps.length) {
+          finish();
+          return;
+        }
+        const st = steps[cur];
+        const host = document.getElementById("cardHost");
+        const hasRequired = st.fields.some((f) => f.r);
+        // אחרי שער הפרטים הטופס יודע שם — כותרות נבחרות פונות אישית.
+        const fn = firstName();
+        const title =
+          st.personal && fn ? fn + ", " + st.title : st.title;
+        let h = '<div class="qcard" id="qcard">';
+        h += '<div class="q-kicker">' + st.kicker + "</div>";
+        h += '<div class="q-title">' + title + "</div>";
+        if (st.sub) h += '<div class="q-sub">' + st.sub + "</div>";
+        st.fields.forEach((f, fi) => {
+          h += renderField(f).replace(
+            '<div class="f-wrap">',
+            '<div class="f-wrap" style="--i:' + fi + '">',
+          );
+        });
+        h += '<div class="card-nav">';
+        h +=
+          '<button class="next-btn' +
+          (st.last ? " lime" : "") +
+          '" onclick="next()">' +
+          (st.last ? "שליחת האפיון 🚀" : st.gate ? "שומרים וממשיכים ←" : "המשך ←") +
+          "</button>";
+        if (!hasRequired && !st.last)
+          h +=
+            '<button class="skip-btn" onclick="skip()">דילוג — נשלים בשיחה</button>';
+        h += "</div></div>";
+        h +=
+          '<div class="under-nav">' +
+          (cur > 0
+            ? '<button class="back-link" onclick="back()">→ חזרה</button>'
+            : "") +
+          "</div>";
+        host.innerHTML = h;
+        uProg();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        // פוקוס אוטומטי על שדה טקסט ראשון (רק בדסקטופ — במובייל זה מקפיץ מקלדת)
+        if (window.innerWidth > 700) {
+          const first = host.querySelector("input, textarea");
+          if (first) setTimeout(() => first.focus(), 250);
+        }
+      }
+
+      // ================== state updates ==================
+      function u(id, v) {
+        A[id] = v;
+        saveLocal();
+        startAutoSend();
+        const inp = document.getElementById("inp-" + id);
+        if (inp) inp.classList.remove("error");
+        const err = document.getElementById("err-" + id);
+        if (err) err.classList.remove("show");
+      }
+      function quickFill(id, v) {
+        A[id] = v;
+        const inp = document.getElementById("inp-" + id);
+        if (inp) inp.value = v;
+        saveLocal();
+        startAutoSend();
+      }
+      function sel(q, v, b) {
+        const off = A[q] === v;
+        A[q] = off ? "" : v;
+        document
+          .querySelectorAll('[data-q="' + q + '"]')
+          .forEach((x) => x.classList.remove("active"));
+        if (!off) {
+          b.classList.add("active");
+          buzz();
+          react(q, v);
+        }
+        saveLocal();
+        startAutoSend();
+        // בחירה בכרטיס של שאלה בודדת עם צ'יפים = התקדמות אוטומטית.
+        const st = visibleSteps()[cur];
+        if (!off && st && st.fields.length === 1 && st.fields[0].t === "select")
+          setTimeout(next, 350);
+      }
+      function chk(q, v, b) {
+        if (!A[q]) A[q] = [];
+        const i = A[q].indexOf(v);
+        if (i > -1) {
+          A[q].splice(i, 1);
+          b.classList.remove("active");
+        } else {
+          A[q].push(v);
+          b.classList.add("active");
+          buzz();
+        }
+        saveLocal();
+        startAutoSend();
+      }
+
+      // ================== navigation ==================
+      function validateCard() {
+        const st = visibleSteps()[cur];
+        let ok = true;
+        st.fields.forEach((f) => {
+          if (!f.r) return;
+          const v = A[f.id];
+          let has = typeof v === "string" && v.trim();
+          if (f.id === "phone" && has) {
+            const digits = v.replace(/\D/g, "");
+            if (digits.length < 9) has = false;
+          }
+          const inp = document.getElementById("inp-" + f.id);
+          const err = document.getElementById("err-" + f.id);
+          if (!has) {
+            ok = false;
+            if (inp) inp.classList.add("error");
+            if (err) {
+              err.textContent =
+                f.id === "phone" && A.phone ? "מספר לא תקין" : "שדה חובה";
+              err.classList.add("show");
+            }
+          }
+        });
+        return ok;
+      }
+
+      function transition(fn) {
+        const card = document.getElementById("qcard");
+        if (card) {
+          card.classList.add("leaving");
+          setTimeout(fn, 180);
+        } else fn();
+      }
+
+      function next() {
+        if (!validateCard()) return;
+        const st = visibleSteps()[cur];
+        if (st.gate) toast("🔒", "האפיון נשמר על שמכם — ממשיכים!");
+        transition(() => {
+          cur++;
+          saveLocal();
+          renderCard();
+        });
+      }
+      function skip() {
+        transition(() => {
+          cur++;
+          saveLocal();
+          renderCard();
+        });
+      }
+      function back() {
+        if (cur === 0) return;
+        transition(() => {
+          cur--;
+          saveLocal();
+          renderCard();
+        });
+      }
+
+      function toast(icon, text) {
+        const el = document.getElementById("milestone");
+        el.querySelector(".ml-icon").textContent = icon;
+        el.querySelector(".ml-text").textContent = text;
+        el.classList.add("show");
+        setTimeout(() => el.classList.remove("show"), 2800);
+      }
+
+      /* =========== סיום: שליחה אוטומטית. אפס החלטות למשתמש. ===========
+         ההגעה לסוף היא השליחה — אין מסך סיכום ואין כפתור "שלח" שאפשר
+         לא ללחוץ עליו. שדות החובה מולאו בשער, אחרת אי אפשר להגיע לכאן. */
+      function finish() {
+        if (!submitted) {
+          submitted = true;
+          try {
+            localStorage.removeItem("studios_q2");
+            localStorage.removeItem("studios_q2_step");
+          } catch (e) {}
+          sendToSupabase(gSum());
+          if (typeof fbq !== "undefined") {
+            fbq("init", "3078561329005345", {
+              em: A.email || "",
+              ph: A.phone || "",
+              fn: (A.contact_name || "").split(" ")[0] || "",
+              ln: (A.contact_name || "").split(" ").slice(1).join(" ") || "",
+              country: "il",
+            });
+            fbq("track", "CompleteRegistration", {
+              content_name: "Briefing Questionnaire Completed",
+              content_category: "questionnaire",
+              status: "completed",
+            });
+          }
+        }
+        document.getElementById("stage").classList.remove("show");
+        document.getElementById("progFill").style.width = "100%";
+        document.getElementById("progMsg").textContent = "";
+        if (A.contact_name)
+          document.getElementById("doneText").innerHTML =
+            A.contact_name.split(" ")[0] +
+            ", קיבלנו הכל ואנחנו כבר עוברים על התשובות. הצעד הבא — <strong>שיחת אפיון קצרה</strong> שבה נחזור אליכם עם כיוון וכימות מדויק.";
+        // "מה כבר הבנו עליכם" — הוכחת הקשבה. מי שמרגיש שהבינו אותו
+        // מגיע לכפתור הפגישה כשההחלטה כבר חצי סגורה.
+        const recap = [];
+        if (A.project_type) recap.push(A.project_type);
+        if (A.style_pref) recap.push("וייב " + A.style_pref);
+        if (A.why_now) recap.push(A.why_now);
+        if (A.deadline) recap.push("⏰ " + A.deadline);
+        if (recap.length) {
+          document.getElementById("recapChips").innerHTML = recap
+            .map((r) => '<span class="recap-chip">' + r + "</span>")
+            .join("");
+          document.getElementById("recapCard").style.display = "block";
+        }
+        document.getElementById("doneView").classList.add("show");
+        confettiBurst();
+        window.scrollTo(0, 0);
+      }
+
+      function confettiBurst() {
+        const colors = ["#c8ff00", "#0a0a0a", "#ffffff", "#b5e600"];
+        for (let i = 0; i < 26; i++) {
+          const c = document.createElement("div");
+          c.className = "confetti";
+          c.style.left = Math.random() * 100 + "vw";
+          c.style.background = colors[i % colors.length];
+          c.style.setProperty("--cd", 2 + Math.random() * 1.6 + "s");
+          c.style.setProperty("--cdel", Math.random() * 0.7 + "s");
+          c.style.setProperty(
+            "--cr",
+            (Math.random() > 0.5 ? "" : "-") +
+              (360 + Math.random() * 540) +
+              "deg",
+          );
+          document.body.appendChild(c);
+          setTimeout(() => c.remove(), 4600);
+        }
+      }
+
+      function trackBooking() {
+        if (typeof fbq !== "undefined")
+          fbq("track", "Contact", {
+            content_name: "Booking Click",
+            content_category: "contact",
+          });
+      }
+      function openWA() {
+        if (typeof fbq !== "undefined")
+          fbq("track", "Contact", {
+            content_name: "WhatsApp Click",
+            content_category: "contact",
+          });
+        window.open(
+          "https://wa.me/972587879796?text=" + encodeURIComponent(gSum()),
+          "_blank",
+        );
+      }
+
+      // ================== boot ==================
+      function startForm() {
+        document.getElementById("introView").style.display = "none";
+        document.getElementById("topbar").style.display = "block";
+        document.getElementById("stage").classList.add("show");
+        renderCard();
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const hadDraft = loadLocal();
+        if (hadDraft)
+          document.getElementById("resumeNote").style.display = "block";
+      });
+    </script>
+  </body>
+</html>
