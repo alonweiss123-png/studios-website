@@ -1047,6 +1047,14 @@
                   <label for="f-msg">ספרו בקצרה על הפרויקט</label>
                   <textarea id="f-msg" name="message" rows="4" placeholder="יש לי חנות ב… / אני רוצה להקים…"></textarea>
                 </div>
+                <!-- תיקון 40 לחוק התקשורת: הסכמה מפורשת, ספציפית ומתועדת.
+                     לא מסומן מראש — תיבה מסומנת כברירת מחדל אינה הסכמה.
+                     לא חובה — מי שלא מסמן עדיין נכנס ל-CRM, פשוט בלי הודעה
+                     אוטומטית בוואטסאפ. -->
+                <label class="consent" for="f-wa">
+                  <input id="f-wa" name="wa_consent" type="checkbox" value="1" />
+                  <span id="f-wa-text">אני מאשר/ת קבלת הודעות ועדכונים מ-Studios בוואטסאפ, כולל תוכן שיווקי. אפשר להסיר בכל רגע בתשובה "הסר".</span>
+                </label>
                 <button type="submit" class="btn btn-primary btn-lg form-btn">
                   שליחה
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>

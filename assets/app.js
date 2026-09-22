@@ -217,6 +217,15 @@
         const email = fd.get("email") || null;
         const message = fd.get("message") || null;
         const utm = getUtm();
+        // WhatsApp opt-in. The wording is read off the page rather than
+        // hardcoded here, so the proof we store is literally what was on
+        // screen — a copy edit to the label can never silently desync from
+        // the consent record it is supposed to evidence.
+        const waBox = form.querySelector("#f-wa");
+        const waConsent = !!(waBox && waBox.checked);
+        const waConsentText = waConsent
+          ? (document.getElementById("f-wa-text") || {}).textContent || undefined
+          : undefined;
         // Meta click/browser ids for Conversions API Match Quality.
         // _fbp/_fbc are set by the Pixel; if the visitor submits within
         // seconds of landing the Pixel may not have written _fbc yet, so
@@ -259,6 +268,8 @@
               utm_term: utm.utm_term || undefined,
               fbc: fbc || undefined,
               fbp: fbp || undefined,
+              wa_consent: waConsent,
+              wa_consent_text: waConsentText,
             }),
           },
         ).catch(() => null);

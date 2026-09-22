@@ -511,6 +511,11 @@ h1,h2,h3,h4{
 }
 .field textarea{resize:vertical;min-height:104px;line-height:1.6}
 .form-btn{width:100%;margin-top:var(--s2)}
+/* WhatsApp opt-in. Deliberately NOT inside .field — that rule stretches every
+   input to width:100%, which turns a checkbox into a full-width grey bar. */
+.consent{display:flex;gap:10px;align-items:flex-start;margin-bottom:var(--s4);cursor:pointer}
+.consent input{width:17px;height:17px;flex:none;margin-top:2px;accent-color:var(--acid);cursor:pointer}
+.consent span{font-size:12.5px;line-height:1.55;color:var(--ink-3)}
 .form-err{
   margin-top:var(--s4);padding:13px 16px;border-radius:var(--r);
   background:rgba(255,138,107,.08);border:1px solid rgba(255,138,107,.3);
