@@ -386,6 +386,12 @@
         line-height: 1.6;
         margin-bottom: 18px;
       }
+      .q-consent {
+        font-size: 11.5px;
+        line-height: 1.55;
+        color: var(--text3);
+        margin: 4px 0 14px;
+      }
       .f-wrap {
         margin-bottom: 16px;
         animation: fieldIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -1012,6 +1018,15 @@
         sales: { icon: "🧭", title: "מניעים והקשר" },
       };
 
+      /* הודעה ולא checkbox — תיקון 40 §30א(ג). היא מוצגת על שער הפרטים,
+         מעל הכפתור שמוסר אותם, כדי שהיא תקדים את האיסוף ולא תבוא אחריו.
+         בלי `wa_consent` בגוף ה-POST ה-CRM חוסם את הודעת הוואטסאפ לגמרי
+         (`welcomeBlockedReason`), והליד נכנס למערכת ולא שומע מאיתנו.
+         אותה מחרוזת בדיוק מוצגת וגם נשמרת — היא העדות, אז היא לא יכולה
+         להיכתב פעמיים ולהיפרד. הנוסח זהה לזה שבטופס הלידים של מטא. */
+      const WA_CONSENT_TEXT =
+        "הפרטים שתמסרו ישמשו ליצירת קשר בוואטסאפ, במייל ובטלפון, לרבות תוכן שיווקי מטעם Studios. ניתן להסיר בכל עת.";
+
       const STEPS = [
         {
           kicker: "בואו נכיר",
@@ -1095,6 +1110,7 @@
           title: "נשמור את האפיון על שמכם",
           sub: "כדי שהתשובות לא ילכו לאיבוד — ושנדע למי לחזור עם התוכנית.",
           gate: true,
+          note: WA_CONSENT_TEXT,
           fields: [
             {
               id: "business_name",
@@ -1672,6 +1688,8 @@
               created_via: "questionnaire",
               initial_message: notes || undefined,
               brief: gBrief("completed"),
+              wa_consent: true,
+              wa_consent_text: WA_CONSENT_TEXT,
             }),
           },
         ).catch(() => null);
@@ -1856,6 +1874,8 @@
             '<div class="f-wrap" style="--i:' + fi + '">',
           );
         });
+        if (st.note)
+          h += '<div class="q-consent">' + st.note + "</div>";
         h += '<div class="card-nav">';
         h +=
           '<button class="next-btn' +

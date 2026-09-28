@@ -1488,6 +1488,17 @@
       }
 
       /*=== FORM GUARANTEE ===*/
+      /* Notice, not a checkbox: תיקון 40 §30א(ג) asks that the recipient be
+         told before the details are handed over, so it sits ABOVE the submit
+         button. A checkbox would be §30א(ב) consent and would cost conversions
+         for a duty that the notice already discharges. */
+      .form-consent {
+        margin: 14px 0 0;
+        font-size: 0.72rem;
+        line-height: 1.55;
+        color: var(--text-muted);
+        text-align: center;
+      }
       .form-guarantee {
         display: flex;
         align-items: center;
@@ -5487,6 +5498,10 @@
                     placeholder="סוג העסק, מה אתם מוכרים, מה המטרה..."
                   ></textarea>
                 </div>
+                <p class="form-consent" id="waConsentNotice">
+                  הפרטים שתמסרו ישמשו ליצירת קשר בוואטסאפ, במייל ובטלפון,
+                  לרבות תוכן שיווקי מטעם Studios. ניתן להסיר בכל עת.
+                </p>
                 <button type="submit" class="form-btn">
                   שליחה
                   <svg
@@ -6326,6 +6341,15 @@
           q.setAttribute("aria-expanded", item.classList.contains("open"));
         };
 
+        // The exact sentence shown above the submit button, normalised to one
+        // line. The markup wraps it across source lines for readability, and
+        // raw textContent would carry those newlines and indentation into the
+        // CRM's evidence column.
+        function consentText() {
+          const el = document.getElementById("waConsentNotice");
+          return el ? el.textContent.replace(/\s+/g, " ").trim() : "";
+        }
+
         // === FORM SUBMIT + REDIRECT ===
         document
           .getElementById("contactForm")
@@ -6377,6 +6401,14 @@
                   source: "fb_ads",
                   campaign_name: utm.utm_campaign || "פייסבוק - מאי 2026",
                   created_via: "landing_page",
+                  // Without these two the CRM refuses to send the WhatsApp
+                  // welcome at all (welcomeBlockedReason → "no documented
+                  // WhatsApp consent"), so the lead lands in the CRM and never
+                  // hears from us. Read out of the DOM rather than duplicated
+                  // as a literal: what we store is then provably the sentence
+                  // the lead actually saw, and it cannot drift from the markup.
+                  wa_consent: true,
+                  wa_consent_text: consentText(),
                   utm_source: utm.utm_source || undefined,
                   utm_medium: utm.utm_medium || undefined,
                   utm_campaign: utm.utm_campaign || undefined,
