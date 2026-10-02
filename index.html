@@ -5721,6 +5721,12 @@
           <li><a href="/shopify.html">בניית חנות שופיפיי</a></li>
           <li><a href="/ecommerce.html">אתרי איקומרס</a></li>
           <li><a href="/cro.html">שיפור המרות</a></li>
+          <li><a href="/services.html">השירותים שלנו</a></li>
+          <li><a href="/migration.html">מעבר לשופיפיי</a></li>
+          <li><a href="/pricing.html">מחירים</a></li>
+          <li><a href="/work/">תיק עבודות</a></li>
+          <li><a href="/blog/">בלוג</a></li>
+          <li><a href="/about.html">מי אנחנו</a></li>
           <li><a href="#portfolio">פרויקטים</a></li>
           <li><a href="#contact">צור קשר</a></li>
         </ul>
@@ -6440,73 +6446,25 @@
                 _subject: "ליד חדש מדף הנחיתה (גיבוי) — " + (name || ""),
               }),
             }).catch(() => {});
-            // The thank-you redirect is gated ONLY on the CRM webhook (the system
-            // of record). fetch() rejects only on a network failure — NOT on HTTP
-            // errors (401 expired secret, 500, …) — so a failed CRM call resolves
-            // to null (its .catch) or a Response with res.ok=false, and we show the
-            // error + WhatsApp fallback instead of faking success. The CRM webhook
-            // returns permissive CORS, so res.ok is readable cross-origin. The
-            // Formspree email above is a fire-and-forget backup, intentionally
-            // excluded from this gate so it can never mask a CRM failure.
-            function showFormError() {
-              btn.innerHTML = origBtn;
-              btn.disabled = false;
-              let err = form.querySelector(".form-err");
-              if (!err) {
-                err = document.createElement("p");
-                err.className = "form-err";
-                err.setAttribute("role", "alert");
-                err.innerHTML =
-                  "השליחה נכשלה. דברו איתנו ישירות ב" +
-                  '<a href="https://wa.me/972587879796" target="_blank" rel="noopener">וואטסאפ</a>' +
-                  " או נסו שוב.";
-                btn.parentNode.insertBefore(err, btn.nextSibling);
-              }
-            }
-            Promise.all([supaReq])
-              .then((results) => {
-                const res = results[0];
-                if (!res || !res.ok) {
-                  showFormError();
-                  return;
-                }
-                // Lead saved. Read lead_id + is_duplicate from the webhook response.
-                // Fire the Pixel Lead event ONLY for a genuinely NEW lead, with
-                // event_id = lead UUID so it dedups against the server-side
-                // Conversions API event (which uses the same id and also skips
-                // duplicates). Never fires on a failed save, a mere field-touch,
-                // or a duplicate submission of the same person.
-                return res
-                  .json()
-                  .catch(() => null)
-                  .then((data) => {
-                    const result = data && data.result ? data.result : {};
-                    const leadId = result.lead_id || null;
-                    const isDuplicate = result.is_duplicate === true;
-                    if (!isDuplicate && typeof fbq !== "undefined") {
-                      fbq("init", "3078561329005345", {
-                        em: email || "",
-                        ph: phone || "",
-                        fn: name.split(" ")[0] || "",
-                        ln: name.split(" ").slice(1).join(" ") || "",
-                        country: "il",
-                      });
-                      fbq(
-                        "track",
-                        "Lead",
-                        {
-                          content_name: "Landing Page Lead Form",
-                          content_category: "lead_form",
-                          value: 0,
-                          currency: "ILS",
-                        },
-                        leadId ? { eventID: leadId } : undefined,
-                      );
-                    }
-                    window.location.href = "thank-you.html";
-                  });
-              })
-              .catch(showFormError);
+            // OPTIMISTIC REDIRECT (2026-10-02). The old flow gated the
+            // thank-you on the full CRM round-trip (Vercel cold start +
+            // Supabase RPC + res.json()), which made the button feel stuck
+            // for seconds. Both requests above are keepalive:true, so they
+            // survive the navigation — we redirect immediately.
+            //
+            // Measurement is NOT lost: api/leads/webhook.ts fires the CAPI
+            // `Lead` server-side (fireLeadConversion, event_id = lead UUID),
+            // and fbc/fbp/UTM already travel in the POST body for Match
+            // Quality. The old client-side fbq("track","Lead") existed only
+            // as the dedup twin of that server event — skipping it does not
+            // drop the conversion.
+            //
+            // Accepted tradeoff: a CRM outage now shows thank-you anyway.
+            // The Formspree email above is the safety net for that case —
+            // the lead still reaches Alon even if the webhook 500s.
+            void supaReq; // keepalive request intentionally not awaited
+            void origBtn;
+            window.location.href = "thank-you.html";
           });
 
         // === FACEBOOK PIXEL — WHATSAPP + PHONE + SCROLL + TIME ===
