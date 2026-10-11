@@ -716,3 +716,7 @@ h1,h2,h3,h4{
   .book-alt{padding:14px 16px;gap:var(--s3)}
   .book-alt-txt strong{font-size:14px}
 }
+
+/* ---------- Shopify Select Partner badge ---------- */
+.ftr-badge{display:block;width:131px;height:auto;margin-top:var(--s5);opacity:.85}
+.ft-badge{display:block;width:131px;height:auto;margin:28px auto 14px;opacity:.85}
