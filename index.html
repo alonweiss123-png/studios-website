@@ -17,7 +17,7 @@
     />
     <meta
       name="description"
-      content="בניית חנות שופיפיי (Shopify) ואתרי איקומרס שמוכרים — Studios, Shopify Partner רשמי. עיצוב UX/UI, תכנון מסע לקוח ואופטימיזציה להמרות. שיחת ייעוץ ראשונה חינם."
+      content="בניית חנות שופיפיי (Shopify) ואתרי איקומרס שמוכרים. Studios היא Shopify Select Partner עם יותר מ-65 חנויות שנבנו. עיצוב UX/UI, תכנון מסע לקוח ואופטימיזציה להמרות. שיחת ייעוץ ראשונה חינם."
     />
     <meta
       name="keywords"
@@ -80,7 +80,7 @@
               "height": 192
             },
             "image": "https://studios.ninja/og-image.jpg",
-            "description": "Studios בונה חנויות שופיפיי (Shopify) ואתרי איקומרס שמוכרים. Shopify Partner רשמי. תכנון מסע לקוח, אופטימיזציה להמרות ועיצוב UX/UI.",
+            "description": "Studios בונה חנויות שופיפיי (Shopify) ואתרי איקומרס שמוכרים. Shopify Select Partner. תכנון מסע לקוח, אופטימיזציה להמרות ועיצוב UX/UI.",
             "email": "alon@studios.ninja",
             "telephone": "+972587879796",
             "areaServed": "IL",
@@ -196,7 +196,7 @@
                 "name": "מה הפלטפורמה שאתם עובדים איתה?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "בעיקר Shopify, הפלטפורמה המובילה בעולם ל-eCommerce. אנחנו Shopify Partner רשמיים, מה שאומר שהלקוחות שלנו נהנים מהטבות פרטנרים בלעדיות שזמינות רק דרך סוכנויות מאושרות. במקרים שבהם Shopify לא הפתרון הנכון, נמצא לך פלטפורמה שכן."
+                  "text": "בעיקר Shopify, הפלטפורמה המובילה בעולם ל-eCommerce. אנחנו Shopify Select Partner, מה שאומר שהלקוחות שלנו נהנים מהטבות פרטנרים בלעדיות שזמינות רק דרך סוכנויות מאושרות. במקרים שבהם Shopify לא הפתרון הנכון, נמצא לך פלטפורמה שכן."
                 }
               },
               {
@@ -4216,7 +4216,7 @@
               fetchpriority="high"
             />
             <span class="hero-partner-txt" aria-hidden="true">
-              <b>שותף רשמי של Shopify</b>
+              <b>שותף Shopify בדרגת Select</b>
               <span class="hero-partner-perks">הטבות פרטנרים ללקוחות שלנו</span>
             </span>
           </div>
@@ -4264,7 +4264,7 @@
         </div>
         <div class="hero-stats" id="hSt">
           <div class="st-item">
-            <span class="st-num" data-target="47">0</span
+            <span class="st-num" data-target="65" data-suffix="+">0</span
             ><span class="st-label">אתרי חנות</span>
           </div>
           <div class="st-item">
@@ -5424,7 +5424,7 @@
             <div class="faq-a">
               <p>
                 בעיקר Shopify, הפלטפורמה המובילה בעולם ל-eCommerce. אנחנו
-                <strong>Shopify Partner רשמיים</strong>, מה שאומר שהלקוחות שלנו
+                <strong>Shopify Select Partner</strong>, מה שאומר שהלקוחות שלנו
                 נהנים מ<strong>הטבות פרטנרים בלעדיות</strong> שזמינות רק דרך
                 סוכנויות מאושרות (נפרט בשיחת הייעוץ). במקרים שבהם Shopify לא
                 הפתרון הנכון, נמצא לך פלטפורמה שכן.
@@ -5910,6 +5910,46 @@
     </footer>
 
     <script>
+      // === FIRST TOUCH (localStorage, 90 days, read only by the lead form) ===
+      // lead_utm lives in sessionStorage, so a visitor who came back in a new tab
+      // reached the form with no source: ChatGPT sends utm_source=chatgpt.com on
+      // the first visit, and those leads landed in the CRM with utm_source empty.
+      // The beacons below still report the current session only.
+      const FIRST_TOUCH_KEY = "lead_first_touch";
+      const FIRST_TOUCH_MS = 90 * 24 * 60 * 60 * 1000;
+
+      function readFirstTouch() {
+        try {
+          const ft = JSON.parse(localStorage.getItem(FIRST_TOUCH_KEY) || "null");
+          if (ft && Date.now() - ft.ts < FIRST_TOUCH_MS) return ft;
+        } catch (e) {}
+        return null;
+      }
+
+      // Kept once: the first visit that carried UTM tags or an outside referrer.
+      function rememberFirstTouch(tags) {
+        try {
+          if (readFirstTouch()) return;
+          let ref = "";
+          try {
+            const host = new URL(document.referrer).hostname;
+            if (host && host !== location.hostname) ref = host;
+          } catch (e) {}
+          if (!tags && !ref) return;
+          const ft = Object.assign({}, tags, { ts: Date.now() });
+          if (ref) ft.ref = ref;
+          localStorage.setItem(FIRST_TOUCH_KEY, JSON.stringify(ft));
+        } catch (e) {}
+      }
+
+      // Tags for the lead form: this session's UTM, else the first touch. `ref`
+      // only fills utm_source when there is no tag, and never makes a lead paid.
+      function leadTags() {
+        const session = getUtm();
+        if (Object.keys(session).length) return session;
+        return readFirstTouch() || {};
+      }
+
       // === UTM CAPTURE (runs on page load, survives session) ===
       (function captureUtm() {
         const KEYS = [
@@ -5930,6 +5970,7 @@
           }
         });
         if (found) sessionStorage.setItem("lead_utm", JSON.stringify(stored));
+        rememberFirstTouch(found ? stored : null);
       })();
 
       function getUtm() {
@@ -6546,7 +6587,7 @@
             const phone = fd.get("phone") || "";
             const email = fd.get("email") || null;
             const message = fd.get("message") || null;
-            const utm = getUtm();
+            const utm = leadTags();
             // Meta click/browser ids for Conversions API Match Quality.
             // _fbp/_fbc are set by the Pixel; if the visitor submits within
             // seconds of landing the Pixel may not have written _fbc yet, so
@@ -6590,7 +6631,7 @@
                   // the lead actually saw, and it cannot drift from the markup.
                   wa_consent: true,
                   wa_consent_text: consentText(),
-                  utm_source: utm.utm_source || undefined,
+                  utm_source: utm.utm_source || utm.ref || undefined,
                   utm_medium: utm.utm_medium || undefined,
                   utm_campaign: utm.utm_campaign || undefined,
                   utm_content: utm.utm_content || undefined,

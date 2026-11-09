@@ -7,6 +7,46 @@
 (function () {
   "use strict";
 
+  // === FIRST TOUCH (localStorage, 90 days, read only by the lead form) ===
+  // lead_utm lives in sessionStorage, so a visitor who came back in a new tab
+  // reached the form with no source: ChatGPT sends utm_source=chatgpt.com on
+  // the first visit, and those leads landed in the CRM with utm_source empty.
+  // The beacons below still report the current session only.
+  const FIRST_TOUCH_KEY = "lead_first_touch";
+  const FIRST_TOUCH_MS = 90 * 24 * 60 * 60 * 1000;
+
+  function readFirstTouch() {
+    try {
+      const ft = JSON.parse(localStorage.getItem(FIRST_TOUCH_KEY) || "null");
+      if (ft && Date.now() - ft.ts < FIRST_TOUCH_MS) return ft;
+    } catch (e) {}
+    return null;
+  }
+
+  // Kept once: the first visit that carried UTM tags or an outside referrer.
+  function rememberFirstTouch(tags) {
+    try {
+      if (readFirstTouch()) return;
+      let ref = "";
+      try {
+        const host = new URL(document.referrer).hostname;
+        if (host && host !== location.hostname) ref = host;
+      } catch (e) {}
+      if (!tags && !ref) return;
+      const ft = Object.assign({}, tags, { ts: Date.now() });
+      if (ref) ft.ref = ref;
+      localStorage.setItem(FIRST_TOUCH_KEY, JSON.stringify(ft));
+    } catch (e) {}
+  }
+
+  // Tags for the lead form: this session's UTM, else the first touch. `ref`
+  // only fills utm_source when there is no tag, and never makes a lead paid.
+  function leadTags() {
+    const session = getUtm();
+    if (Object.keys(session).length) return session;
+    return readFirstTouch() || {};
+  }
+
   // === UTM CAPTURE (runs on page load, survives session) ===
   (function captureUtm() {
     const KEYS = [
@@ -27,6 +67,7 @@
       }
     });
     if (found) sessionStorage.setItem("lead_utm", JSON.stringify(stored));
+    rememberFirstTouch(found ? stored : null);
   })();
 
   function getUtm() {
@@ -231,7 +272,7 @@
         const phone = fd.get("phone") || "";
         const email = fd.get("email") || null;
         const message = fd.get("message") || null;
-        const utm = getUtm();
+        const utm = leadTags();
         // WhatsApp opt-in. The wording is read off the page rather than
         // hardcoded here, so the proof we store is literally what was on
         // screen — a copy edit to the label can never silently desync from
@@ -276,7 +317,7 @@
               source: leadSource(utm, fbc),
               campaign_name: utm.utm_campaign || undefined,
               created_via: "landing_page",
-              utm_source: utm.utm_source || undefined,
+              utm_source: utm.utm_source || utm.ref || undefined,
               utm_medium: utm.utm_medium || undefined,
               utm_campaign: utm.utm_campaign || undefined,
               utm_content: utm.utm_content || undefined,
