@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@500;700;800;900&display=block" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    position: relative;
+    font-family: 'Heebo', sans-serif;
+    background: linear-gradient(160deg, #6b8fb5 0%, #8aaac8 30%, #a4c0d8 60%, #bdd0e3 100%);
+    color: #0a0a0f;
+  }
+  .cloud { position: absolute; background: #fff; border-radius: 999px; filter: blur(34px); opacity: .45; }
+  .c1 { width: 520px; height: 120px; top: 40px; right: -60px; }
+  .c2 { width: 420px; height: 140px; bottom: -40px; right: 260px; opacity: .35; }
+  .c3 { width: 380px; height: 110px; top: 250px; left: -120px; opacity: .3; }
+
+  /* text column, right side */
+  .col { position: absolute; top: 58px; right: 72px; width: 560px; display: flex; flex-direction: column; align-items: flex-start; height: 514px; }
+  .logo { direction: ltr; font-weight: 900; font-size: 46px; letter-spacing: -0.04em; color: #fff; line-height: 1;
+          text-shadow: 1px 1px 0 #c9d3de, 2px 2px 0 #aab6c4, 3px 3px 0 #8e9bab, 0 10px 24px rgba(10,10,15,.18); }
+  .logo i { font-style: normal; color: #c8ff00; }
+
+  .partner { margin-top: 30px; display: flex; align-items: center; gap: 16px; background: #0a0a0f; border: 1px solid rgba(255,255,255,.1);
+             padding: 12px 22px 12px 18px; border-radius: 16px; color: #fff;
+             box-shadow: 0 14px 34px rgba(10,10,15,.22), 0 2px 6px rgba(10,10,15,.12); }
+  .partner img { width: 113px; height: 50px; display: block; }
+  .partner-txt { display: flex; flex-direction: column; gap: 3px; padding-inline-start: 16px; border-inline-start: 1px solid rgba(255,255,255,.16); line-height: 1.25; }
+  .partner-txt b { font-size: 19px; font-weight: 800; }
+  .partner-txt span { font-size: 15px; font-weight: 700; color: #c8ff00; }
+
+  h1 { margin-top: 34px; font-weight: 900; font-size: 104px; line-height: .98; letter-spacing: -0.01em; color: #0a0a0f; }
+  h1 .hl { position: relative; z-index: 0; white-space: nowrap; }
+  h1 .hl::after { content: ''; position: absolute; z-index: -1; right: -6px; left: -6px; bottom: 20px; height: 32px; background: #c8ff00; border-radius: 4px; }
+
+  .url { margin-top: auto; display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 26px; color: #0a0a0f; }
+  .url .dom { direction: ltr; }
+  .url .arr { width: 40px; height: 40px; border-radius: 50%; background: #0a0a0f; color: #c8ff00; display: grid; place-items: center; font-size: 22px; }
+
+  /* portfolio frames, left side */
+  .frame { position: absolute; width: 480px; border-radius: 14px; overflow: hidden; background: #fff;
+           box-shadow: 0 30px 60px rgba(20,35,60,.32), 0 6px 16px rgba(20,35,60,.18); }
+  .chrome { direction: ltr; height: 30px; background: #f1f2f5; display: flex; align-items: center; gap: 7px; padding: 0 12px; border-bottom: 1px solid #e2e4e9; }
+  .chrome i { width: 10px; height: 10px; border-radius: 50%; background: #d0d3da; }
+  .chrome .bar { margin-left: 14px; flex: 1; height: 16px; border-radius: 8px; background: #fff; border: 1px solid #e2e4e9;
+                 font: 600 10px/14px 'Heebo', sans-serif; color: #8a8fa0; padding: 0 10px; }
+  .frame img { display: block; width: 100%; height: 300px; object-fit: cover; object-position: top; }
+  .f1 { top: 54px; left: 46px; transform: rotate(-3deg); }
+  .f2 { top: 262px; left: 128px; transform: rotate(2deg); }
+</style>
+</head>
+<body>
+  <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
+
+  <div class="frame f1">
+    <div class="chrome"><i></i><i></i><i></i><div class="bar">ilcapitano.store</div></div>
+    <img src="../port-capitano.webp" alt="">
+  </div>
+  <div class="frame f2">
+    <div class="chrome"><i></i><i></i><i></i><div class="bar">arato770.com</div></div>
+    <img src="../port-arato.webp" alt="">
+  </div>
+
+  <div class="col">
+    <div class="logo">Studios<i>.</i></div>
+    <div class="partner">
+      <img src="../assets/media/shopify-select-badge.svg" alt="">
+      <div class="partner-txt"><b>שותף רשמי של Shopify</b><span>הטבות פרטנרים ללקוחות שלנו</span></div>
+    </div>
+    <h1>אתרי חנות<br><span class="hl">שמוכרים.</span></h1>
+    <div class="url"><span class="dom">studios.ninja</span><span class="arr">←</span></div>
+  </div>
+</body>
+</html>
