@@ -39,6 +39,21 @@
 
   // Reads a single cookie value by name (used for the Meta _fbc / _fbp
   // click/browser ids that boost Conversions API Match Quality).
+  // Where the lead really came from. Until 2026-11-09 every form lead was sent
+  // as "fb_ads" + "פייסבוק - מאי 2026", so a visitor who typed the address while
+  // the campaign was paused still landed in the CRM as a Facebook lead. Paid
+  // only with evidence: a UTM tag, or a Meta click id (fbclid / _fbc cookie).
+  // Mapped here and not left to the webhook, which turns unknown text into
+  // "fb_ads" too.
+  function leadSource(utm, fbc) {
+    const s = String(utm.utm_source || "").toLowerCase();
+    if (/instagram|^ig\b|ig[_-]?ads/.test(s)) return "ig_ads";
+    if (/facebook|^fb\b|fb[_-]?ads|\bmeta\b/.test(s)) return "fb_ads";
+    if (/whatsapp|^wa$/.test(s)) return "whatsapp";
+    if (!s && fbc) return "fb_ads";
+    return "organic";
+  }
+
   function getCookie(name) {
     const match = document.cookie.match(
       new RegExp("(^| )" + name + "=([^;]+)"),
@@ -258,8 +273,8 @@
               phone: phone,
               email: email || undefined,
               initial_message: message || undefined,
-              source: "fb_ads",
-              campaign_name: utm.utm_campaign || "פייסבוק - מאי 2026",
+              source: leadSource(utm, fbc),
+              campaign_name: utm.utm_campaign || undefined,
               created_via: "landing_page",
               utm_source: utm.utm_source || undefined,
               utm_medium: utm.utm_medium || undefined,
